@@ -27,27 +27,27 @@ private slots:
     void on_pushButtonSave_clicked();
     void on_pushButtonLoad_clicked();
     void on_toolButtonCUCorMat_Dir_for_BOLD_clicked();
-    void on_toolButtonLp_input_dir_clicked();
+  //  void on_toolButtonLp_input_dir_clicked();
   //  void on_toolButtonCUBFS_Lp_input_dir_clicked();
   //  void on_toolButtonBFS_MulCPU_input_dir_clicked();
-    void on_toolButtonCp_input_dir_clicked();
-    void on_toolButtonDegree_input_dir_clicked();
-    void on_toolButtonCUBC_input_dir_clicked();
-    void on_toolButtonCUEC_input_dir_clicked();
-    void on_toolButtonConvertNII_input_file_clicked();
+//    void on_toolButtonCp_input_dir_clicked();
+//    void on_toolButtonDegree_input_dir_clicked();
+//    void on_toolButtonCUBC_input_dir_clicked();
+//    void on_toolButtonCUEC_input_dir_clicked();
+//    void on_toolButtonConvertNII_input_file_clicked();
     void on_toolButtonConvertNII_mask_file_clicked();
     void on_toolButtonL_Modularity_dir_for_csr_clicked();
     void on_toolButtonSaveDir_clicked();
     void on_switchButton_clicked();
-    void on_toolButtonPC_CPU_clicked();
+//    void on_toolButtonPC_CPU_clicked();
     void on_checkCUCorMat_clicked(bool checked);
     void on_checkLp_clicked(bool checked);
  //   void on_checkCUBFS_Lp_clicked(bool checked);
   //  void on_checkBFS_MulCPU_clicked(bool checked);
     void on_checkCP_clicked(bool checked);
-    void on_checkDegree_clicked(bool checked);
-    void on_checkCUBC_clicked(bool checked);
-    void on_checkCUEC_clicked(bool checked);
+//    void on_checkDegree_clicked(bool checked);
+//    void on_checkCUBC_clicked(bool checked);
+//    void on_checkCUEC_clicked(bool checked);
     void on_checkL_Modularity_clicked(bool checked);
     void on_checkPC_CPU_clicked(bool checked);
     void on_checkConvertNII_clicked(bool checked);
@@ -55,9 +55,9 @@ private slots:
     void on_toolButton_Working_Directory_clicked();
     void on_toolButton_Mask_File_clicked();
 
-    void on_toolButtonLp_input_dir_NodalMetrics_clicked();
+//    void on_toolButtonLp_input_dir_NodalMetrics_clicked();
 
-    void on_toolButtonCp_input_dir_NodalMetrics_clicked();
+//    void on_toolButtonCp_input_dir_NodalMetrics_clicked();
 
     void on_checkLp_NodalMetrics_clicked(bool checked);
 

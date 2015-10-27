@@ -32,9 +32,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // connect(this,SIGNAL(mySignalMgrayBoxCUBFS_Lp(bool)),this,SLOT(on_checkCUBFS_Lp_clicked(bool)));
     // connect(this,SIGNAL(mySignalMgrayBoxBFS_MulCPU(bool)),this,SLOT(on_checkBFS_MulCPU_clicked(bool)));
      connect(this,SIGNAL(mySignalMgrayBoxCP(bool)),this,SLOT(on_checkCP_clicked(bool)));
-     connect(this,SIGNAL(mySignalMgrayBoxDegree(bool)),this,SLOT(on_checkDegree_clicked(bool)));
-     connect(this,SIGNAL(mySignalMgrayBoxCUBC(bool)),this,SLOT(on_checkCUBC_clicked(bool)));
-     connect(this,SIGNAL(mySignalMgrayBoxCUEC(bool)),this,SLOT(on_checkCUEC_clicked(bool)));
+   //  connect(this,SIGNAL(mySignalMgrayBoxDegree(bool)),this,SLOT(on_checkDegree_clicked(bool)));
+   //  connect(this,SIGNAL(mySignalMgrayBoxCUBC(bool)),this,SLOT(on_checkCUBC_clicked(bool)));
+   //  connect(this,SIGNAL(mySignalMgrayBoxCUEC(bool)),this,SLOT(on_checkCUEC_clicked(bool)));
      connect(this,SIGNAL(mySignalMgrayBoxL_Modularity(bool)),this,SLOT(on_checkL_Modularity_clicked(bool)));
      connect(this,SIGNAL(mySignalMgrayBoxPC_CPU(bool)),this,SLOT(on_checkPC_CPU_clicked(bool)));
      connect(this,SIGNAL(mySignalMgrayBoxConvertNII(bool)),this,SLOT(on_checkConvertNII_clicked(bool)));
@@ -162,7 +162,7 @@ void MainWindow::on_pushButtonSave_clicked()
     }
 
     if (ui->checkLp->isChecked()) {
-        if (ui->lineEditLp_input_dir->text().isEmpty()
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
@@ -170,13 +170,13 @@ void MainWindow::on_pushButtonSave_clicked()
          string sc=ui->comboBoxLp_type_for_Lp->currentText().toStdString();
          if(sc=="BFW_CUDA")
         script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
-              ui->lineEditLp_input_dir->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<
               std::endl;
          else if(sc=="BFS_MulCPU")
              script << (operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe " : "./exefiles/BFS_MulCPU ") <<
-                   ui->lineEditLp_input_dir->text().toStdString() <<
+                   ui->lineEdit_Working_Directory->text().toStdString() <<
                    ' ' <<
                    ui->lineEditLp_num_of_random_networks->text().toStdString() <<
                    std::endl;
@@ -209,45 +209,45 @@ void MainWindow::on_pushButtonSave_clicked()
     }
 */
     if (ui->checkCP->isChecked()) {
-        if (ui->lineEditCp_input_dir->text().isEmpty()
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditCp_num_of_random_networks->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
-              ui->lineEditCp_input_dir->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditCp_num_of_random_networks->text().toStdString() <<
               std::endl;
     }
 
     if (ui->checkDegree->isChecked()) {
-        if (ui->lineEditDegree_input_dir->text().isEmpty()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\Degree.exe " : "./exefiles/Degree ") <<
-              ui->lineEditDegree_input_dir->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               std::endl;
     }
 
     if (ui->checkCUBC->isChecked()) {
-        if (ui->lineEditCUBC_input_dir->text().isEmpty()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\CUBC.exe " : "./exefiles/CUBC ") <<
-              ui->lineEditCUBC_input_dir->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               std::endl;
     }
 
     if (ui->checkCUEC->isChecked()) {
-        if (ui->lineEditCUEC_input_dir->text().isEmpty()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\CUEC.exe " : "./exefiles/CUBC ") <<
-              ui->lineEditCUEC_input_dir->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               std::endl;
     }
 
@@ -282,32 +282,32 @@ void MainWindow::on_pushButtonSave_clicked()
 
     }
     if (ui->checkPC_CPU->isChecked()) {
-        if (ui->lineEditPC_CPU_input_dir->text().isEmpty()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
         string s1=ui->comboBoxPC_CPU_type_for_participant_coefficient->currentText().toStdString();
         if(s1=="normalized")
         script << (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe " : "./exefiles/PC_CPU ") <<
-              ui->lineEditPC_CPU_input_dir->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
            //   ui->lineEditPC_CPU_type_for_participant_coefficient->text().toStdString() <<
               "n" <<
                   std::endl;
         else  script << (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe " : "./exefiles/PC_CPU ") <<
-                        ui->lineEditPC_CPU_input_dir->text().toStdString() <<
+                        ui->lineEdit_Working_Directory->text().toStdString() <<
                         ' ' <<
                             std::endl;
     }
     if (ui->checkConvertNII->isChecked()) {
-        if (ui->lineEditConvertNII_input_file->text().isEmpty()
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditConvertNII_mask_file->text().isEmpty()
                 || ui->lineEditConvertNII_mask_threshold->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\ConvertNII.exe " : "./exefiles/ConvertNII ") <<
-              ui->lineEditConvertNII_input_file->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditConvertNII_mask_file->text().toStdString() <<
               ' ' <<
@@ -316,7 +316,7 @@ void MainWindow::on_pushButtonSave_clicked()
     }
     if (ui->checkLp_NodalMetrics->isChecked()) {
 
-        if (ui->lineEditLp_input_dir_NodalMetrics->text().isEmpty()
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditLp_num_of_random_networks_NodalMetrics->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
@@ -324,26 +324,26 @@ void MainWindow::on_pushButtonSave_clicked()
          string sc=ui->comboBoxLp_type_for_Lp_NodalMetrics->currentText().toStdString();
          if(sc=="BFW_CUDA")
         script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
-              ui->lineEditLp_input_dir_NodalMetrics->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditLp_num_of_random_networks_NodalMetrics->text().toStdString() <<
               std::endl;
          else if(sc=="BFS_MulCPU")
              script << (operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe " : "./exefiles/BFS_MulCPU ") <<
-                   ui->lineEditLp_input_dir_NodalMetrics->text().toStdString() <<
+                   ui->lineEdit_Working_Directory->text().toStdString() <<
                    ' ' <<
                    ui->lineEditLp_num_of_random_networks_NodalMetrics->text().toStdString() <<
                    std::endl;
 
     }
     if (ui->checkCP_NodalMetrics->isChecked()) {
-        if (ui->lineEditCp_input_dir_NodalMetrics->text().isEmpty()
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditCp_num_of_random_networks_NodalMetrics->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
-              ui->lineEditCp_input_dir_NodalMetrics->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditCp_num_of_random_networks_NodalMetrics->text().toStdString() <<
               std::endl;
@@ -519,39 +519,39 @@ void MainWindow::on_pushButtonLoad_clicked()
                   ui->comboBoxLp_type_for_Lp->setCurrentIndex(0);
                 else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU"))
                     ui->comboBoxLp_type_for_Lp->setCurrentIndex(1);
-                ui->lineEditLp_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Cp.exe" : "./Cp")) {
             if (tokens.size() == 3) {
                 ui->checkCP->setChecked(true);
                 emit mySignalMgrayBoxCP(true);
-                ui->lineEditCp_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditCp_num_of_random_networks->setText(tokens[2].c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Degree.exe" : "./exefiles/Degree")) {
             if (tokens.size() == 2) {
                 ui->checkDegree->setChecked(true);
                 emit mySignalMgrayBoxDegree(true);
-                ui->lineEditDegree_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBC.exe" : "./exefiles/CUBC")) {
             if (tokens.size() == 2) {
                 ui->checkCUBC->setChecked(true);
                 emit mySignalMgrayBoxCUBC(true);
-                ui->lineEditCUBC_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUEC.exe" : "./exefiles/CUEC")) {
             if (tokens.size() == 2) {
                 ui->checkCUEC->setChecked(true);
                 emit mySignalMgrayBoxCUEC(true);
-                ui->lineEditCUEC_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\ConvertNII.exe" : "./exefiles/ConvertNII")) {
             if (tokens.size() == 4) {
                 ui->checkConvertNII->setChecked(true);
                 emit mySignalMgrayBoxConvertNII(true);
-                ui->lineEditConvertNII_input_file->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditConvertNII_mask_file->setText(tokens[2].c_str());
                 ui->lineEditConvertNII_mask_threshold->setText(tokens[3].c_str());
             }
@@ -574,13 +574,13 @@ void MainWindow::on_pushButtonLoad_clicked()
             if (tokens.size() == 3) {
                 ui->checkPC_CPU->setChecked(true);
                 emit mySignalMgrayBoxPC_CPU(true);
-                ui->lineEditPC_CPU_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(tokens[2] == "n");
             }
              else if (tokens.size() == 2) {
                 ui->checkPC_CPU->setChecked(true);
                 emit mySignalMgrayBoxPC_CPU(true);
-                ui->lineEditPC_CPU_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
             }
         }
@@ -595,14 +595,14 @@ void MainWindow::on_pushButtonLoad_clicked()
               ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(0);
             else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU_NodalMetrics.exe" : "./exefiles/BFS_MulCPU_NodalMetrics"))
                 ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(1);
-            ui->lineEditLp_input_dir_NodalMetrics->setText(tokens[1].c_str());
+            ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
             ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
         }
     } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Cp_NodalMetrics.exe" : "./Cp_NodalMetrics")) {
         if (tokens.size() == 3) {
             ui->checkCP_NodalMetrics->setChecked(true);
             emit mySignalMgrayBoxCP_NodalMetrics(true);
-            ui->lineEditCp_input_dir_NodalMetrics->setText(tokens[1].c_str());
+            ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
             ui->lineEditCp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
         }
     }
@@ -620,12 +620,12 @@ void MainWindow::on_toolButtonCUCorMat_Dir_for_BOLD_clicked()
 {
     ui->lineEditCUCorMat_Dir_for_BOLD->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
-
+/*
 void MainWindow::on_toolButtonLp_input_dir_clicked()
 {
-    ui->lineEditLp_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
+    ui->lineEdit_Working_Directory->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
-
+*/
 /*void MainWindow::on_toolButtonCUBFS_Lp_input_dir_clicked()
 {
     ui->lineEditCUBFS_Lp_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
@@ -636,7 +636,7 @@ void MainWindow::on_toolButtonBFS_MulCPU_input_dir_clicked()
     ui->lineEditBFS_MulCPU_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }*/
 
-void MainWindow::on_toolButtonCp_input_dir_clicked()
+/*void MainWindow::on_toolButtonCp_input_dir_clicked()
 {
     ui->lineEditCp_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
@@ -655,19 +655,8 @@ void MainWindow::on_toolButtonCUEC_input_dir_clicked()
 {
      ui->lineEditCUEC_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
+*/
 
-
-void MainWindow::on_toolButtonConvertNII_input_file_clicked()
-{
-  /*  ui->lineEditConvertNII_input_file->setText(QFileDialog::getOpenFileName(this,
-                                                                            "File to convert",
-                                                                            "",
-                                                                            "CP (*.cp); EFF (*.eff); DEG (*.deg); BC (*.bc); Any (*.*)"));
-  */
-    ui->lineEditConvertNII_input_file->setText(QFileDialog::getExistingDirectory(this,
-                                                                            "Directory"
-                                                                            ));
-}
 
 void MainWindow::on_toolButtonConvertNII_mask_file_clicked()
 {
@@ -702,12 +691,12 @@ void MainWindow::on_switchButton_clicked()
    w1.setParent(this);
     w1.show();
 }
-
+/*
 void MainWindow::on_toolButtonPC_CPU_clicked()
 {
     ui->lineEditPC_CPU_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
-
+*/
 void MainWindow::on_checkCUCorMat_clicked(bool checked)
 {
     if(checked==0){
@@ -773,44 +762,44 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
         ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setVisible(true);
     }
 }
-
+/*
 void MainWindow::on_toolButtonLp_input_dir_NodalMetrics_clicked()
 {
-    ui->lineEditLp_input_dir_NodalMetrics->setText(QFileDialog::getExistingDirectory(this, "Directory"));
+    ui->lineEdit_Working_Directory_NodalMetrics->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
 void MainWindow::on_toolButtonCp_input_dir_NodalMetrics_clicked()
 {
      ui->lineEditCp_input_dir_NodalMetrics->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
-
+*/
 void MainWindow::on_checkLp_clicked(bool checked)
 {
     if(checked==0){
         ui->comboBoxLp_type_for_Lp->setEnabled(false);
-         ui->lineEditLp_input_dir->setEnabled(false);
+      //   ui->lineEditLp_input_dir->setEnabled(false);
          ui->lineEditLp_num_of_random_networks->setEnabled(false);
-         ui->toolButtonLp_input_dir->setEnabled(false);
+         //ui->toolButtonLp_input_dir->setEnabled(false);
 
          ui->labelLp_type_for_Lp->setVisible(false);
          ui->comboBoxLp_type_for_Lp->setVisible(false);
-         ui->labelLp_input_dir->setVisible(false);
-         ui->lineEditLp_input_dir->setVisible(false);
-         ui->toolButtonLp_input_dir->setVisible(false);
+        // ui->labelLp_input_dir->setVisible(false);
+    //     ui->lineEditLp_input_dir->setVisible(false);
+        // ui->toolButtonLp_input_dir->setVisible(false);
          ui->labelLp_num_of_random_networks->setVisible(false);
          ui->lineEditLp_num_of_random_networks->setVisible(false);
     }
      else if(checked==1)
      {
         ui->comboBoxLp_type_for_Lp->setEnabled(true);
-        ui->lineEditLp_input_dir->setEnabled(true);
+       // ui->lineEditLp_input_dir->setEnabled(true);
         ui->lineEditLp_num_of_random_networks->setEnabled(true);
-        ui->toolButtonLp_input_dir->setEnabled(true);
+       // ui->toolButtonLp_input_dir->setEnabled(true);
 
         ui->labelLp_type_for_Lp->setVisible(true);
         ui->comboBoxLp_type_for_Lp->setVisible(true);
-        ui->labelLp_input_dir->setVisible(true);
-        ui->lineEditLp_input_dir->setVisible(true);
-        ui->toolButtonLp_input_dir->setVisible(true);
+      //  ui->labelLp_input_dir->setVisible(true);
+      //  ui->lineEditLp_input_dir->setVisible(true);
+      //  ui->toolButtonLp_input_dir->setVisible(true);
         ui->labelLp_num_of_random_networks->setVisible(true);
         ui->lineEditLp_num_of_random_networks->setVisible(true);
     }
@@ -849,34 +838,34 @@ void MainWindow::on_checkBFS_MulCPU_clicked(bool checked)
 void MainWindow::on_checkCP_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditCp_input_dir->setEnabled(false);
+       //  ui->lineEditCp_input_dir->setEnabled(false);
          ui->lineEditCp_num_of_random_networks->setEnabled(false);
-         ui->toolButtonCp_input_dir->setEnabled(false);
+        // ui->toolButtonCp_input_dir->setEnabled(false);
 
-         ui->labelCp_input_dir->setVisible(false);
-         ui->lineEditCp_input_dir->setVisible(false);
-         ui->toolButtonCp_input_dir->setVisible(false);
+       //  ui->labelCp_input_dir->setVisible(false);
+         //ui->lineEditCp_input_dir->setVisible(false);
+      //   ui->toolButtonCp_input_dir->setVisible(false);
          ui->labelCp_num_of_random_networks->setVisible(false);
          ui->lineEditCp_num_of_random_networks->setVisible(false);
     }
      else if(checked==1)
      {
-        ui->lineEditCp_input_dir->setEnabled(true);
+        //ui->lineEditCp_input_dir->setEnabled(true);
         ui->lineEditCp_num_of_random_networks->setEnabled(true);
-        ui->toolButtonCp_input_dir->setEnabled(true);
+       // ui->toolButtonCp_input_dir->setEnabled(true);
 
-        ui->labelCp_input_dir->setVisible(true);
-        ui->lineEditCp_input_dir->setVisible(true);
-        ui->toolButtonCp_input_dir->setVisible(true);
+      //  ui->labelCp_input_dir->setVisible(true);
+        //ui->lineEditCp_input_dir->setVisible(true);
+       // ui->toolButtonCp_input_dir->setVisible(true);
         ui->labelCp_num_of_random_networks->setVisible(true);
         ui->lineEditCp_num_of_random_networks->setVisible(true);
     }
 }
-
+/*
 void MainWindow::on_checkDegree_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditDegree_input_dir->setEnabled(false);
+       //  ui->lineEditDegree_input_dir->setEnabled(false);
          ui->toolButtonDegree_input_dir->setEnabled(false);
 
 
@@ -884,7 +873,7 @@ void MainWindow::on_checkDegree_clicked(bool checked)
     }
      else if(checked==1)
      {
-        ui->lineEditDegree_input_dir->setEnabled(true);
+      //  ui->lineEditDegree_input_dir->setEnabled(true);
         ui->toolButtonDegree_input_dir->setEnabled(true);
 
 
@@ -892,33 +881,34 @@ void MainWindow::on_checkDegree_clicked(bool checked)
 
     }
 }
-
+*/
+/*
 void MainWindow::on_checkCUBC_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditCUBC_input_dir->setEnabled(false);
-         ui->toolButtonCUBC_input_dir->setEnabled(false);
+      //   ui->lineEditCUBC_input_dir->setEnabled(false);
+   //      ui->toolButtonCUBC_input_dir->setEnabled(false);
     }
      else if(checked==1)
      {
-        ui->lineEditCUBC_input_dir->setEnabled(true);
-        ui->toolButtonCUBC_input_dir->setEnabled(true);
+      //  ui->lineEditCUBC_input_dir->setEnabled(true);
+    //    ui->toolButtonCUBC_input_dir->setEnabled(true);
     }
 }
 
 void MainWindow::on_checkCUEC_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditCUEC_input_dir->setEnabled(false);
+       //  ui->lineEditCUEC_input_dir->setEnabled(false);
          ui->toolButtonCUEC_input_dir->setEnabled(false);
     }
      else if(checked==1)
      {
-        ui->lineEditCUEC_input_dir->setEnabled(true);
+       // ui->lineEditCUEC_input_dir->setEnabled(true);
         ui->toolButtonCUEC_input_dir->setEnabled(true);
     }
 }
-
+*/
 void MainWindow::on_checkL_Modularity_clicked(bool checked)
 {
     if(checked==0){
@@ -956,25 +946,25 @@ void MainWindow::on_checkL_Modularity_clicked(bool checked)
 void MainWindow::on_checkPC_CPU_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditPC_CPU_input_dir->setEnabled(false);
-         ui->toolButtonPC_CPU->setEnabled(false);
+     //    ui->lineEditPC_CPU_input_dir->setEnabled(false);
+         //ui->toolButtonPC_CPU->setEnabled(false);
           ui->comboBoxPC_CPU_type_for_participant_coefficient->setEnabled(false);
 
-          ui->labelPC_CPU_input_dir->setVisible(false);
-          ui->lineEditPC_CPU_input_dir->setVisible(false);
-          ui->toolButtonPC_CPU->setVisible(false);
+       //   ui->labelPC_CPU_input_dir->setVisible(false);
+     //     ui->lineEditPC_CPU_input_dir->setVisible(false);
+       //   ui->toolButtonPC_CPU->setVisible(false);
           ui->labelPC_CPU_type_for_participant_coefficient->setVisible(false);
           ui->comboBoxPC_CPU_type_for_participant_coefficient->setVisible(false);
     }
      else if(checked==1)
      {
-        ui->lineEditPC_CPU_input_dir->setEnabled(true);
-        ui->toolButtonPC_CPU->setEnabled(true);
+     //   ui->lineEditPC_CPU_input_dir->setEnabled(true);
+     //   ui->toolButtonPC_CPU->setEnabled(true);
          ui->comboBoxPC_CPU_type_for_participant_coefficient->setEnabled(true);
 
-         ui->labelPC_CPU_input_dir->setVisible(true);
-         ui->lineEditPC_CPU_input_dir->setVisible(true);
-         ui->toolButtonPC_CPU->setVisible(true);
+      //   ui->labelPC_CPU_input_dir->setVisible(true);
+     //    ui->lineEditPC_CPU_input_dir->setVisible(true);
+      //   ui->toolButtonPC_CPU->setVisible(true);
          ui->labelPC_CPU_type_for_participant_coefficient->setVisible(true);
          ui->comboBoxPC_CPU_type_for_participant_coefficient->setVisible(true);
     }
@@ -983,15 +973,15 @@ void MainWindow::on_checkPC_CPU_clicked(bool checked)
 void MainWindow::on_checkConvertNII_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditConvertNII_input_file->setEnabled(false);
+      //   ui->lineEditConvertNII_input_file->setEnabled(false);
          ui->lineEditConvertNII_mask_file->setEnabled(false);
          ui->lineEditConvertNII_mask_threshold->setEnabled(false);
-         ui->toolButtonConvertNII_input_file->setEnabled(false);
+      //   ui->toolButtonConvertNII_input_file->setEnabled(false);
          ui->toolButtonConvertNII_mask_file->setEnabled(false);
 
-         ui->labelConvertNII_input_file->setVisible(false);
-         ui->lineEditConvertNII_input_file->setVisible(false);
-         ui->toolButtonConvertNII_input_file->setVisible(false);
+     //    ui->labelConvertNII_input_file->setVisible(false);
+       //  ui->lineEditConvertNII_input_file->setVisible(false);
+      //   ui->toolButtonConvertNII_input_file->setVisible(false);
          ui->labelConvertNII_mask_file->setVisible(false);
          ui->lineEditConvertNII_mask_file->setVisible(false);
          ui->toolButtonConvertNII_mask_file->setVisible(false);
@@ -1000,15 +990,15 @@ void MainWindow::on_checkConvertNII_clicked(bool checked)
     }
      else if(checked==1)
      {
-        ui->lineEditConvertNII_input_file->setEnabled(true);
+ //       ui->lineEditConvertNII_input_file->setEnabled(true);
         ui->lineEditConvertNII_mask_file->setEnabled(true);
         ui->lineEditConvertNII_mask_threshold->setEnabled(true);
-        ui->toolButtonConvertNII_input_file->setEnabled(true);
+    //    ui->toolButtonConvertNII_input_file->setEnabled(true);
         ui->toolButtonConvertNII_mask_file->setEnabled(true);
 
-        ui->labelConvertNII_input_file->setVisible(true);
-        ui->lineEditConvertNII_input_file->setVisible(true);
-        ui->toolButtonConvertNII_input_file->setVisible(true);
+      //  ui->labelConvertNII_input_file->setVisible(true);
+   //     ui->lineEditConvertNII_input_file->setVisible(true);
+    //    ui->toolButtonConvertNII_input_file->setVisible(true);
         ui->labelConvertNII_mask_file->setVisible(true);
         ui->lineEditConvertNII_mask_file->setVisible(true);
         ui->toolButtonConvertNII_mask_file->setVisible(true);
@@ -1020,30 +1010,30 @@ void MainWindow::on_checkLp_NodalMetrics_clicked(bool checked)
 {
     if(checked==0){
         ui->comboBoxLp_type_for_Lp_NodalMetrics->setEnabled(false);
-         ui->lineEditLp_input_dir_NodalMetrics->setEnabled(false);
+       //  ui->lineEditLp_input_dir_NodalMetrics->setEnabled(false);
          ui->lineEditLp_num_of_random_networks_NodalMetrics->setEnabled(false);
-         ui->toolButtonLp_input_dir_NodalMetrics->setEnabled(false);
+    //     ui->toolButtonLp_input_dir_NodalMetrics->setEnabled(false);
 
          ui->labelLp_type_for_Lp_NodalMetrics->setVisible(false);
          ui->comboBoxLp_type_for_Lp_NodalMetrics->setVisible(false);
-         ui->labelLp_input_dir_NodalMetrics->setVisible(false);
-         ui->lineEditLp_input_dir_NodalMetrics->setVisible(false);
-         ui->toolButtonLp_input_dir_NodalMetrics->setVisible(false);
+      //   ui->labelLp_input_dir_NodalMetrics->setVisible(false);
+       //  ui->lineEditLp_input_dir_NodalMetrics->setVisible(false);
+      //   ui->toolButtonLp_input_dir_NodalMetrics->setVisible(false);
          ui->labelLp_num_of_random_networks_NodalMetrics->setVisible(false);
          ui->lineEditLp_num_of_random_networks_NodalMetrics->setVisible(false);
     }
      else if(checked==1)
      {
         ui->comboBoxLp_type_for_Lp_NodalMetrics->setEnabled(true);
-        ui->lineEditLp_input_dir_NodalMetrics->setEnabled(true);
+     //   ui->lineEditLp_input_dir_NodalMetrics->setEnabled(true);
         ui->lineEditLp_num_of_random_networks_NodalMetrics->setEnabled(true);
-        ui->toolButtonLp_input_dir_NodalMetrics->setEnabled(true);
+     //   ui->toolButtonLp_input_dir_NodalMetrics->setEnabled(true);
 
         ui->labelLp_type_for_Lp_NodalMetrics->setVisible(true);
         ui->comboBoxLp_type_for_Lp_NodalMetrics->setVisible(true);
-        ui->labelLp_input_dir_NodalMetrics->setVisible(true);
-        ui->lineEditLp_input_dir_NodalMetrics->setVisible(true);
-        ui->toolButtonLp_input_dir_NodalMetrics->setVisible(true);
+      //  ui->labelLp_input_dir_NodalMetrics->setVisible(true);
+     //   ui->lineEditLp_input_dir_NodalMetrics->setVisible(true);
+     //   ui->toolButtonLp_input_dir_NodalMetrics->setVisible(true);
         ui->labelLp_num_of_random_networks_NodalMetrics->setVisible(true);
         ui->lineEditLp_num_of_random_networks_NodalMetrics->setVisible(true);
     }
@@ -1051,25 +1041,25 @@ void MainWindow::on_checkLp_NodalMetrics_clicked(bool checked)
 void MainWindow::on_checkCP_NodalMetrics_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditCp_input_dir_NodalMetrics->setEnabled(false);
+     //    ui->lineEditCp_input_dir_NodalMetrics->setEnabled(false);
          ui->lineEditCp_num_of_random_networks_NodalMetrics->setEnabled(false);
-         ui->toolButtonCp_input_dir_NodalMetrics->setEnabled(false);
+     //    ui->toolButtonCp_input_dir_NodalMetrics->setEnabled(false);
 
-         ui->labelCp_input_dir_NodalMetrics->setVisible(false);
-         ui->lineEditCp_input_dir_NodalMetrics->setVisible(false);
-         ui->toolButtonCp_input_dir_NodalMetrics->setVisible(false);
+       //  ui->labelCp_input_dir_NodalMetrics->setVisible(false);
+      //   ui->lineEditCp_input_dir_NodalMetrics->setVisible(false);
+      //   ui->toolButtonCp_input_dir_NodalMetrics->setVisible(false);
          ui->labelCp_num_of_random_networks_NodalMetrics->setVisible(false);
          ui->lineEditCp_num_of_random_networks_NodalMetrics->setVisible(false);
     }
      else if(checked==1)
      {
-        ui->lineEditCp_input_dir_NodalMetrics->setEnabled(true);
+     //   ui->lineEditCp_input_dir_NodalMetrics->setEnabled(true);
         ui->lineEditCp_num_of_random_networks_NodalMetrics->setEnabled(true);
-        ui->toolButtonCp_input_dir_NodalMetrics->setEnabled(true);
+    //    ui->toolButtonCp_input_dir_NodalMetrics->setEnabled(true);
 
-        ui->labelCp_input_dir_NodalMetrics->setVisible(true);
-        ui->lineEditCp_input_dir_NodalMetrics->setVisible(true);
-        ui->toolButtonCp_input_dir_NodalMetrics->setVisible(true);
+     //   ui->labelCp_input_dir_NodalMetrics->setVisible(true);
+     //   ui->lineEditCp_input_dir_NodalMetrics->setVisible(true);
+     //   ui->toolButtonCp_input_dir_NodalMetrics->setVisible(true);
         ui->labelCp_num_of_random_networks_NodalMetrics->setVisible(true);
         ui->lineEditCp_num_of_random_networks_NodalMetrics->setVisible(true);
     }
@@ -1088,9 +1078,9 @@ void MainWindow::clearscreen(){
     ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(0);
     ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText("");
 
-    ui->lineEditLp_input_dir->setText("");;
+    ui->lineEdit_Working_Directory->setText("");;
     ui->lineEditLp_num_of_random_networks->setText("");
-    ui->toolButtonLp_input_dir->setEnabled(false);
+  //  ui->toolButtonLp_input_dir->setEnabled(false);
 
     //ui->lineEditCUBFS_Lp_input_dir->setText("");
     //ui->lineEditCUBFS_Lp_num_of_random_networks->setText("");
@@ -1098,30 +1088,30 @@ void MainWindow::clearscreen(){
     ui->lineEditBFS_MulCPU_input_dir->setText("");
     ui->lineEditBFS_MulCPU_num_of_random_networks->setText("");
 */
-    ui->lineEditCp_input_dir->setText("");
+  //  ui->lineEditCp_input_dir->setText("");
     ui->lineEditCp_num_of_random_networks->setText("");
 
-      ui->lineEditDegree_input_dir->setText("");
+   //   ui->lineEditDegree_input_dir->setText("");
 
-      ui->lineEditCUBC_input_dir->setText("");
+   //   ui->lineEditCUBC_input_dir->setText("");
 
-       ui->lineEditCUEC_input_dir->setText("");
+    //   ui->lineEditCUEC_input_dir->setText("");
 
        ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(0);
        ui->lineEditL_Modularity_dir_for_csr->setText("");
        ui->lineEditL_Modularity_num_of_random_networks->setText("");
 
-       ui->lineEditPC_CPU_input_dir->setText("");
+   //    ui->lineEditPC_CPU_input_dir->setText("");
        ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
 
-       ui->lineEditConvertNII_input_file->setText("");
+   //    ui->lineEditConvertNII_input_file->setText("");
        ui->lineEditConvertNII_mask_file->setText("");
        ui->lineEditConvertNII_mask_threshold->setText("");
 
 
-       ui->lineEditLp_input_dir_NodalMetrics->setText("");;
+    //   ui->lineEditLp_input_dir_NodalMetrics->setText("");;
        ui->lineEditLp_num_of_random_networks_NodalMetrics->setText("");
-       ui->toolButtonLp_input_dir_NodalMetrics->setEnabled(false);
+    //   ui->toolButtonLp_input_dir_NodalMetrics->setEnabled(false);
 
        //ui->lineEditCUBFS_Lp_input_dir->setText("");
        //ui->lineEditCUBFS_Lp_num_of_random_networks->setText("");
@@ -1129,7 +1119,7 @@ void MainWindow::clearscreen(){
        ui->lineEditBFS_MulCPU_input_dir->setText("");
        ui->lineEditBFS_MulCPU_num_of_random_networks->setText("");
    */
-       ui->lineEditCp_input_dir_NodalMetrics->setText("");
+     //  ui->lineEditCp_input_dir_NodalMetrics->setText("");
        ui->lineEditCp_num_of_random_networks_NodalMetrics->setText("");
        //2.使界面回到灰框状态 good method
        emit mySignalMgrayBoxCUCorMat(false);
@@ -1177,14 +1167,14 @@ void MainWindow::on_toolButton_Working_Directory_clicked()
 {
    QString directory=QFileDialog::getExistingDirectory(this, "Directory");
     ui->lineEdit_Working_Directory->setText(directory);
-    ui->lineEditLp_input_dir->setText(directory);
+   // ui->lineEdit_Working_Directory->setText(directory);
     //ui->lineEditBFS_MulCPU_input_dir->setText(directory);
-    ui->lineEditCp_input_dir->setText(directory);
-    ui->lineEditDegree_input_dir->setText(directory);
-    ui->lineEditCUBC_input_dir->setText(directory);
-    ui->lineEditCUEC_input_dir->setText(directory);
-    ui->lineEditPC_CPU_input_dir->setText(directory);
-    ui->lineEditConvertNII_input_file->setText(directory);
+ //   ui->lineEditCp_input_dir->setText(directory);
+  //  ui->lineEditDegree_input_dir->setText(directory);
+ //   ui->lineEditCUBC_input_dir->setText(directory);
+ //   ui->lineEditCUEC_input_dir->setText(directory);
+ //   ui->lineEditPC_CPU_input_dir->setText(directory);
+ //   ui->lineEditConvertNII_input_file->setText(directory);
 }
 
 void MainWindow::on_toolButton_Mask_File_clicked()
