@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sMainWindow</class>
+ <widget class="QMainWindow" name="sMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>917</width>
+    <height>613</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>917</width>
+    <height>613</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>BNALauncher_weighted</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QFormLayout" name="formLayout">
+    <item row="0" column="0">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>893</width>
+        <height>573</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>874</width>
+         <height>1315</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>700</width>
+         <height>1315</height>
+        </size>
+       </property>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>873</width>
+          <height>1311</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <property name="leftMargin">
+          <number>3</number>
+         </property>
+         <item row="17" column="1" colspan="6">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Calculate the eigenvector centrality of the network.</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="18" column="1">
+          <widget class="QLabel" name="labelCUEC_input_dir">
+           <property name="text">
+            <string>input_dir</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="6">
+          <widget class="QComboBox" name="comboBoxCUCorMat_threshold_type">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="editable">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>r</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>s</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="18" column="7">
+          <widget class="QToolButton" name="toolButtonCUEC_input_dir">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="6">
+          <widget class="QLineEdit" name="lineEditCUCorMat_threshold_for_correlation_coefficient">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="28" column="6">
+          <widget class="QLineEdit" name="lineEditConvertNII_mask_threshold">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="27" column="1">
+          <widget class="QLabel" name="labelConvertNII_mask_file">
+           <property name="text">
+            <string>mask_file</string>
+           </property>
+          </widget>
+         </item>
+         <item row="26" column="7">
+          <widget class="QToolButton" name="toolButtonConvertNII_input_file">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="27" column="7">
+          <widget class="QToolButton" name="toolButtonConvertNII_mask_file">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="26" column="6">
+          <widget class="QLineEdit" name="lineEditConvertNII_input_file">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="18" column="6">
+          <widget class="QLineEdit" name="lineEditCUEC_input_dir">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1" colspan="3">
+          <widget class="QLabel" name="labelCUCorMat_threshold_for_mask">
+           <property name="text">
+            <string>threshold_for_mask</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="7">
+          <widget class="QToolButton" name="toolButtonCUCorMat_Dir_for_BOLD">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1" colspan="2">
+          <widget class="QLabel" name="labelCUCorMat_to_average">
+           <property name="text">
+            <string>to_average(yf/yn/bf/bn/n)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1" colspan="4">
+          <widget class="QLabel" name="labelCUCorMat_to_save_cormatrix">
+           <property name="text">
+            <string>to_save_cormatrix(y/n)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLabel" name="labelCUCorMat_threshold_type">
+           <property name="text">
+            <string>threshold_type(r/s)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="1">
+          <widget class="QLabel" name="labelCUBFW_Lp_input_dir">
+           <property name="text">
+            <string>input_dir</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1" colspan="7">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Calculate the characteristic path length of the network and compare with K (user specified) random networks. Based on blocked Floyd-Warshall algorithm (BFW).</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="6">
+          <widget class="QLineEdit" name="lineEditCUBFW_Lp_input_dir">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="23" column="7">
+          <widget class="QToolButton" name="toolButtonPC_CPU_input_dir">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="22" column="1" colspan="7">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Calculates participant coefficient for each subject (“.csr” files) in the given directory.</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="23" column="6">
+          <widget class="QLineEdit" name="lineEditPC_CPU_input_dir">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="24" column="6">
+          <widget class="QComboBox" name="comboBoxPC_CPU_type_for_participant_coefficient">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="editable">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>original</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>normalized</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="25" column="1" colspan="7">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>Put the nodal metric results back to the 3-D matrix and converts the .nm files to the standard NII format.</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="24" column="1" colspan="5">
+          <widget class="QLabel" name="labelPC_CPU_type_for_participant_coefficient">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;type_for_participant_coefficient&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="23" column="1">
+          <widget class="QLabel" name="labelPC_CPU_input_dir">
+           <property name="text">
+            <string>input_dir</string>
+           </property>
+          </widget>
+         </item>
+         <item row="25" column="0">
+          <widget class="QCheckBox" name="checkConvertNII">
+           <property name="text">
+            <string>ConvertNII</string>
+           </property>
+          </widget>
+         </item>
+         <item row="27" column="6">
+          <widget class="QLineEdit" name="lineEditConvertNII_mask_file">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="26" column="1">
+          <widget class="QLabel" name="labelConvertNII_input_file">
+           <property name="text">
+            <string>input_dir</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="1" colspan="5">
+          <widget class="QLabel" name="labelCUBFW_Lp_num_of_random_networks">
+           <property name="text">
+            <string>num_of_random_networks</string>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="6">
+          <widget class="QLineEdit" name="lineEditCp_input_dir">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="28" column="1">
+          <widget class="QLabel" name="labelConvertNII_mask_threshold">
+           <property name="text">
+            <string>mask_threshold</string>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="7">
+          <widget class="QToolButton" name="toolButtonCp_input_dir">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="22" column="0">
+          <widget class="QCheckBox" name="checkPC_CPU">
+           <property name="text">
+            <string>PC_CPU</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="QCheckBox" name="checkCUBFW_Lp">
+           <property name="text">
+            <string>CUBFW_Lp</string>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="1">
+          <widget class="QLabel" name="labelCp_input_dir">
+           <property name="text">
+            <string>input_dir</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="6">
+          <widget class="QLineEdit" name="lineEditCUBFW_Lp_num_of_random_networks">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="29" column="7">
+          <widget class="QToolButton" name="toolButtonSaveDir">
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="0">
+          <widget class="QCheckBox" name="checkCP">
+           <property name="text">
+            <string>Cp</string>
+           </property>
+          </widget>
+         </item>
+         <item row="13" column="1" colspan="5">
+          <widget class="QLabel" name="labelCp_num_of_random_networks">
+           <property name="text">
+            <string>num_of_random_networks</string>
+           </property>
+          </widget>
+         </item>
+         <item row="21" column="1">
+          <widget class="QLabel" name="labelL_Modularity_num_of_random_networks">
+           <property name="minimumSize">
+            <size>
+             <width>132</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>num_of_random_networks</string>
+           </property>
+          </widget>
+         </item>
+         <item row="16" column="6">
+          <widget class="QLineEdit" name="lineEditDegree_input_dir">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="20" column="7">
+          <widget class="QToolButton" name="toolButtonL_Modularity_dir_for_csr">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="29" column="0">
+          <widget class="QPushButton" name="pushButtonSave">
+           <property name="text">
+            <string>Execute and save script</string>
+           </property>
+          </widget>
+         </item>
+         <item row="19" column="0">
+          <widget class="QCheckBox" name="checkL_Modularity">
+           <property name="text">
+            <string>Louvain_Modularity</string>
+           </property>
+          </widget>
+         </item>
+         <item row="20" column="6">
+          <widget class="QLineEdit" name="lineEditL_Modularity_dir_for_csr">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="29" column="6">
+          <widget class="QLineEdit" name="lineEditSaveDir">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="21" column="6">
+          <widget class="QLineEdit" name="lineEditL_Modularity_num_of_random_networks">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="29" column="1">
+          <widget class="QPushButton" name="pushButtonLoad">
+           <property name="text">
+            <string>Load script</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="labelCUCorMat_Dir_for_BOLD">
+           <property name="text">
+            <string>Dir_for_BOLD</string>
+           </property>
+          </widget>
+         </item>
+         <item row="17" column="0">
+          <widget class="QCheckBox" name="checkCUEC">
+           <property name="text">
+            <string>CUEC</string>
+           </property>
+          </widget>
+         </item>
+         <item row="20" column="1">
+          <widget class="QLabel" name="labelL_Modularity_dir_for_csr">
+           <property name="text">
+            <string>dir_for_csr</string>
+           </property>
+          </widget>
+         </item>
+         <item row="16" column="7">
+          <widget class="QToolButton" name="toolButtonDegree_input_dir">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1" colspan="5">
+          <widget class="QLabel" name="labelCUCorMat_threshold_for_correlation_coefficient">
+           <property name="text">
+            <string>threshold_value                      </string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" colspan="2">
+          <widget class="QLabel" name="state_label">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+             <underline>false</underline>
+            </font>
+           </property>
+           <property name="text">
+            <string>Current mode: Weighted</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="6">
+          <widget class="QPushButton" name="switchButton">
+           <property name="text">
+            <string>Switch</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="6">
+          <widget class="QLineEdit" name="lineEditCUCorMat_threshold_for_mask">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="13" column="6">
+          <widget class="QLineEdit" name="lineEditCp_num_of_random_networks">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="7">
+          <widget class="QToolButton" name="toolButtonCUBFW_Lp_input_dir">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="6">
+          <widget class="QComboBox" name="comboBoxCUCorMat_to_save_cormatrix">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="editable">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>n</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>y</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="4" column="6">
+          <widget class="QComboBox" name="comboBoxCUCorMat_to_average">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="editable">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>n</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>yf</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>yn</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>bf</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>bn</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="16" column="1">
+          <widget class="QLabel" name="labelDegree_input_dir">
+           <property name="text">
+            <string>input_dir</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="checkCUCorMat">
+           <property name="text">
+            <string>CUCorMat</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="6">
+          <widget class="QLineEdit" name="lineEditCUCorMat_Dir_for_BOLD">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="15" column="0">
+          <widget class="QCheckBox" name="checkDegree">
+           <property name="text">
+            <string>Degree</string>
+           </property>
+          </widget>
+         </item>
+         <item row="19" column="1" colspan="7">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Calculate Louvain Modularity for each of the .csr files in the given directory and compare with random networks.</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" colspan="7">
+          <widget class="QLabel" name="label">
+           <property name="font">
+            <font>
+             <underline>false</underline>
+            </font>
+           </property>
+           <property name="text">
+            <string>Construct correlation matrices from BOLD signals on GPU.</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="1" colspan="7">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Calculate clustering coefficient (Cp) of the network and compare the results with  K  (user specified) random networks.</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="15" column="1" colspan="7">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Calculate the degree centrality of the network.</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="1">
+          <widget class="QLabel" name="labelCp_Cp_type">
+           <property name="text">
+            <string>Cp_type</string>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="6">
+          <widget class="QComboBox" name="comboBoxCp_Cp_type">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>113</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="editable">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>Onnela</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Barrat</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
