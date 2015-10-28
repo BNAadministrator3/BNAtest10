@@ -824,6 +824,7 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
 
          ui->labelCUCorMat_threshold_for_correlation_coefficient->setVisible(false);
          ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setVisible(false);
+       //  ui->groupBox_CUCorMat->setVisible(false);
     }
      else if(checked==1)
      {
@@ -881,8 +882,8 @@ void MainWindow::on_checkLp_clicked(bool checked)
         // ui->labelLp_input_dir->setVisible(false);
     //     ui->lineEditLp_input_dir->setVisible(false);
         // ui->toolButtonLp_input_dir->setVisible(false);
-         ui->labelLp_num_of_random_networks->setVisible(false);
-         ui->lineEditLp_num_of_random_networks->setVisible(false);
+     //    ui->labelLp_num_of_random_networks->setVisible(false);
+     //    ui->lineEditLp_num_of_random_networks->setVisible(false);
     }
      else if(checked==1)
      {
@@ -896,8 +897,8 @@ void MainWindow::on_checkLp_clicked(bool checked)
       //  ui->labelLp_input_dir->setVisible(true);
       //  ui->lineEditLp_input_dir->setVisible(true);
       //  ui->toolButtonLp_input_dir->setVisible(true);
-        ui->labelLp_num_of_random_networks->setVisible(true);
-        ui->lineEditLp_num_of_random_networks->setVisible(true);
+      //  ui->labelLp_num_of_random_networks->setVisible(true);
+     //   ui->lineEditLp_num_of_random_networks->setVisible(true);
     }
 }
 
@@ -941,8 +942,8 @@ void MainWindow::on_checkCP_clicked(bool checked)
        //  ui->labelCp_input_dir->setVisible(false);
          //ui->lineEditCp_input_dir->setVisible(false);
       //   ui->toolButtonCp_input_dir->setVisible(false);
-         ui->labelCp_num_of_random_networks->setVisible(false);
-         ui->lineEditCp_num_of_random_networks->setVisible(false);
+      //   ui->labelCp_num_of_random_networks->setVisible(false);
+      //   ui->lineEditCp_num_of_random_networks->setVisible(false);
     }
      else if(checked==1)
      {
@@ -953,8 +954,8 @@ void MainWindow::on_checkCP_clicked(bool checked)
       //  ui->labelCp_input_dir->setVisible(true);
         //ui->lineEditCp_input_dir->setVisible(true);
        // ui->toolButtonCp_input_dir->setVisible(true);
-        ui->labelCp_num_of_random_networks->setVisible(true);
-        ui->lineEditCp_num_of_random_networks->setVisible(true);
+      //  ui->labelCp_num_of_random_networks->setVisible(true);
+      //  ui->lineEditCp_num_of_random_networks->setVisible(true);
     }
 }
 /*
@@ -1013,13 +1014,13 @@ void MainWindow::on_checkL_Modularity_clicked(bool checked)
          ui->lineEditL_Modularity_num_of_random_networks->setEnabled(false);
         // ui->toolButtonL_Modularity_dir_for_csr->setEnabled(false);
 
-         ui->labelL_Modularity_modularity_type->setVisible(false);
-         ui->comboBoxLouvain_Modularity_modularity_type->setVisible(false);
+      //   ui->labelL_Modularity_modularity_type->setVisible(false);
+      //   ui->comboBoxLouvain_Modularity_modularity_type->setVisible(false);
         // ui->labelL_Modularity_dir_for_csr->setVisible(false);
         // ui->lineEditL_Modularity_dir_for_csr->setVisible(false);
         // ui->toolButtonL_Modularity_dir_for_csr->setVisible(false);
-         ui->labelL_Modularity_num_of_random_networks->setVisible(false);
-         ui->lineEditL_Modularity_num_of_random_networks->setVisible(false);
+      //   ui->labelL_Modularity_num_of_random_networks->setVisible(false);
+     //    ui->lineEditL_Modularity_num_of_random_networks->setVisible(false);
     }
      else if(checked==1)
      {
@@ -1028,13 +1029,13 @@ void MainWindow::on_checkL_Modularity_clicked(bool checked)
         ui->lineEditL_Modularity_num_of_random_networks->setEnabled(true);
       //  ui->toolButtonL_Modularity_dir_for_csr->setEnabled(true);
 
-        ui->labelL_Modularity_modularity_type->setVisible(true);
-        ui->comboBoxLouvain_Modularity_modularity_type->setVisible(true);
+      //  ui->labelL_Modularity_modularity_type->setVisible(true);
+      //  ui->comboBoxLouvain_Modularity_modularity_type->setVisible(true);
       //  ui->labelL_Modularity_dir_for_csr->setVisible(true);
       //  ui->lineEditL_Modularity_dir_for_csr->setVisible(true);
       //  ui->toolButtonL_Modularity_dir_for_csr->setVisible(true);
-        ui->labelL_Modularity_num_of_random_networks->setVisible(true);
-        ui->lineEditL_Modularity_num_of_random_networks->setVisible(true);
+      //  ui->labelL_Modularity_num_of_random_networks->setVisible(true);
+      //  ui->lineEditL_Modularity_num_of_random_networks->setVisible(true);
     }
 
 }
@@ -1049,8 +1050,8 @@ void MainWindow::on_checkPC_CPU_clicked(bool checked)
        //   ui->labelPC_CPU_input_dir->setVisible(false);
      //     ui->lineEditPC_CPU_input_dir->setVisible(false);
        //   ui->toolButtonPC_CPU->setVisible(false);
-          ui->labelPC_CPU_type_for_participant_coefficient->setVisible(false);
-          ui->comboBoxPC_CPU_type_for_participant_coefficient->setVisible(false);
+      //    ui->labelPC_CPU_type_for_participant_coefficient->setVisible(false);
+      //    ui->comboBoxPC_CPU_type_for_participant_coefficient->setVisible(false);
     }
      else if(checked==1)
      {
@@ -1061,8 +1062,8 @@ void MainWindow::on_checkPC_CPU_clicked(bool checked)
       //   ui->labelPC_CPU_input_dir->setVisible(true);
      //    ui->lineEditPC_CPU_input_dir->setVisible(true);
       //   ui->toolButtonPC_CPU->setVisible(true);
-         ui->labelPC_CPU_type_for_participant_coefficient->setVisible(true);
-         ui->comboBoxPC_CPU_type_for_participant_coefficient->setVisible(true);
+      //   ui->labelPC_CPU_type_for_participant_coefficient->setVisible(true);
+      //   ui->comboBoxPC_CPU_type_for_participant_coefficient->setVisible(true);
     }
 }
 
@@ -1081,8 +1082,8 @@ void MainWindow::on_checkConvertNII_clicked(bool checked)
     //     ui->labelConvertNII_mask_file->setVisible(false);
     //     ui->lineEditConvertNII_mask_file->setVisible(false);
     //     ui->toolButtonConvertNII_mask_file->setVisible(false);
-         ui->labelConvertNII_mask_threshold->setVisible(false);
-         ui->lineEditConvertNII_mask_threshold->setVisible(false);
+      //   ui->labelConvertNII_mask_threshold->setVisible(false);
+      //   ui->lineEditConvertNII_mask_threshold->setVisible(false);
     }
      else if(checked==1)
      {
@@ -1098,8 +1099,8 @@ void MainWindow::on_checkConvertNII_clicked(bool checked)
     //    ui->labelConvertNII_mask_file->setVisible(true);
     //    ui->lineEditConvertNII_mask_file->setVisible(true);
     //    ui->toolButtonConvertNII_mask_file->setVisible(true);
-        ui->labelConvertNII_mask_threshold->setVisible(true);
-        ui->lineEditConvertNII_mask_threshold->setVisible(true);
+      //  ui->labelConvertNII_mask_threshold->setVisible(true);
+      //  ui->lineEditConvertNII_mask_threshold->setVisible(true);
 }
 }
 /*
@@ -1279,3 +1280,5 @@ void MainWindow::on_fisher_clicked(bool checked)
         average_fisher=1;
 
 }
+
+
