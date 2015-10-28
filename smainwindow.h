@@ -36,7 +36,7 @@ private slots:
 
     void on_pushButtonLoad_clicked();
 
-    void on_toolButtonCUCorMat_Dir_for_BOLD_clicked();
+  //  void on_toolButtonCUCorMat_Dir_for_BOLD_clicked();
 
   //  void on_toolButtonCUBFW_Lp_input_dir_clicked();
 
@@ -52,7 +52,7 @@ private slots:
 
 //    void on_toolButtonConvertNII_input_file_clicked();
 
-    void on_toolButtonConvertNII_mask_file_clicked();
+ //   void on_toolButtonConvertNII_mask_file_clicked();
 
  //   void on_toolButtonL_Modularity_dir_for_csr_clicked();
 
@@ -82,6 +82,8 @@ private slots:
 
    void on_toolButton_Mask_File_clicked();
 
+   void on_checkCP_Nodal_Metrics_clicked(bool checked);
+
 signals:
      void mySignalStoM();
      void mySignalSclr();
@@ -94,6 +96,7 @@ signals:
      void mySignalSgrayBoxL_Modularity(bool);
      void mySignalSgrayBoxPC_CPU(bool);
      void mySignalSgrayBoxConvertNII(bool);
+     void mySignalSgrayBoxCP_Nodal_Metrics(bool);
 private:
     Ui::sMainWindow *ui;
      QWidget* pWid;

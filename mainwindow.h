@@ -26,7 +26,7 @@ private:
 private slots:
     void on_pushButtonSave_clicked();
     void on_pushButtonLoad_clicked();
-    void on_toolButtonCUCorMat_Dir_for_BOLD_clicked();
+ //   void on_toolButtonCUCorMat_Dir_for_BOLD_clicked();
   //  void on_toolButtonLp_input_dir_clicked();
   //  void on_toolButtonCUBFS_Lp_input_dir_clicked();
   //  void on_toolButtonBFS_MulCPU_input_dir_clicked();
@@ -35,7 +35,7 @@ private slots:
 //    void on_toolButtonCUBC_input_dir_clicked();
 //    void on_toolButtonCUEC_input_dir_clicked();
 //    void on_toolButtonConvertNII_input_file_clicked();
-    void on_toolButtonConvertNII_mask_file_clicked();
+ //   void on_toolButtonConvertNII_mask_file_clicked();
 //    void on_toolButtonL_Modularity_dir_for_csr_clicked();
     void on_toolButtonSaveDir_clicked();
     void on_switchButton_clicked();

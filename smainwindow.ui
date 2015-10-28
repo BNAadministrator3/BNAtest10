@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>917</width>
-    <height>613</height>
+    <height>631</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -71,7 +71,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-637</y>
+         <y>-301</y>
          <width>880</width>
          <height>1315</height>
         </rect>
@@ -82,8 +82,8 @@
          <height>1315</height>
         </size>
        </property>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="1" colspan="2">
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="1">
          <widget class="QLabel" name="state_label">
           <property name="font">
            <font>
@@ -100,7 +100,7 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="3">
+        <item row="0" column="2">
          <widget class="QPushButton" name="switchButton">
           <property name="text">
            <string>Switch</string>
@@ -140,7 +140,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="3">
+        <item row="1" column="2">
          <widget class="QToolButton" name="toolButton_Working_Directory">
           <property name="enabled">
            <bool>true</bool>
@@ -200,7 +200,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="3">
+        <item row="2" column="2">
          <widget class="QToolButton" name="toolButton_Mask_File">
           <property name="enabled">
            <bool>true</bool>
@@ -232,46 +232,13 @@
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QLabel" name="labelCUCorMat_Dir_for_BOLD">
-          <property name="text">
-           <string>Dir_for_BOLD</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="3">
-         <widget class="QLineEdit" name="lineEditCUCorMat_Dir_for_BOLD">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>113</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="clearButtonEnabled">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="4">
-         <widget class="QToolButton" name="toolButtonCUCorMat_Dir_for_BOLD">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>...</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
          <widget class="QLabel" name="labelCUCorMat_threshold_for_mask">
           <property name="text">
            <string>threshold_for_mask</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="3">
+        <item row="4" column="2">
          <widget class="QLineEdit" name="lineEditCUCorMat_threshold_for_mask">
           <property name="enabled">
            <bool>false</bool>
@@ -284,14 +251,14 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
+        <item row="5" column="1">
          <widget class="QLabel" name="labelCUCorMat_to_average">
           <property name="text">
            <string>to_average(yf/yn/bf/bn/n)</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="3">
+        <item row="5" column="2">
          <widget class="QComboBox" name="comboBoxCUCorMat_to_average">
           <property name="enabled">
            <bool>false</bool>
@@ -332,14 +299,14 @@
           </item>
          </widget>
         </item>
-        <item row="7" column="1">
+        <item row="6" column="1">
          <widget class="QLabel" name="labelCUCorMat_to_save_cormatrix">
           <property name="text">
            <string>to_save_cormatrix(y/n)</string>
           </property>
          </widget>
         </item>
-        <item row="7" column="3">
+        <item row="6" column="2">
          <widget class="QComboBox" name="comboBoxCUCorMat_to_save_cormatrix">
           <property name="enabled">
            <bool>false</bool>
@@ -365,14 +332,14 @@
           </item>
          </widget>
         </item>
-        <item row="8" column="1">
+        <item row="7" column="1">
          <widget class="QLabel" name="labelCUCorMat_threshold_type">
           <property name="text">
            <string>threshold_type</string>
           </property>
          </widget>
         </item>
-        <item row="8" column="3">
+        <item row="7" column="2">
          <widget class="QComboBox" name="comboBoxCUCorMat_threshold_type">
           <property name="enabled">
            <bool>false</bool>
@@ -398,14 +365,14 @@
           </item>
          </widget>
         </item>
-        <item row="9" column="1">
+        <item row="8" column="1">
          <widget class="QLabel" name="labelCUCorMat_threshold_for_correlation_coefficient">
           <property name="text">
            <string>threshold_value                      </string>
           </property>
          </widget>
         </item>
-        <item row="9" column="3">
+        <item row="8" column="2">
          <widget class="QLineEdit" name="lineEditCUCorMat_threshold_for_correlation_coefficient">
           <property name="enabled">
            <bool>false</bool>
@@ -418,7 +385,7 @@
           </property>
          </widget>
         </item>
-        <item row="10" column="0">
+        <item row="9" column="0">
          <widget class="QLabel" name="label_3">
           <property name="maximumSize">
            <size>
@@ -437,7 +404,7 @@
           </property>
          </widget>
         </item>
-        <item row="11" column="0">
+        <item row="10" column="0">
          <widget class="QCheckBox" name="checkCUBFW_Lp">
           <property name="toolTip">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the characteristic path length of the network and compare with K (user specified) random networks. Based on blocked Floyd-Warshall algorithm (BFW).&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -447,14 +414,14 @@
           </property>
          </widget>
         </item>
-        <item row="12" column="1">
+        <item row="11" column="1">
          <widget class="QLabel" name="labelCUBFW_Lp_num_of_random_networks">
           <property name="text">
            <string>num_of_random_networks</string>
           </property>
          </widget>
         </item>
-        <item row="12" column="3">
+        <item row="11" column="2">
          <widget class="QLineEdit" name="lineEditCUBFW_Lp_num_of_random_networks">
           <property name="enabled">
            <bool>false</bool>
@@ -467,7 +434,7 @@
           </property>
          </widget>
         </item>
-        <item row="13" column="0">
+        <item row="12" column="0">
          <widget class="QCheckBox" name="checkCP">
           <property name="toolTip">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate clustering coefficient (Cp) of the network and compare the results with  K  (user specified) random networks.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -477,14 +444,14 @@
           </property>
          </widget>
         </item>
-        <item row="14" column="1">
+        <item row="13" column="1">
          <widget class="QLabel" name="labelCp_num_of_random_networks">
           <property name="text">
            <string>num_of_random_networks</string>
           </property>
          </widget>
         </item>
-        <item row="14" column="3">
+        <item row="13" column="2">
          <widget class="QLineEdit" name="lineEditCp_num_of_random_networks">
           <property name="enabled">
            <bool>false</bool>
@@ -497,14 +464,14 @@
           </property>
          </widget>
         </item>
-        <item row="15" column="1">
+        <item row="14" column="1">
          <widget class="QLabel" name="labelCp_Cp_type">
           <property name="text">
            <string>Cp_type</string>
           </property>
          </widget>
         </item>
-        <item row="15" column="3">
+        <item row="14" column="2">
          <widget class="QComboBox" name="comboBoxCp_Cp_type">
           <property name="enabled">
            <bool>false</bool>
@@ -530,7 +497,7 @@
           </item>
          </widget>
         </item>
-        <item row="16" column="0">
+        <item row="15" column="0">
          <widget class="QCheckBox" name="checkL_Modularity">
           <property name="toolTip">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate Louvain Modularity for each of the .csr files in the given directory and compare with random networks.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -540,7 +507,7 @@
           </property>
          </widget>
         </item>
-        <item row="17" column="1">
+        <item row="16" column="1">
          <widget class="QLabel" name="labelL_Modularity_num_of_random_networks">
           <property name="minimumSize">
            <size>
@@ -553,7 +520,7 @@
           </property>
          </widget>
         </item>
-        <item row="17" column="3">
+        <item row="16" column="2">
          <widget class="QLineEdit" name="lineEditL_Modularity_num_of_random_networks">
           <property name="enabled">
            <bool>false</bool>
@@ -566,50 +533,7 @@
           </property>
          </widget>
         </item>
-        <item row="18" column="0">
-         <widget class="QCheckBox" name="checkPC_CPU">
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculates participant coefficient for each subject (“.csr” files) in the given directory.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="text">
-           <string>Participant Coefficient</string>
-          </property>
-         </widget>
-        </item>
-        <item row="19" column="1">
-         <widget class="QLabel" name="labelPC_CPU_type_for_participant_coefficient">
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;type_for_participant_coefficient&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-        </item>
-        <item row="19" column="3">
-         <widget class="QComboBox" name="comboBoxPC_CPU_type_for_participant_coefficient">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>113</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="editable">
-           <bool>false</bool>
-          </property>
-          <item>
-           <property name="text">
-            <string>original</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>normalized</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="20" column="0">
+        <item row="17" column="0">
          <widget class="QLabel" name="label_7">
           <property name="maximumSize">
            <size>
@@ -628,7 +552,7 @@
           </property>
          </widget>
         </item>
-        <item row="21" column="0">
+        <item row="18" column="0">
          <widget class="QCheckBox" name="checkCUBFW_Lp_Nodal_Metrics">
           <property name="toolTip">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the characteristic path length of the network and compare with K (user specified) random networks. Based on blocked Floyd-Warshall algorithm (BFW).&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -638,7 +562,7 @@
           </property>
          </widget>
         </item>
-        <item row="22" column="0">
+        <item row="19" column="0">
          <widget class="QCheckBox" name="checkCP_Nodal_Metrics">
           <property name="toolTip">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate clustering coefficient (Cp) of the network and compare the results with  K  (user specified) random networks.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -648,14 +572,14 @@
           </property>
          </widget>
         </item>
-        <item row="23" column="1">
+        <item row="20" column="1">
          <widget class="QLabel" name="labelCp_Cp_type_Nodal_Metrics">
           <property name="text">
            <string>Cp_type</string>
           </property>
          </widget>
         </item>
-        <item row="23" column="2" colspan="2">
+        <item row="20" column="2">
          <widget class="QComboBox" name="comboBoxCp_Cp_type_Nodal_Metrics">
           <property name="enabled">
            <bool>false</bool>
@@ -681,7 +605,7 @@
           </item>
          </widget>
         </item>
-        <item row="24" column="0">
+        <item row="21" column="0">
          <widget class="QCheckBox" name="checkDegree">
           <property name="toolTip">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the degree centrality of the network.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -691,7 +615,7 @@
           </property>
          </widget>
         </item>
-        <item row="24" column="1">
+        <item row="21" column="1">
          <widget class="QCheckBox" name="checkCUEC">
           <property name="toolTip">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the eigenvector centrality of the network.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -701,25 +625,25 @@
           </property>
          </widget>
         </item>
-        <item row="25" column="0">
-         <widget class="QCheckBox" name="checkConvertNII">
+        <item row="22" column="0">
+         <widget class="QCheckBox" name="checkPC_CPU">
           <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Put the nodal metric results back to the 3-D matrix and converts the .nm files to the standard NII format.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculates participant coefficient for each subject (“.csr” files) in the given directory.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="text">
-           <string>ConvertNII</string>
+           <string>Participant Coefficient</string>
           </property>
          </widget>
         </item>
-        <item row="25" column="1">
-         <widget class="QLabel" name="labelConvertNII_mask_file">
+        <item row="22" column="1">
+         <widget class="QLabel" name="labelPC_CPU_type_for_participant_coefficient">
           <property name="text">
-           <string>mask_file</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;type_for_participant_coefficient&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
-        <item row="25" column="3">
-         <widget class="QLineEdit" name="lineEditConvertNII_mask_file">
+        <item row="22" column="2">
+         <widget class="QComboBox" name="comboBoxPC_CPU_type_for_participant_coefficient">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -729,26 +653,39 @@
             <height>16777215</height>
            </size>
           </property>
-         </widget>
-        </item>
-        <item row="25" column="4">
-         <widget class="QToolButton" name="toolButtonConvertNII_mask_file">
-          <property name="enabled">
+          <property name="editable">
            <bool>false</bool>
           </property>
+          <item>
+           <property name="text">
+            <string>original</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>normalized</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="23" column="0">
+         <widget class="QCheckBox" name="checkConvertNII">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Put the nodal metric results back to the 3-D matrix and converts the .nm files to the standard NII format.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <property name="text">
-           <string>...</string>
+           <string>ConvertNII</string>
           </property>
          </widget>
         </item>
-        <item row="26" column="1">
+        <item row="23" column="1">
          <widget class="QLabel" name="labelConvertNII_mask_threshold">
           <property name="text">
            <string>mask_threshold</string>
           </property>
          </widget>
         </item>
-        <item row="26" column="3">
+        <item row="23" column="2">
          <widget class="QLineEdit" name="lineEditConvertNII_mask_threshold">
           <property name="enabled">
            <bool>false</bool>
@@ -761,21 +698,21 @@
           </property>
          </widget>
         </item>
-        <item row="27" column="0">
+        <item row="24" column="0">
          <widget class="QPushButton" name="pushButtonSave">
           <property name="text">
            <string>Execute and save script</string>
           </property>
          </widget>
         </item>
-        <item row="27" column="1">
+        <item row="24" column="1">
          <widget class="QPushButton" name="pushButtonLoad">
           <property name="text">
            <string>Load script</string>
           </property>
          </widget>
         </item>
-        <item row="27" column="3">
+        <item row="24" column="2">
          <widget class="QLineEdit" name="lineEditSaveDir">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -791,7 +728,7 @@
           </property>
          </widget>
         </item>
-        <item row="27" column="4">
+        <item row="24" column="3">
          <widget class="QToolButton" name="toolButtonSaveDir">
           <property name="text">
            <string>...</string>

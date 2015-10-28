@@ -83,7 +83,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-24</y>
+         <y>-499</y>
          <width>823</width>
          <height>1319</height>
         </rect>
@@ -112,7 +112,7 @@
         </font>
        </property>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="2" colspan="4">
+        <item row="0" column="2" colspan="5">
          <widget class="QLabel" name="label_11">
           <property name="font">
            <font>
@@ -130,7 +130,7 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="6">
+        <item row="0" column="7">
          <widget class="QPushButton" name="switchButton">
           <property name="maximumSize">
            <size>
@@ -181,7 +181,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="6">
+        <item row="1" column="7">
          <widget class="QToolButton" name="toolButton_Working_Directory">
           <property name="enabled">
            <bool>true</bool>
@@ -241,7 +241,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="6">
+        <item row="2" column="7">
          <widget class="QToolButton" name="toolButton_Mask_File">
           <property name="enabled">
            <bool>true</bool>
@@ -262,7 +262,7 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0" colspan="2">
+        <item row="3" column="0" colspan="3">
          <widget class="QCheckBox" name="checkCUCorMat">
           <property name="enabled">
            <bool>true</bool>
@@ -286,43 +286,28 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="5">
-         <widget class="QLineEdit" name="lineEditCUCorMat_Dir_for_BOLD">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>113</width>
-            <height>16777215</height>
-           </size>
+        <item row="4" column="2" colspan="3">
+         <widget class="QLabel" name="labelCUCorMat_threshold_for_mask">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
           <property name="font">
            <font>
             <pointsize>14</pointsize>
            </font>
           </property>
-          <property name="clearButtonEnabled">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="6">
-         <widget class="QToolButton" name="toolButtonCUCorMat_Dir_for_BOLD">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
           </property>
           <property name="text">
-           <string>...</string>
+           <string>threshold_for_mask</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="5">
+        <item row="4" column="6">
          <widget class="QLineEdit" name="lineEditCUCorMat_threshold_for_mask">
           <property name="enabled">
            <bool>false</bool>
@@ -364,7 +349,7 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="4" colspan="4">
+        <item row="5" column="4" colspan="5">
          <widget class="QGroupBox" name="groupBoxCUCorMat_to_average">
           <property name="minimumSize">
            <size>
@@ -492,7 +477,7 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="5" colspan="3">
+        <item row="6" column="6" colspan="3">
          <widget class="QComboBox" name="comboBoxCUCorMat_to_save_cormatrix">
           <property name="enabled">
            <bool>false</bool>
@@ -539,7 +524,7 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="6">
+        <item row="7" column="7">
          <widget class="QComboBox" name="comboBoxCUCorMat_threshold_type">
           <property name="enabled">
            <bool>false</bool>
@@ -582,7 +567,7 @@
           </property>
          </widget>
         </item>
-        <item row="8" column="6">
+        <item row="8" column="7">
          <widget class="QLineEdit" name="lineEditCUCorMat_threshold_for_correlation_coefficient">
           <property name="enabled">
            <bool>false</bool>
@@ -640,37 +625,7 @@
           </property>
          </widget>
         </item>
-        <item row="10" column="4" colspan="2">
-         <widget class="QLabel" name="labelLp_num_of_random_networks">
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>num_of_random_networks</string>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="6">
-         <widget class="QLineEdit" name="lineEditLp_num_of_random_networks">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>113</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-         </widget>
-        </item>
-        <item row="11" column="0" colspan="3">
+        <item row="10" column="5" colspan="3">
          <widget class="QCheckBox" name="checkCP">
           <property name="minimumSize">
            <size>
@@ -691,8 +646,14 @@
           </property>
          </widget>
         </item>
-        <item row="11" column="4" colspan="2">
-         <widget class="QLabel" name="labelCp_num_of_random_networks">
+        <item row="11" column="0" colspan="3">
+         <widget class="QLabel" name="labelLp_num_of_random_networks">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>20</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <pointsize>14</pointsize>
@@ -703,7 +664,25 @@
           </property>
          </widget>
         </item>
-        <item row="11" column="6">
+        <item row="12" column="0" colspan="2">
+         <widget class="QLineEdit" name="lineEditLp_num_of_random_networks">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>113</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="5" colspan="2">
          <widget class="QLineEdit" name="lineEditCp_num_of_random_networks">
           <property name="enabled">
            <bool>false</bool>
@@ -721,7 +700,7 @@
           </property>
          </widget>
         </item>
-        <item row="12" column="0" colspan="2">
+        <item row="13" column="0" colspan="2">
          <widget class="QCheckBox" name="checkL_Modularity">
           <property name="font">
            <font>
@@ -736,7 +715,7 @@
           </property>
          </widget>
         </item>
-        <item row="12" column="4" colspan="2">
+        <item row="13" column="4" colspan="2">
          <widget class="QLabel" name="labelL_Modularity_modularity_type">
           <property name="font">
            <font>
@@ -748,7 +727,7 @@
           </property>
          </widget>
         </item>
-        <item row="12" column="6">
+        <item row="13" column="7">
          <widget class="QComboBox" name="comboBoxLouvain_Modularity_modularity_type">
           <property name="enabled">
            <bool>false</bool>
@@ -784,7 +763,7 @@
           </item>
          </widget>
         </item>
-        <item row="13" column="4" colspan="2">
+        <item row="14" column="4" colspan="3">
          <widget class="QLabel" name="labelL_Modularity_num_of_random_networks">
           <property name="minimumSize">
            <size>
@@ -802,7 +781,7 @@
           </property>
          </widget>
         </item>
-        <item row="13" column="6">
+        <item row="14" column="7">
          <widget class="QLineEdit" name="lineEditL_Modularity_num_of_random_networks">
           <property name="enabled">
            <bool>false</bool>
@@ -818,70 +797,6 @@
             <pointsize>14</pointsize>
            </font>
           </property>
-         </widget>
-        </item>
-        <item row="14" column="0" colspan="3">
-         <widget class="QCheckBox" name="checkPC_CPU">
-          <property name="minimumSize">
-           <size>
-            <width>250</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculates participant coefficient for each subject (“.csr” files) in the given directory.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="text">
-           <string>Participant Coefficient</string>
-          </property>
-         </widget>
-        </item>
-        <item row="14" column="4" colspan="2">
-         <widget class="QLabel" name="labelPC_CPU_type_for_participant_coefficient">
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;type_for_participant_coefficient&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-        </item>
-        <item row="14" column="6">
-         <widget class="QComboBox" name="comboBoxPC_CPU_type_for_participant_coefficient">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>113</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-          <property name="editable">
-           <bool>false</bool>
-          </property>
-          <item>
-           <property name="text">
-            <string>orignal</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>normalized</string>
-           </property>
-          </item>
          </widget>
         </item>
         <item row="15" column="0" colspan="2">
@@ -936,7 +851,7 @@
           </property>
          </widget>
         </item>
-        <item row="16" column="6">
+        <item row="16" column="7">
          <widget class="QCheckBox" name="checkDegree">
           <property name="font">
            <font>
@@ -972,7 +887,7 @@
           </property>
          </widget>
         </item>
-        <item row="17" column="4" colspan="2">
+        <item row="17" column="4" colspan="3">
          <widget class="QCheckBox" name="checkCUEC">
           <property name="font">
            <font>
@@ -987,35 +902,41 @@
           </property>
          </widget>
         </item>
-        <item row="18" column="0">
-         <widget class="QCheckBox" name="checkConvertNII">
+        <item row="18" column="0" colspan="3">
+         <widget class="QCheckBox" name="checkPC_CPU">
+          <property name="minimumSize">
+           <size>
+            <width>250</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <pointsize>14</pointsize>
            </font>
           </property>
           <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Put the nodal metric results back to the 3-D matrix and converts the .nm files to the standard NII format.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculates participant coefficient for each subject (“.csr” files) in the given directory.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="text">
-           <string>ConvertNII</string>
+           <string>Participant Coefficient</string>
           </property>
          </widget>
         </item>
-        <item row="18" column="4">
-         <widget class="QLabel" name="labelConvertNII_mask_file">
+        <item row="18" column="3" colspan="4">
+         <widget class="QLabel" name="labelPC_CPU_type_for_participant_coefficient">
           <property name="font">
            <font>
             <pointsize>14</pointsize>
            </font>
           </property>
           <property name="text">
-           <string>mask_file</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;type_for_participant_coefficient&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
-        <item row="18" column="6">
-         <widget class="QLineEdit" name="lineEditConvertNII_mask_file">
+        <item row="18" column="7">
+         <widget class="QComboBox" name="comboBoxPC_CPU_type_for_participant_coefficient">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -1030,20 +951,33 @@
             <pointsize>14</pointsize>
            </font>
           </property>
-         </widget>
-        </item>
-        <item row="18" column="7">
-         <widget class="QToolButton" name="toolButtonConvertNII_mask_file">
-          <property name="enabled">
+          <property name="editable">
            <bool>false</bool>
           </property>
+          <item>
+           <property name="text">
+            <string>orignal</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>normalized</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="19" column="0" colspan="2">
+         <widget class="QCheckBox" name="checkConvertNII">
           <property name="font">
            <font>
             <pointsize>14</pointsize>
            </font>
           </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Put the nodal metric results back to the 3-D matrix and converts the .nm files to the standard NII format.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
           <property name="text">
-           <string>...</string>
+           <string>ConvertNII</string>
           </property>
          </widget>
         </item>
@@ -1059,7 +993,7 @@
           </property>
          </widget>
         </item>
-        <item row="19" column="6">
+        <item row="19" column="7">
          <widget class="QLineEdit" name="lineEditConvertNII_mask_threshold">
           <property name="enabled">
            <bool>false</bool>
@@ -1101,7 +1035,7 @@
           </property>
          </widget>
         </item>
-        <item row="20" column="4" colspan="2">
+        <item row="20" column="4" colspan="3">
          <widget class="QPushButton" name="pushButtonLoad">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1125,7 +1059,7 @@
           </property>
          </widget>
         </item>
-        <item row="20" column="6">
+        <item row="20" column="7">
          <widget class="QLineEdit" name="lineEditSaveDir">
           <property name="enabled">
            <bool>true</bool>
@@ -1143,7 +1077,7 @@
           </property>
          </widget>
         </item>
-        <item row="20" column="7">
+        <item row="20" column="8">
          <widget class="QToolButton" name="toolButtonSaveDir">
           <property name="font">
            <font>
@@ -1155,36 +1089,21 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="2" colspan="3">
-         <widget class="QLabel" name="labelCUCorMat_threshold_for_mask">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+        <item row="11" column="5" colspan="3">
+         <widget class="QLabel" name="labelCp_num_of_random_networks">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>20</height>
+           </size>
           </property>
           <property name="font">
            <font>
             <pointsize>14</pointsize>
            </font>
           </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
           <property name="text">
-           <string>threshold_for_mask</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2" colspan="3">
-         <widget class="QLabel" name="labelCUCorMat_Dir_for_BOLD">
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Dir_for_BOLD</string>
+           <string>num_of_random_networks</string>
           </property>
          </widget>
         </item>

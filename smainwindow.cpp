@@ -31,7 +31,7 @@ sMainWindow::sMainWindow(QWidget *parent) :
       connect(this,SIGNAL(mySignalSgrayBoxL_Modularity(bool)),this,SLOT(on_checkL_Modularity_clicked(bool)));
       connect(this,SIGNAL(mySignalSgrayBoxPC_CPU(bool)),this,SLOT(on_checkPC_CPU_clicked(bool)));
       connect(this,SIGNAL(mySignalSgrayBoxConvertNII(bool)),this,SLOT(on_checkConvertNII_clicked(bool)));
-
+      connect(this,SIGNAL(mySignalSgrayBoxCP_Nodal_Metrics(bool)),this,SLOT(on_checkCP_Nodal_Metrics_clicked(bool)));
 }
 
 sMainWindow::~sMainWindow()
@@ -49,7 +49,7 @@ void sMainWindow::on_pushButtonSave_clicked()
     std::stringstream script;
     script <<  "echo weightednetworks" << std::endl;
     if (ui->checkCUCorMat->isChecked()) {
-        if (ui->lineEditCUCorMat_Dir_for_BOLD->text().isEmpty()
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditCUCorMat_threshold_for_mask->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_average->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_save_cormatrix->text().isEmpty()
@@ -59,7 +59,7 @@ void sMainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
-              ui->lineEditCUCorMat_Dir_for_BOLD->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_mask->text().toStdString() <<
               ' ' <<
@@ -105,7 +105,7 @@ void sMainWindow::on_pushButtonSave_clicked()
               std::endl;
     }*/
 
-    if (ui->checkCP->isChecked()) {
+    if (ui->checkCP->isChecked()&&(!ui->checkCP_Nodal_Metrics->isChecked())) {
         if (ui->lineEditCp_num_of_random_networks->text().isEmpty()
                 || ui->lineEdit_Working_Directory->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
@@ -192,7 +192,7 @@ void sMainWindow::on_pushButtonSave_clicked()
     }
     if (ui->checkConvertNII->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
-                || ui->lineEditConvertNII_mask_file->text().isEmpty()
+                || ui->lineEdit_Mask_File->text().isEmpty()
                 || ui->lineEditConvertNII_mask_threshold->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
@@ -200,7 +200,7 @@ void sMainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\ConvertNII.exe " : "./exefiles_weighted/ConvertNII ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              ui->lineEditConvertNII_mask_file->text().toStdString() <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
               ' ' <<
               ui->lineEditConvertNII_mask_threshold->text().toStdString() <<
               std::endl;
@@ -228,6 +228,35 @@ void sMainWindow::on_pushButtonSave_clicked()
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditCUBFW_Lp_num_of_random_networks->text().toStdString() <<' '<<"b"<<
+              std::endl;
+    }
+    if (ui->checkCP_Nodal_Metrics->isChecked()&&(!ui->checkCP->isChecked())) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+         string s2=ui->comboBoxCp_Cp_type_Nodal_Metrics->currentText().toStdString();
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              "0"<<' ' <<(s2 == "Onnela" ? "2 " : " 1 ")<<
+              std::endl;
+    }
+    if (ui->checkCP_Nodal_Metrics->isChecked()&&ui->checkCP->isChecked()) {
+        if (ui->lineEditCp_num_of_random_networks->text().isEmpty()
+                ||ui->lineEdit_Working_Directory->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        if(ui->comboBoxCp_Cp_type->currentText().toStdString()!=ui->comboBoxCp_Cp_type_Nodal_Metrics->currentText().toStdString()) {
+            QMessageBox::information(this, "Error", "If Clustering Coefficient is selected in global and nodal metrics at the same time, you must ensure that the 'type' parameters are the same", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+         string s2=ui->comboBoxCp_Cp_type->currentText().toStdString();
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              "0"<<' ' <<(s2 == "Onnela" ? "2 " : " 1 ")<<
               std::endl;
     }
     QString file_name = ui->lineEditSaveDir->text();
@@ -351,7 +380,7 @@ void sMainWindow::on_pushButtonLoad_clicked()
             if (tokens.size() >= 7) {
                 ui->checkCUCorMat->setChecked(true);
                 emit mySignalSgrayBoxCUCorMat(true);
-                ui->lineEditCUCorMat_Dir_for_BOLD->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditCUCorMat_threshold_for_mask->setText(tokens[2].c_str());
                 if(tokens[3] == "n")
                 ui->comboBoxCUCorMat_to_average->setCurrentIndex(0);
@@ -414,13 +443,34 @@ void sMainWindow::on_pushButtonLoad_clicked()
                 ui->lineEditCUCP_num_of_random_networks->setText(tokens[2].c_str());
             }
         }*/ else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe" : "./Cp")) {
-            if (tokens.size() == 4) {
+            if (tokens.size() == 5) {
+              if(tokens[4] == "g") {
                 ui->checkCP->setChecked(true);
                 emit mySignalSgrayBoxCP(true);
               //  qDebug("enter cp");
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditCp_num_of_random_networks->setText(tokens[2].c_str());
                 ui->comboBoxCp_Cp_type->setCurrentIndex(tokens[3] == "1");
+              }
+              else if(tokens[4] == "n") {
+              ui->checkCP_Nodal_Metrics->setChecked(true);
+              emit mySignalSgrayBoxCP_Nodal_Metrics(true);
+            //  qDebug("enter cp");
+              ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+           //   ui->lineEditCp_num_of_random_networks->setText(tokens[2].c_str());
+              ui->comboBoxCp_Cp_type_Nodal_Metrics->setCurrentIndex(tokens[3] == "1");
+              }
+              else if(tokens[4] == "b") {
+                  ui->checkCP->setChecked(true);
+                  emit mySignalSgrayBoxCP(true);
+                  ui->checkCP_Nodal_Metrics->setChecked(true);
+                  emit mySignalSgrayBoxCP_Nodal_Metrics(true);
+                //  qDebug("enter cp");
+                  ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                  ui->lineEditCp_num_of_random_networks->setText(tokens[2].c_str());
+                  ui->comboBoxCp_Cp_type->setCurrentIndex(tokens[3] == "1");
+                  ui->comboBoxCp_Cp_type_Nodal_Metrics->setCurrentIndex(tokens[3] == "1");
+              }
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\Degree.exe" : "./exefiles_weighted/Degree")) {
             if (tokens.size() == 2) {
@@ -440,7 +490,7 @@ void sMainWindow::on_pushButtonLoad_clicked()
                 ui->checkConvertNII->setChecked(true);
                 emit mySignalSgrayBoxConvertNII(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-                ui->lineEditConvertNII_mask_file->setText(tokens[2].c_str());
+                ui->lineEdit_Mask_File->setText(tokens[2].c_str());
                 ui->lineEditConvertNII_mask_threshold->setText(tokens[3].c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\Louvain_Modularity.exe" : "./exefiles_weighted/Louvain_Modularity")) {
@@ -464,11 +514,12 @@ void sMainWindow::on_pushButtonLoad_clicked()
 }
 
 
-
+/*
 void sMainWindow::on_toolButtonCUCorMat_Dir_for_BOLD_clicked()
 {
  ui->lineEditCUCorMat_Dir_for_BOLD->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
+*/
 /*
 void sMainWindow::on_toolButtonCUBFW_Lp_input_dir_clicked()
 {
@@ -507,17 +558,19 @@ void sMainWindow::on_toolButtonConvertNII_input_file_clicked()
                                                                             ));
 }
 */
+/*
 void sMainWindow::on_toolButtonConvertNII_mask_file_clicked()
 {
-  /*  ui->lineEditConvertNII_mask_file->setText(QFileDialog::getExistingDirectory(this,
+    ui->lineEditConvertNII_mask_file->setText(QFileDialog::getExistingDirectory(this,
                                                                               "Directory"
 
-                                                                              ));*/
+                                                                              ));
     ui->lineEditConvertNII_mask_file->setText(QFileDialog::getOpenFileName(this,
                                                                           "NII File",
                                                                           "",
                                                                           "NII (*.nii)"));
 }
+*/
 /*
 void sMainWindow::on_toolButtonL_Modularity_dir_for_csr_clicked()
 {
@@ -550,23 +603,23 @@ this->close();
 void sMainWindow::on_checkCUCorMat_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(false);
+  //       ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(false);
          ui->lineEditCUCorMat_threshold_for_mask->setEnabled(false);
          ui->comboBoxCUCorMat_to_average->setEnabled(false);
          ui->comboBoxCUCorMat_to_save_cormatrix->setEnabled(false);
          ui->comboBoxCUCorMat_threshold_type->setEnabled(false);
          ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setEnabled(false);
-         ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(false);
+    //     ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(false);
     }
      else if(checked==1)
      {
-        ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(true);
+      //  ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(true);
         ui->lineEditCUCorMat_threshold_for_mask->setEnabled(true);
         ui->comboBoxCUCorMat_to_average->setEnabled(true);
         ui->comboBoxCUCorMat_to_save_cormatrix->setEnabled(true);
         ui->comboBoxCUCorMat_threshold_type->setEnabled(true);
         ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setEnabled(true);
-        ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(true);
+        //ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(true);
     }
 }
 
@@ -680,25 +733,25 @@ void sMainWindow::on_checkConvertNII_clicked(bool checked)
 {
     if(checked==0){
         // ui->lineEditConvertNII_input_file->setEnabled(false);
-         ui->lineEditConvertNII_mask_file->setEnabled(false);
+         //ui->lineEditConvertNII_mask_file->setEnabled(false);
          ui->lineEditConvertNII_mask_threshold->setEnabled(false);
          //ui->toolButtonConvertNII_input_file->setEnabled(false);
-         ui->toolButtonConvertNII_mask_file->setEnabled(false);
+    //     ui->toolButtonConvertNII_mask_file->setEnabled(false);
     }
      else if(checked==1)
      {
        // ui->lineEditConvertNII_input_file->setEnabled(true);
-        ui->lineEditConvertNII_mask_file->setEnabled(true);
+      //  ui->lineEditConvertNII_mask_file->setEnabled(true);
         ui->lineEditConvertNII_mask_threshold->setEnabled(true);
       //  ui->toolButtonConvertNII_input_file->setEnabled(true);
-        ui->toolButtonConvertNII_mask_file->setEnabled(true);
+        //ui->toolButtonConvertNII_mask_file->setEnabled(true);
     }
 
 }
 void sMainWindow::clearscreen(){
     //清屏函数两个功能：1.清空内容；2.使界面回到灰框状态
     //1.清空内容；
-    ui->lineEditCUCorMat_Dir_for_BOLD->setText("");
+  //  ui->lineEditCUCorMat_Dir_for_BOLD->setText("");
     ui->lineEditCUCorMat_threshold_for_mask->setText("");
     ui->comboBoxCUCorMat_to_average->setCurrentIndex(0);
     ui->comboBoxCUCorMat_to_save_cormatrix->setCurrentIndex(0);
@@ -712,6 +765,7 @@ void sMainWindow::clearscreen(){
     //ui->lineEditCp_input_dir->setText("");
     ui->lineEditCp_num_of_random_networks->setText("");
     ui->comboBoxCp_Cp_type->setCurrentIndex(0);
+    ui->comboBoxCp_Cp_type_Nodal_Metrics->setCurrentIndex(0);
 
 //    ui->lineEditCUCP_input_dir->setText("");
 //    ui->lineEditCUCP_num_of_random_networks->setText("");
@@ -727,7 +781,7 @@ void sMainWindow::clearscreen(){
        ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
 
        //ui->lineEditConvertNII_input_file->setText("");
-       ui->lineEditConvertNII_mask_file->setText("");
+    //   ui->lineEditConvertNII_mask_file->setText("");
        ui->lineEditConvertNII_mask_threshold->setText("");
        //2.使界面回到灰框状态
        emit mySignalSgrayBoxCUCorMat(false);
@@ -739,6 +793,7 @@ void sMainWindow::clearscreen(){
        emit mySignalSgrayBoxL_Modularity(false);
        emit mySignalSgrayBoxPC_CPU(false);
        emit mySignalSgrayBoxConvertNII(false);
+       emit mySignalSgrayBoxCP_Nodal_Metrics(false);
 
 }
 
@@ -752,5 +807,22 @@ void sMainWindow::on_toolButton_Mask_File_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,"NII File","","NII (*.nii)");
       ui->lineEdit_Mask_File->setText(file);
-      ui->lineEditConvertNII_mask_file->setText(file);
+    //  ui->lineEditConvertNII_mask_file->setText(file);
+}
+
+void sMainWindow::on_checkCP_Nodal_Metrics_clicked(bool checked)
+{
+    if(checked==0){
+       //  ui->lineEditCp_input_dir->setEnabled(false);
+       //  ui->lineEditCp_num_of_random_networks->setEnabled(false);
+       //  ui->toolButtonCp_input_dir->setEnabled(false);
+          ui->comboBoxCp_Cp_type_Nodal_Metrics->setEnabled(false);
+    }
+     else if(checked==1)
+     {
+        //ui->lineEditCp_input_dir->setEnabled(true);
+       // ui->lineEditCp_num_of_random_networks->setEnabled(true);
+       // ui->toolButtonCp_input_dir->setEnabled(true);
+        ui->comboBoxCp_Cp_type_Nodal_Metrics->setEnabled(true);
+    }
 }

@@ -65,7 +65,7 @@ void MainWindow::on_pushButtonSave_clicked()
 
     if (ui->checkCUCorMat->isChecked()) {
         //组合之外的统统选n
-        if (ui->lineEditCUCorMat_Dir_for_BOLD->text().isEmpty()
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditCUCorMat_threshold_for_mask->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_average->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_save_cormatrix->text().isEmpty()
@@ -76,7 +76,7 @@ void MainWindow::on_pushButtonSave_clicked()
         }
         if(individual_metrics==0&&average_ordinary==1&&average_fisher==0)
         script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
-              ui->lineEditCUCorMat_Dir_for_BOLD->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_mask->text().toStdString() <<
               ' ' <<
@@ -93,7 +93,7 @@ void MainWindow::on_pushButtonSave_clicked()
               std::endl;
         else if(individual_metrics==1&&average_ordinary==1&&average_fisher==0)
         script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
-              ui->lineEditCUCorMat_Dir_for_BOLD->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_mask->text().toStdString() <<
               ' ' <<
@@ -110,7 +110,7 @@ void MainWindow::on_pushButtonSave_clicked()
               std::endl;
         else if(individual_metrics==0&&average_ordinary==1&&average_fisher==1)
         script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
-              ui->lineEditCUCorMat_Dir_for_BOLD->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_mask->text().toStdString() <<
               ' ' <<
@@ -127,7 +127,7 @@ void MainWindow::on_pushButtonSave_clicked()
               std::endl;
         else if(individual_metrics==1&&average_ordinary==1&&average_fisher==1)
         script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
-              ui->lineEditCUCorMat_Dir_for_BOLD->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_mask->text().toStdString() <<
               ' ' <<
@@ -144,7 +144,7 @@ void MainWindow::on_pushButtonSave_clicked()
               std::endl;
         else //if(individual_metrics==1&&average_ordinary==1&&average_fisher==0)
         script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
-              ui->lineEditCUCorMat_Dir_for_BOLD->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_mask->text().toStdString() <<
               ' ' <<
@@ -307,7 +307,7 @@ void MainWindow::on_pushButtonSave_clicked()
     }
     if (ui->checkConvertNII->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
-                || ui->lineEditConvertNII_mask_file->text().isEmpty()
+                || ui->lineEdit_Mask_File->text().isEmpty()
                 || ui->lineEditConvertNII_mask_threshold->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
@@ -315,7 +315,7 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles\\ConvertNII.exe " : "./exefiles/ConvertNII ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              ui->lineEditConvertNII_mask_file->text().toStdString() <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
               ' ' <<
               ui->lineEditConvertNII_mask_threshold->text().toStdString() <<
               std::endl;
@@ -522,7 +522,7 @@ void MainWindow::on_pushButtonLoad_clicked()
             if (tokens.size() >= 7) {
                 ui->checkCUCorMat->setChecked(true);
                  emit mySignalMgrayBoxCUCorMat(true);
-                ui->lineEditCUCorMat_Dir_for_BOLD->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditCUCorMat_threshold_for_mask->setText(tokens[2].c_str());
                 if(tokens[3] == "n")
                 {
@@ -646,7 +646,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->checkConvertNII->setChecked(true);
                 emit mySignalMgrayBoxConvertNII(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-                ui->lineEditConvertNII_mask_file->setText(tokens[2].c_str());
+                ui->lineEdit_Mask_File->setText(tokens[2].c_str());
                 ui->lineEditConvertNII_mask_threshold->setText(tokens[3].c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe" : "./exefiles/Louvain_Modularity")
@@ -710,11 +710,12 @@ void MainWindow::on_pushButtonLoad_clicked()
 
 }
 }
+/*
 void MainWindow::on_toolButtonCUCorMat_Dir_for_BOLD_clicked()
 {
     ui->lineEditCUCorMat_Dir_for_BOLD->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
-/*
+*//*
 void MainWindow::on_toolButtonLp_input_dir_clicked()
 {
     ui->lineEdit_Working_Directory->setText(QFileDialog::getExistingDirectory(this, "Directory"));
@@ -751,7 +752,7 @@ void MainWindow::on_toolButtonCUEC_input_dir_clicked()
 }
 */
 
-
+/*
 void MainWindow::on_toolButtonConvertNII_mask_file_clicked()
 {
     ui->lineEditConvertNII_mask_file->setText(QFileDialog::getOpenFileName(this,
@@ -759,11 +760,11 @@ void MainWindow::on_toolButtonConvertNII_mask_file_clicked()
                                                                           "",
                                                                           "NII (*.nii)"));
 
-  /*  ui->lineEditConvertNII_mask_file->setText(QFileDialog::getExistingDirectory(this,
+    ui->lineEditConvertNII_mask_file->setText(QFileDialog::getExistingDirectory(this,
                                                                               "Directory"
 
-                                                                              ));*/
-}
+                                                                              ));
+}*/
 /*
 void MainWindow::on_toolButtonL_Modularity_dir_for_csr_clicked()
 {
@@ -795,7 +796,7 @@ void MainWindow::on_toolButtonPC_CPU_clicked()
 void MainWindow::on_checkCUCorMat_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(false);
+      //   ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(false);
          ui->lineEditCUCorMat_threshold_for_mask->setEnabled(false);
          ui->radioButton_CUCorMat_to_average->setEnabled(false);
          ui->ordinary->setEnabled(false);
@@ -803,11 +804,11 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
          ui->comboBoxCUCorMat_to_save_cormatrix->setEnabled(false);
          ui->comboBoxCUCorMat_threshold_type->setEnabled(false);
          ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setEnabled(false);
-         ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(false);
+     //    ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(false);
 
-         ui->labelCUCorMat_Dir_for_BOLD->setVisible(false);
-         ui->lineEditCUCorMat_Dir_for_BOLD->setVisible(false);
-         ui->toolButtonCUCorMat_Dir_for_BOLD->setVisible(false);
+       //  ui->labelCUCorMat_Dir_for_BOLD->setVisible(false);
+        // ui->lineEditCUCorMat_Dir_for_BOLD->setVisible(false);
+       //  ui->toolButtonCUCorMat_Dir_for_BOLD->setVisible(false);
 
          ui->labelCUCorMat_threshold_for_mask->setVisible(false);
          ui->lineEditCUCorMat_threshold_for_mask->setVisible(false);
@@ -826,7 +827,7 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
     }
      else if(checked==1)
      {
-        ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(true);
+      //  ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(true);
         ui->lineEditCUCorMat_threshold_for_mask->setEnabled(true);
         ui->radioButton_CUCorMat_to_average->setEnabled(true);
         ui->ordinary->setEnabled(true);
@@ -834,12 +835,12 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
         ui->comboBoxCUCorMat_to_save_cormatrix->setEnabled(true);
         ui->comboBoxCUCorMat_threshold_type->setEnabled(true);
         ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setEnabled(true);
-        ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(true);
+     //   ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(true);
 
 
-        ui->labelCUCorMat_Dir_for_BOLD->setVisible(true);
-        ui->lineEditCUCorMat_Dir_for_BOLD->setVisible(true);
-        ui->toolButtonCUCorMat_Dir_for_BOLD->setVisible(true);
+    //    ui->labelCUCorMat_Dir_for_BOLD->setVisible(true);
+    //    ui->lineEditCUCorMat_Dir_for_BOLD->setVisible(true);
+    //    ui->toolButtonCUCorMat_Dir_for_BOLD->setVisible(true);
 
         ui->labelCUCorMat_threshold_for_mask->setVisible(true);
         ui->lineEditCUCorMat_threshold_for_mask->setVisible(true);
@@ -1069,34 +1070,34 @@ void MainWindow::on_checkConvertNII_clicked(bool checked)
 {
     if(checked==0){
       //   ui->lineEditConvertNII_input_file->setEnabled(false);
-         ui->lineEditConvertNII_mask_file->setEnabled(false);
+     //    ui->lineEditConvertNII_mask_file->setEnabled(false);
          ui->lineEditConvertNII_mask_threshold->setEnabled(false);
       //   ui->toolButtonConvertNII_input_file->setEnabled(false);
-         ui->toolButtonConvertNII_mask_file->setEnabled(false);
+     //    ui->toolButtonConvertNII_mask_file->setEnabled(false);
 
      //    ui->labelConvertNII_input_file->setVisible(false);
        //  ui->lineEditConvertNII_input_file->setVisible(false);
       //   ui->toolButtonConvertNII_input_file->setVisible(false);
-         ui->labelConvertNII_mask_file->setVisible(false);
-         ui->lineEditConvertNII_mask_file->setVisible(false);
-         ui->toolButtonConvertNII_mask_file->setVisible(false);
+    //     ui->labelConvertNII_mask_file->setVisible(false);
+    //     ui->lineEditConvertNII_mask_file->setVisible(false);
+    //     ui->toolButtonConvertNII_mask_file->setVisible(false);
          ui->labelConvertNII_mask_threshold->setVisible(false);
          ui->lineEditConvertNII_mask_threshold->setVisible(false);
     }
      else if(checked==1)
      {
  //       ui->lineEditConvertNII_input_file->setEnabled(true);
-        ui->lineEditConvertNII_mask_file->setEnabled(true);
+     //   ui->lineEditConvertNII_mask_file->setEnabled(true);
         ui->lineEditConvertNII_mask_threshold->setEnabled(true);
     //    ui->toolButtonConvertNII_input_file->setEnabled(true);
-        ui->toolButtonConvertNII_mask_file->setEnabled(true);
+     //   ui->toolButtonConvertNII_mask_file->setEnabled(true);
 
       //  ui->labelConvertNII_input_file->setVisible(true);
    //     ui->lineEditConvertNII_input_file->setVisible(true);
     //    ui->toolButtonConvertNII_input_file->setVisible(true);
-        ui->labelConvertNII_mask_file->setVisible(true);
-        ui->lineEditConvertNII_mask_file->setVisible(true);
-        ui->toolButtonConvertNII_mask_file->setVisible(true);
+    //    ui->labelConvertNII_mask_file->setVisible(true);
+    //    ui->lineEditConvertNII_mask_file->setVisible(true);
+    //    ui->toolButtonConvertNII_mask_file->setVisible(true);
         ui->labelConvertNII_mask_threshold->setVisible(true);
         ui->lineEditConvertNII_mask_threshold->setVisible(true);
 }
@@ -1165,7 +1166,7 @@ void MainWindow::on_checkCP_NodalMetrics_clicked(bool checked)
 void MainWindow::clearscreen(){
     //清屏函数两个功能：1.清空内容,顺带初始化；2.使界面回到灰框状态
     //1.清空内容；
-    ui->lineEditCUCorMat_Dir_for_BOLD->setText("");
+  //  ui->lineEditCUCorMat_Dir_for_BOLD->setText("");
     ui->lineEditCUCorMat_threshold_for_mask->setText("");
     ui->radioButton_CUCorMat_to_average->setChecked(false);
     ui->ordinary->setChecked(false);
@@ -1202,7 +1203,7 @@ void MainWindow::clearscreen(){
        ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
 
    //    ui->lineEditConvertNII_input_file->setText("");
-       ui->lineEditConvertNII_mask_file->setText("");
+   //    ui->lineEditConvertNII_mask_file->setText("");
        ui->lineEditConvertNII_mask_threshold->setText("");
 
 
@@ -1252,7 +1253,7 @@ void MainWindow::on_toolButton_Mask_File_clicked()
 {
   QString file = QFileDialog::getOpenFileName(this,"NII File","","NII (*.nii)");
     ui->lineEdit_Mask_File->setText(file);
-    ui->lineEditConvertNII_mask_file->setText(file);
+ //   ui->lineEditConvertNII_mask_file->setText(file);
 }
 void MainWindow::on_radioButton_CUCorMat_to_average_clicked(bool checked)
 {
