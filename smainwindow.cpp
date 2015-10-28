@@ -24,10 +24,10 @@ sMainWindow::sMainWindow(QWidget *parent) :
 
       connect(this,SIGNAL(mySignalSgrayBoxCUCorMat(bool)),this,SLOT(on_checkCUCorMat_clicked(bool)));
       connect(this,SIGNAL(mySignalSgrayBoxCUBFW_Lp(bool)),this,SLOT(on_checkCUBFW_Lp_clicked(bool)));
-      connect(this,SIGNAL(mySignalSgrayBoxCUEC(bool)),this,SLOT(on_checkCUEC_clicked(bool)));
+      //connect(this,SIGNAL(mySignalSgrayBoxCUEC(bool)),this,SLOT(on_checkCUEC_clicked(bool)));
       connect(this,SIGNAL(mySignalSgrayBoxCP(bool)),this,SLOT(on_checkCP_clicked(bool)));
-      connect(this,SIGNAL(mySignalSgrayBoxDegree(bool)),this,SLOT(on_checkDegree_clicked(bool)));
-      connect(this,SIGNAL(mySignalSgrayBoxCUCP(bool)),this,SLOT(on_checkCUCP_clicked(bool)));
+      //connect(this,SIGNAL(mySignalSgrayBoxDegree(bool)),this,SLOT(on_checkDegree_clicked(bool)));
+      //connect(this,SIGNAL(mySignalSgrayBoxCUCP(bool)),this,SLOT(on_checkCUCP_clicked(bool)));
       connect(this,SIGNAL(mySignalSgrayBoxL_Modularity(bool)),this,SLOT(on_checkL_Modularity_clicked(bool)));
       connect(this,SIGNAL(mySignalSgrayBoxPC_CPU(bool)),this,SLOT(on_checkPC_CPU_clicked(bool)));
       connect(this,SIGNAL(mySignalSgrayBoxConvertNII(bool)),this,SLOT(on_checkConvertNII_clicked(bool)));
@@ -77,16 +77,16 @@ void sMainWindow::on_pushButtonSave_clicked()
 
     }
 
-    if (ui->checkCUBFW_Lp->isChecked()) {
-        if (ui->lineEditCUBFW_Lp_input_dir->text().isEmpty()
+    if (ui->checkCUBFW_Lp->isChecked()&&(!ui->checkCUBFW_Lp_Nodal_Metrics->isChecked())) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditCUBFW_Lp_num_of_random_networks->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUBFW_Lp.exe " : "./exefiles_weighted/CUBFW_Lp ") <<
-              ui->lineEditCUBFW_Lp_input_dir->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              ui->lineEditCUBFW_Lp_num_of_random_networks->text().toStdString() <<
+              ui->lineEditCUBFW_Lp_num_of_random_networks->text().toStdString() <<' '<<"g"<<
               std::endl;
     }
 
@@ -106,43 +106,43 @@ void sMainWindow::on_pushButtonSave_clicked()
     }*/
 
     if (ui->checkCP->isChecked()) {
-        if (ui->lineEditCp_input_dir->text().isEmpty()
-                || ui->lineEditCp_num_of_random_networks->text().isEmpty()) {
+        if (ui->lineEditCp_num_of_random_networks->text().isEmpty()
+                || ui->lineEdit_Working_Directory->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
          string s2=ui->comboBoxCp_Cp_type->currentText().toStdString();
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
-              ui->lineEditCp_input_dir->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditCp_num_of_random_networks->text().toStdString() <<' ' <<(s2 == "Onnela" ? "2 " : " 1 ")<<
               std::endl;
     }
 
     if (ui->checkDegree->isChecked()) {
-        if (ui->lineEditDegree_input_dir->text().isEmpty()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Degree.exe " : "./exefiles_weighted/Degree ") <<
-              ui->lineEditDegree_input_dir->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               std::endl;
     }
 
     if (ui->checkCUEC->isChecked()) {
-        if (ui->lineEditCUEC_input_dir->text().isEmpty()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUEC.exe " : "./exefiles_weighted/CUBC ") <<
-              ui->lineEditCUEC_input_dir->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               std::endl;
     }
 
 
 
     if (ui->checkL_Modularity->isChecked()) {
-        if (ui->lineEditL_Modularity_dir_for_csr->text().isEmpty()
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditL_Modularity_num_of_random_networks->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
@@ -151,7 +151,7 @@ void sMainWindow::on_pushButtonSave_clicked()
      //   string s=ui->comboBoxLouvain_Modularity_modularity_type->currentText().toStdString();
      //   if(s=="Louvain")
            script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Louvain_Modularity.exe " : "./exefiles_weighted/Louvain_Modularity ") <<
-                 ui->lineEditL_Modularity_dir_for_csr->text().toStdString() <<
+                 ui->lineEdit_Working_Directory->text().toStdString() <<
                  ' ' <<
                  ui->lineEditL_Modularity_num_of_random_networks->text().toStdString() <<
                  std::endl;
@@ -171,7 +171,7 @@ void sMainWindow::on_pushButtonSave_clicked()
 
     }
     if (ui->checkPC_CPU->isChecked()) {
-        if (ui->lineEditPC_CPU_input_dir->text().isEmpty()
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
              //   || ui->lineEditPC_CPU_type_for_participant_coefficient->text().isEmpty()
                 ) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
@@ -180,29 +180,54 @@ void sMainWindow::on_pushButtonSave_clicked()
         string s1=ui->comboBoxPC_CPU_type_for_participant_coefficient->currentText().toStdString();
         if(s1=="normalized")
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\PC_CPU.exe " : "./exefiles_weighted/PC_CPU ") <<
-              ui->lineEditPC_CPU_input_dir->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
            //   ui->lineEditPC_CPU_type_for_participant_coefficient->text().toStdString() <<
               "n" <<
                   std::endl;
         else  script << (operating_system == os_win32 ? ".\\exefiles_weighted\\PC_CPU.exe " : "./exefiles_weighted/PC_CPU ") <<
-                        ui->lineEditPC_CPU_input_dir->text().toStdString() <<
+                        ui->lineEdit_Working_Directory->text().toStdString() <<
                         ' ' <<
                             std::endl;
     }
     if (ui->checkConvertNII->isChecked()) {
-        if (ui->lineEditConvertNII_input_file->text().isEmpty()
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditConvertNII_mask_file->text().isEmpty()
                 || ui->lineEditConvertNII_mask_threshold->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\ConvertNII.exe " : "./exefiles_weighted/ConvertNII ") <<
-              ui->lineEditConvertNII_input_file->text().toStdString() <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditConvertNII_mask_file->text().toStdString() <<
               ' ' <<
               ui->lineEditConvertNII_mask_threshold->text().toStdString() <<
+              std::endl;
+    }
+    if (ui->checkCUBFW_Lp_Nodal_Metrics->isChecked()&&(!ui->checkCUBFW_Lp->isChecked())) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                ) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUBFW_Lp.exe " : "./exefiles_weighted/CUBFW_Lp ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              "0" <<' '<<"n"<<
+              std::endl;
+    }
+
+    if (ui->checkCUBFW_Lp->isChecked()&&ui->checkCUBFW_Lp_Nodal_Metrics->isChecked()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->lineEditCUBFW_Lp_num_of_random_networks->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUBFW_Lp.exe " : "./exefiles_weighted/CUBFW_Lp ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEditCUBFW_Lp_num_of_random_networks->text().toStdString() <<' '<<"b"<<
               std::endl;
     }
     QString file_name = ui->lineEditSaveDir->text();
@@ -346,23 +371,39 @@ void sMainWindow::on_pushButtonLoad_clicked()
                 ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText(token6.c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\CUBFW_Lp.exe" : "./exefiles_weighted/CUBFW_Lp")) {
-            if (tokens.size() == 3) {
+            if (tokens.size() == 4) {
+              if(tokens[3] == "g") {
                 ui->checkCUBFW_Lp->setChecked(true);
                 emit mySignalSgrayBoxCUBFW_Lp(true);
-                ui->lineEditCUBFW_Lp_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditCUBFW_Lp_num_of_random_networks->setText(tokens[2].c_str());
+              }
+              else if(tokens[3] == "n") {
+                ui->checkCUBFW_Lp_Nodal_Metrics->setChecked(true);
+                //emit mySignalSgrayBoxCUBFW_Lp(true);
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                //ui->lineEditCUBFW_Lp_num_of_random_networks->setText(tokens[2].c_str());
+              }
+              else if(tokens[3] == "b") {
+                  ui->checkCUBFW_Lp->setChecked(true);
+                  emit mySignalSgrayBoxCUBFW_Lp(true);
+                ui->checkCUBFW_Lp_Nodal_Metrics->setChecked(true);
+                //emit mySignalSgrayBoxCUBFW_Lp(true);
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEditCUBFW_Lp_num_of_random_networks->setText(tokens[2].c_str());
+              }
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\PC_CPU.exe" : "./exefiles_weighted/PC_CPU")) {
             if (tokens.size() == 3) {
                 ui->checkPC_CPU->setChecked(true);
                 emit mySignalSgrayBoxPC_CPU(true);
-                ui->lineEditPC_CPU_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(tokens[2] == "n");
             }
             else if (tokens.size() == 2) {
                 ui->checkPC_CPU->setChecked(true);
                 emit mySignalSgrayBoxPC_CPU(true);
-                ui->lineEditPC_CPU_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
             }
         } /*else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCP.exe" : "./exefiles_weighted/CUCP")) {
@@ -377,7 +418,7 @@ void sMainWindow::on_pushButtonLoad_clicked()
                 ui->checkCP->setChecked(true);
                 emit mySignalSgrayBoxCP(true);
               //  qDebug("enter cp");
-                ui->lineEditCp_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditCp_num_of_random_networks->setText(tokens[2].c_str());
                 ui->comboBoxCp_Cp_type->setCurrentIndex(tokens[3] == "1");
             }
@@ -385,20 +426,20 @@ void sMainWindow::on_pushButtonLoad_clicked()
             if (tokens.size() == 2) {
                 ui->checkDegree->setChecked(true);
                 emit mySignalSgrayBoxDegree(true);
-                ui->lineEditDegree_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
             }
 
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\CUEC.exe" : "./exefiles_weighted/CUEC")) {
             if (tokens.size() == 2) {
                 ui->checkCUEC->setChecked(true);
                 emit mySignalSgrayBoxCUEC(true);
-                ui->lineEditCUEC_input_dir->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\ConvertNII.exe" : "./exefiles_weighted/ConvertNII")) {
             if (tokens.size() == 4) {
                 ui->checkConvertNII->setChecked(true);
                 emit mySignalSgrayBoxConvertNII(true);
-                ui->lineEditConvertNII_input_file->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditConvertNII_mask_file->setText(tokens[2].c_str());
                 ui->lineEditConvertNII_mask_threshold->setText(tokens[3].c_str());
             }
@@ -406,7 +447,7 @@ void sMainWindow::on_pushButtonLoad_clicked()
             if (tokens.size() == 3) {
                 ui->checkL_Modularity->setChecked(true);
                 emit mySignalSgrayBoxL_Modularity(true);
-                ui->lineEditL_Modularity_dir_for_csr->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditL_Modularity_num_of_random_networks->setText(tokens[2].c_str());
             }
         }
@@ -428,7 +469,7 @@ void sMainWindow::on_toolButtonCUCorMat_Dir_for_BOLD_clicked()
 {
  ui->lineEditCUCorMat_Dir_for_BOLD->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
-
+/*
 void sMainWindow::on_toolButtonCUBFW_Lp_input_dir_clicked()
 {
  ui->lineEditCUBFW_Lp_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
@@ -438,12 +479,12 @@ void sMainWindow::on_toolButtonPC_CPU_input_dir_clicked()
 {
      ui->lineEditPC_CPU_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
-
-/*void sMainWindow::on_toolButtonCUCP_input_dir_clicked()
+*//*
+void sMainWindow::on_toolButtonCUCP_input_dir_clicked()
 {
     ui->lineEditCUCP_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }*/
-
+/*
 void sMainWindow::on_toolButtonCp_input_dir_clicked()
 {
     ui->lineEditCp_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
@@ -465,7 +506,7 @@ void sMainWindow::on_toolButtonConvertNII_input_file_clicked()
                                                                             "Directory"
                                                                             ));
 }
-
+*/
 void sMainWindow::on_toolButtonConvertNII_mask_file_clicked()
 {
   /*  ui->lineEditConvertNII_mask_file->setText(QFileDialog::getExistingDirectory(this,
@@ -477,12 +518,12 @@ void sMainWindow::on_toolButtonConvertNII_mask_file_clicked()
                                                                           "",
                                                                           "NII (*.nii)"));
 }
-
+/*
 void sMainWindow::on_toolButtonL_Modularity_dir_for_csr_clicked()
 {
     ui->lineEditL_Modularity_dir_for_csr->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
-
+*/
 void sMainWindow::on_toolButtonSaveDir_clicked()
 {
     ui->lineEditSaveDir->setText(QFileDialog::getOpenFileName(this,
@@ -532,15 +573,15 @@ void sMainWindow::on_checkCUCorMat_clicked(bool checked)
 void sMainWindow::on_checkCUBFW_Lp_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditCUBFW_Lp_input_dir->setEnabled(false);
+     //    ui->lineEditCUBFW_Lp_input_dir->setEnabled(false);
          ui->lineEditCUBFW_Lp_num_of_random_networks->setEnabled(false);
-         ui->toolButtonCUBFW_Lp_input_dir->setEnabled(false);
+     //    ui->toolButtonCUBFW_Lp_input_dir->setEnabled(false);
     }
      else if(checked==1)
      {
-        ui->lineEditCUBFW_Lp_input_dir->setEnabled(true);
+      //  ui->lineEditCUBFW_Lp_input_dir->setEnabled(true);
         ui->lineEditCUBFW_Lp_num_of_random_networks->setEnabled(true);
-        ui->toolButtonCUBFW_Lp_input_dir->setEnabled(true);
+      //  ui->toolButtonCUBFW_Lp_input_dir->setEnabled(true);
     }
 }
 
@@ -562,20 +603,20 @@ void sMainWindow::on_checkCUBFW_Lp_clicked(bool checked)
 void sMainWindow::on_checkCP_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditCp_input_dir->setEnabled(false);
+       //  ui->lineEditCp_input_dir->setEnabled(false);
          ui->lineEditCp_num_of_random_networks->setEnabled(false);
-         ui->toolButtonCp_input_dir->setEnabled(false);
+       //  ui->toolButtonCp_input_dir->setEnabled(false);
           ui->comboBoxCp_Cp_type->setEnabled(false);
     }
      else if(checked==1)
      {
-        ui->lineEditCp_input_dir->setEnabled(true);
+        //ui->lineEditCp_input_dir->setEnabled(true);
         ui->lineEditCp_num_of_random_networks->setEnabled(true);
-        ui->toolButtonCp_input_dir->setEnabled(true);
+       // ui->toolButtonCp_input_dir->setEnabled(true);
         ui->comboBoxCp_Cp_type->setEnabled(true);
     }
 }
-
+/*
 void sMainWindow::on_checkDegree_clicked(bool checked)
 {
     if(checked==0){
@@ -592,7 +633,7 @@ void sMainWindow::on_checkDegree_clicked(bool checked)
 void sMainWindow::on_checkCUEC_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditCUEC_input_dir->setEnabled(false);
+       //  ui->lineEditCUEC_input_dir->setEnabled(false);
          ui->toolButtonCUEC_input_dir->setEnabled(false);
     }
      else if(checked==1)
@@ -601,21 +642,21 @@ void sMainWindow::on_checkCUEC_clicked(bool checked)
         ui->toolButtonCUEC_input_dir->setEnabled(true);
     }
 }
-
+*/
 void sMainWindow::on_checkL_Modularity_clicked(bool checked)
 {
     if(checked==0){
       //   ui->comboBoxLouvain_Modularity_modularity_type->setEnabled(false);
-         ui->lineEditL_Modularity_dir_for_csr->setEnabled(false);
+   //      ui->lineEditL_Modularity_dir_for_csr->setEnabled(false);
          ui->lineEditL_Modularity_num_of_random_networks->setEnabled(false);
-         ui->toolButtonL_Modularity_dir_for_csr->setEnabled(false);
+     //    ui->toolButtonL_Modularity_dir_for_csr->setEnabled(false);
     }
      else if(checked==1)
      {
        // ui->comboBoxLouvain_Modularity_modularity_type->setEnabled(true);
-        ui->lineEditL_Modularity_dir_for_csr->setEnabled(true);
+       // ui->lineEditL_Modularity_dir_for_csr->setEnabled(true);
         ui->lineEditL_Modularity_num_of_random_networks->setEnabled(true);
-        ui->toolButtonL_Modularity_dir_for_csr->setEnabled(true);
+    //    ui->toolButtonL_Modularity_dir_for_csr->setEnabled(true);
     }
 
 }
@@ -623,14 +664,14 @@ void sMainWindow::on_checkL_Modularity_clicked(bool checked)
 void sMainWindow::on_checkPC_CPU_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditPC_CPU_input_dir->setEnabled(false);
-         ui->toolButtonPC_CPU_input_dir->setEnabled(false); //注意这个名称的命名两个界面不一样！！
+      //   ui->lineEditPC_CPU_input_dir->setEnabled(false);
+      //   ui->toolButtonPC_CPU_input_dir->setEnabled(false); //注意这个名称的命名两个界面不一样！！
          ui->comboBoxPC_CPU_type_for_participant_coefficient->setEnabled(false);
     }
      else if(checked==1)
      {
-        ui->lineEditPC_CPU_input_dir->setEnabled(true);
-        ui->toolButtonPC_CPU_input_dir->setEnabled(true);
+      //  ui->lineEditPC_CPU_input_dir->setEnabled(true);
+      //  ui->toolButtonPC_CPU_input_dir->setEnabled(true);
         ui->comboBoxPC_CPU_type_for_participant_coefficient->setEnabled(true);
     }
 }
@@ -638,18 +679,18 @@ void sMainWindow::on_checkPC_CPU_clicked(bool checked)
 void sMainWindow::on_checkConvertNII_clicked(bool checked)
 {
     if(checked==0){
-         ui->lineEditConvertNII_input_file->setEnabled(false);
+        // ui->lineEditConvertNII_input_file->setEnabled(false);
          ui->lineEditConvertNII_mask_file->setEnabled(false);
          ui->lineEditConvertNII_mask_threshold->setEnabled(false);
-         ui->toolButtonConvertNII_input_file->setEnabled(false);
+         //ui->toolButtonConvertNII_input_file->setEnabled(false);
          ui->toolButtonConvertNII_mask_file->setEnabled(false);
     }
      else if(checked==1)
      {
-        ui->lineEditConvertNII_input_file->setEnabled(true);
+       // ui->lineEditConvertNII_input_file->setEnabled(true);
         ui->lineEditConvertNII_mask_file->setEnabled(true);
         ui->lineEditConvertNII_mask_threshold->setEnabled(true);
-        ui->toolButtonConvertNII_input_file->setEnabled(true);
+      //  ui->toolButtonConvertNII_input_file->setEnabled(true);
         ui->toolButtonConvertNII_mask_file->setEnabled(true);
     }
 
@@ -664,28 +705,28 @@ void sMainWindow::clearscreen(){
     ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(0);
     ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText("");
 
-    ui->lineEditCUBFW_Lp_input_dir->setText("");;
+   // ui->lineEditCUBFW_Lp_input_dir->setText("");;
     ui->lineEditCUBFW_Lp_num_of_random_networks->setText("");
-    ui->toolButtonCUBFW_Lp_input_dir->setEnabled(false);
+   // ui->toolButtonCUBFW_Lp_input_dir->setEnabled(false);
 
-    ui->lineEditCp_input_dir->setText("");
+    //ui->lineEditCp_input_dir->setText("");
     ui->lineEditCp_num_of_random_networks->setText("");
     ui->comboBoxCp_Cp_type->setCurrentIndex(0);
 
 //    ui->lineEditCUCP_input_dir->setText("");
 //    ui->lineEditCUCP_num_of_random_networks->setText("");
 
-      ui->lineEditDegree_input_dir->setText("");
+      //ui->lineEditDegree_input_dir->setText("");
 
-       ui->lineEditCUEC_input_dir->setText("");
+       //ui->lineEditCUEC_input_dir->setText("");
 
-       ui->lineEditL_Modularity_dir_for_csr->setText("");
+       //ui->lineEditL_Modularity_dir_for_csr->setText("");
        ui->lineEditL_Modularity_num_of_random_networks->setText("");
 
-       ui->lineEditPC_CPU_input_dir->setText("");
+      // ui->lineEditPC_CPU_input_dir->setText("");
        ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
 
-       ui->lineEditConvertNII_input_file->setText("");
+       //ui->lineEditConvertNII_input_file->setText("");
        ui->lineEditConvertNII_mask_file->setText("");
        ui->lineEditConvertNII_mask_threshold->setText("");
        //2.使界面回到灰框状态
@@ -699,4 +740,17 @@ void sMainWindow::clearscreen(){
        emit mySignalSgrayBoxPC_CPU(false);
        emit mySignalSgrayBoxConvertNII(false);
 
+}
+
+void sMainWindow::on_toolButton_Working_Directory_clicked()
+{
+    QString directory=QFileDialog::getExistingDirectory(this, "Directory");
+     ui->lineEdit_Working_Directory->setText(directory);
+}
+
+void sMainWindow::on_toolButton_Mask_File_clicked()
+{
+    QString file = QFileDialog::getOpenFileName(this,"NII File","","NII (*.nii)");
+      ui->lineEdit_Mask_File->setText(file);
+      ui->lineEditConvertNII_mask_file->setText(file);
 }

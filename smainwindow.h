@@ -38,23 +38,23 @@ private slots:
 
     void on_toolButtonCUCorMat_Dir_for_BOLD_clicked();
 
-    void on_toolButtonCUBFW_Lp_input_dir_clicked();
+  //  void on_toolButtonCUBFW_Lp_input_dir_clicked();
 
-    void on_toolButtonPC_CPU_input_dir_clicked();
+ //   void on_toolButtonPC_CPU_input_dir_clicked();
 
    //  void on_toolButtonCUCP_input_dir_clicked();
 
-    void on_toolButtonCp_input_dir_clicked();
+  //  void on_toolButtonCp_input_dir_clicked();
 
-    void on_toolButtonDegree_input_dir_clicked();
+ //   void on_toolButtonDegree_input_dir_clicked();
 
-    void on_toolButtonCUEC_input_dir_clicked();
+ //   void on_toolButtonCUEC_input_dir_clicked();
 
-    void on_toolButtonConvertNII_input_file_clicked();
+//    void on_toolButtonConvertNII_input_file_clicked();
 
     void on_toolButtonConvertNII_mask_file_clicked();
 
-    void on_toolButtonL_Modularity_dir_for_csr_clicked();
+ //   void on_toolButtonL_Modularity_dir_for_csr_clicked();
 
     void on_toolButtonSaveDir_clicked();
 
@@ -68,9 +68,9 @@ private slots:
 
     void on_checkCP_clicked(bool checked);
 
-    void on_checkDegree_clicked(bool checked);
+//    void on_checkDegree_clicked(bool checked);
 
-    void on_checkCUEC_clicked(bool checked);
+//    void on_checkCUEC_clicked(bool checked);
 
     void on_checkL_Modularity_clicked(bool checked);
 
@@ -78,7 +78,11 @@ private slots:
 
     void on_checkConvertNII_clicked(bool checked);
    void clearscreen();
-     signals:
+   void on_toolButton_Working_Directory_clicked();
+
+   void on_toolButton_Mask_File_clicked();
+
+signals:
      void mySignalStoM();
      void mySignalSclr();
      void mySignalSgrayBoxCUCorMat(bool);

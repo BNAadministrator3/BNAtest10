@@ -39,8 +39,8 @@ MainWindow::MainWindow(QWidget *parent) :
      connect(this,SIGNAL(mySignalMgrayBoxPC_CPU(bool)),this,SLOT(on_checkPC_CPU_clicked(bool)));
      connect(this,SIGNAL(mySignalMgrayBoxConvertNII(bool)),this,SLOT(on_checkConvertNII_clicked(bool)));
 
-     connect(this,SIGNAL(mySignalMgrayBoxLp_NodalMetrics(bool)),this,SLOT(on_checkLp_NodalMetrics_clicked(bool)));
-     connect(this,SIGNAL(mySignalMgrayBoxCP_NodalMetrics(bool)),this,SLOT(on_checkCP_NodalMetrics_clicked(bool)));
+   //  connect(this,SIGNAL(mySignalMgrayBoxLp_NodalMetrics(bool)),this,SLOT(on_checkLp_NodalMetrics_clicked(bool)));
+   //  connect(this,SIGNAL(mySignalMgrayBoxCP_NodalMetrics(bool)),this,SLOT(on_checkCP_NodalMetrics_clicked(bool)));
 
 
      emit mySignalMclr();
@@ -161,25 +161,31 @@ void MainWindow::on_pushButtonSave_clicked()
               std::endl;
     }
 
-    if (ui->checkLp->isChecked()) {
+    if (ui->checkLp->isChecked()&&(!ui->checkLp_NodalMetrics->isChecked())) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-         string sc=ui->comboBoxLp_type_for_Lp->currentText().toStdString();
+     /*    string sc=ui->comboBoxLp_type_for_Lp->currentText().toStdString();
          if(sc=="BFW_CUDA")
         script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              ui->lineEditLp_num_of_random_networks->text().toStdString() <<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"g"<<
               std::endl;
          else if(sc=="BFS_MulCPU")
              script << (operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe " : "./exefiles/BFS_MulCPU ") <<
                    ui->lineEdit_Working_Directory->text().toStdString() <<
                    ' ' <<
-                   ui->lineEditLp_num_of_random_networks->text().toStdString() <<
+                   ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"g"<<
                    std::endl;
+                   */
+       script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
+             ui->lineEdit_Working_Directory->text().toStdString() <<
+             ' ' <<
+             ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"g"<<
+             std::endl;
     }
 
  /*   if (ui->checkCUBFS_Lp->isChecked()) {
@@ -208,7 +214,7 @@ void MainWindow::on_pushButtonSave_clicked()
               std::endl;
     }
 */
-    if (ui->checkCP->isChecked()) {
+    if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditCp_num_of_random_networks->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
@@ -217,7 +223,7 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              ui->lineEditCp_num_of_random_networks->text().toStdString() <<
+              ui->lineEditCp_num_of_random_networks->text().toStdString() <<' '<<"g"<<
               std::endl;
     }
 
@@ -254,7 +260,7 @@ void MainWindow::on_pushButtonSave_clicked()
 
 
     if (ui->checkL_Modularity->isChecked()) {
-        if (ui->lineEditL_Modularity_dir_for_csr->text().isEmpty()
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditL_Modularity_num_of_random_networks->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
@@ -263,19 +269,19 @@ void MainWindow::on_pushButtonSave_clicked()
         string s=ui->comboBoxLouvain_Modularity_modularity_type->currentText().toStdString();
         if(s=="Louvain")
            script << (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe " : "./exefiles/Louvain_Modularity ") <<
-                 ui->lineEditL_Modularity_dir_for_csr->text().toStdString() <<
+                 ui->lineEdit_Working_Directory->text().toStdString() <<
                  ' ' <<
                  ui->lineEditL_Modularity_num_of_random_networks->text().toStdString() <<
                  std::endl;
         else if (s=="Newman_GPU")
             script << (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe " : "./exefiles/Newman_Modularity_GPU ") <<
-                        ui->lineEditL_Modularity_dir_for_csr->text().toStdString() <<
+                        ui->lineEdit_Working_Directory->text().toStdString() <<
                         ' ' <<
                         ui->lineEditL_Modularity_num_of_random_networks->text().toStdString() <<
                         std::endl;
          else
             script << (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_CPU.exe " : "./exefiles/Newman_Modularity_CPU ") <<
-                         ui->lineEditL_Modularity_dir_for_csr->text().toStdString() <<
+                         ui->lineEdit_Working_Directory->text().toStdString() <<
                          ' ' <<
                          ui->lineEditL_Modularity_num_of_random_networks->text().toStdString() <<
                          std::endl;
@@ -314,41 +320,85 @@ void MainWindow::on_pushButtonSave_clicked()
               ui->lineEditConvertNII_mask_threshold->text().toStdString() <<
               std::endl;
     }
-    if (ui->checkLp_NodalMetrics->isChecked()) {
+    if (ui->checkLp_NodalMetrics->isChecked()&&(!ui->checkLp_NodalMetrics->isChecked())) {
 
         if (ui->lineEdit_Working_Directory->text().isEmpty()
-                || ui->lineEditLp_num_of_random_networks_NodalMetrics->text().isEmpty()) {
+               ) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-         string sc=ui->comboBoxLp_type_for_Lp_NodalMetrics->currentText().toStdString();
+         /*string sc=ui->comboBoxLp_type_for_Lp_NodalMetrics->currentText().toStdString();
          if(sc=="BFW_CUDA")
         script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              ui->lineEditLp_num_of_random_networks_NodalMetrics->text().toStdString() <<
+              ui->lineEditLp_num_of_random_networks_NodalMetrics->text().toStdString() <<' '<<"n"<<
               std::endl;
          else if(sc=="BFS_MulCPU")
              script << (operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe " : "./exefiles/BFS_MulCPU ") <<
                    ui->lineEdit_Working_Directory->text().toStdString() <<
                    ' ' <<
-                   ui->lineEditLp_num_of_random_networks_NodalMetrics->text().toStdString() <<
+                   ui->lineEditLp_num_of_random_networks_NodalMetrics->text().toStdString() <<' '<<"n"<<
                    std::endl;
-
+*/
+        script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              "0" <<' '<<"n"<<
+              std::endl;
     }
-    if (ui->checkCP_NodalMetrics->isChecked()) {
+    if (ui->checkCP_NodalMetrics->isChecked()&&(!ui->checkCP->isChecked())) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
-                || ui->lineEditCp_num_of_random_networks_NodalMetrics->text().isEmpty()) {
+               ) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              ui->lineEditCp_num_of_random_networks_NodalMetrics->text().toStdString() <<
+              "0" <<' '<<"n"<<
               std::endl;
     }
-
+    if (ui->checkLp->isChecked()&&ui->checkLp_NodalMetrics->isChecked()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->lineEditLp_num_of_random_networks->text().isEmpty()
+                ) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        /*
+         string sc=ui->comboBoxLp_type_for_Lp->currentText().toStdString();
+         if(sc=="BFW_CUDA")
+        script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"b"<<
+              std::endl;
+         else if(sc=="BFS_MulCPU")
+             script << (operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe " : "./exefiles/BFS_MulCPU ") <<
+                   ui->lineEdit_Working_Directory->text().toStdString() <<
+                   ' ' <<
+                   ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"b"<<
+                   std::endl;  */
+        script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"b"<<
+              std::endl;
+    }
+    if (ui->checkCP->isChecked()&&ui->checkCP_NodalMetrics->isChecked()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->lineEditCp_num_of_random_networks->text().isEmpty()
+               ) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEditCp_num_of_random_networks->text().toStdString() <<' '<<"b"<<
+              std::endl;
+    }
 
     QString file_name = ui->lineEditSaveDir->text();
     std::cout << script.str() << std::endl;
@@ -431,7 +481,6 @@ void MainWindow::on_pushButtonLoad_clicked()
     ui->checkPC_CPU->setChecked(false);
     ui->checkLp_NodalMetrics->setChecked(false);
     ui->checkCP_NodalMetrics->setChecked(false);
-
     int flag=0;
     while (std::getline(is, line)) {  //这个的意思是读完整个文件，我去，太牛了！
         //ui->lineEditSaveDir->setText(line.c_str());
@@ -511,23 +560,68 @@ void MainWindow::on_pushButtonLoad_clicked()
                     token6 += tokens[i] + " ";
                 ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText(token6.c_str());
             }
-        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp")||tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU")) {
-            if (tokens.size() == 3) {
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Lp.exe" : "./exefiles/Lp")) {
+            if (tokens.size() == 4) {
+                if(tokens[3] =="g") {
                 ui->checkLp->setChecked(true);
                 emit mySignalMgrayBoxLp(true);
-                if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp"))
+             /*   if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp"))
                   ui->comboBoxLp_type_for_Lp->setCurrentIndex(0);
                 else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU"))
                     ui->comboBoxLp_type_for_Lp->setCurrentIndex(1);
+               */
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
-            }
+                                    }
+                }
+            else if(tokens[3] =="n") {
+                ui->checkLp_NodalMetrics->setChecked(true);
+                /*
+                if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp"))
+                  ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(0);
+                else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU"))
+                    ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(1);
+                */
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+           //     ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
+                                    }
+            else if(tokens[3] =="b") {
+                ui->checkLp->setChecked(true);
+                emit mySignalMgrayBoxLp(true);
+                ui->checkLp_NodalMetrics->setChecked(true);
+                /*
+                if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp"))
+               {   ui->comboBoxLp_type_for_Lp->setCurrentIndex(0);
+                 ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(0);
+                }else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU"))
+                 {   ui->comboBoxLp_type_for_Lp->setCurrentIndex(1);
+                  ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(0);
+                }
+                */
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
+             //     ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
+                                    }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Cp.exe" : "./Cp")) {
-            if (tokens.size() == 3) {
+            if (tokens.size() == 4) {
+                if(tokens[3]=="g"){
                 ui->checkCP->setChecked(true);
                 emit mySignalMgrayBoxCP(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-                ui->lineEditCp_num_of_random_networks->setText(tokens[2].c_str());
+                ui->lineEditCp_num_of_random_networks->setText(tokens[2].c_str());}
+            else if(tokens[3]=="n"){
+                    ui->checkCP_NodalMetrics->setChecked(true);
+
+                    ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+               //     ui->lineEditCp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
+                }
+                else if(tokens[3]=="b"){
+                    ui->checkCP->setChecked(true);
+                    emit mySignalMgrayBoxCP(true);
+                    ui->checkCP_NodalMetrics->setChecked(true);
+                    ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                 //   ui->lineEditCp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
+                    ui->lineEditCp_num_of_random_networks->setText(tokens[2].c_str());}
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Degree.exe" : "./exefiles/Degree")) {
             if (tokens.size() == 2) {
@@ -567,7 +661,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                 else if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe" : "./exefiles/Newman_Modularity_GPU") )
                 ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(1);
                 else ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(2);
-                ui->lineEditL_Modularity_dir_for_csr->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditL_Modularity_num_of_random_networks->setText(tokens[2].c_str());
             }
         }else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe" : "./exefiles/PC_CPU")) {
@@ -587,7 +681,7 @@ void MainWindow::on_pushButtonLoad_clicked()
 
         // ui->lineEditSaveDir->setText(QString(token.c_str()));
         //这里要改！！！
-    else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp_NodalMetrics.exe" : "./exefiles/CUBFW_Lp_NodalMetrics")||tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU_NodalMetrics.exe" : "./exefiles/BFS_MulCPU_NodalMetrics")) {
+  /*  else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp_NodalMetrics.exe" : "./exefiles/CUBFW_Lp_NodalMetrics")||tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU_NodalMetrics.exe" : "./exefiles/BFS_MulCPU_NodalMetrics")) {
         if (tokens.size() == 3) {
             ui->checkLp_NodalMetrics->setChecked(true);
             emit mySignalMgrayBoxLp_NodalMetrics(true);
@@ -605,7 +699,7 @@ void MainWindow::on_pushButtonLoad_clicked()
             ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
             ui->lineEditCp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
         }
-    }
+    }*/
     if(flag==0&&flag_cancel==false){  //这儿有debug！！！
          QMessageBox::information(this, "Warning", "Empty parameter(s).Error(s) may occur.Please advise on the network type (weighted or unweighted) by using the command:echo", QMessageBox::Ok, QMessageBox::Ok);
          //清理参数，必须这样，要不乱了·· 这个不要求echo语句的位置！好优点！``所以必须在这统一清理参数！
@@ -670,11 +764,12 @@ void MainWindow::on_toolButtonConvertNII_mask_file_clicked()
 
                                                                               ));*/
 }
+/*
 void MainWindow::on_toolButtonL_Modularity_dir_for_csr_clicked()
 {
     ui->lineEditL_Modularity_dir_for_csr->setText(QFileDialog::getExistingDirectory(this, "Directory"));
 }
-
+*/
 void MainWindow::on_toolButtonSaveDir_clicked()
 {
     ui->lineEditSaveDir->setText(QFileDialog::getOpenFileName(this,
@@ -775,13 +870,13 @@ void MainWindow::on_toolButtonCp_input_dir_NodalMetrics_clicked()
 void MainWindow::on_checkLp_clicked(bool checked)
 {
     if(checked==0){
-        ui->comboBoxLp_type_for_Lp->setEnabled(false);
+    //    ui->comboBoxLp_type_for_Lp->setEnabled(false);
       //   ui->lineEditLp_input_dir->setEnabled(false);
          ui->lineEditLp_num_of_random_networks->setEnabled(false);
          //ui->toolButtonLp_input_dir->setEnabled(false);
 
-         ui->labelLp_type_for_Lp->setVisible(false);
-         ui->comboBoxLp_type_for_Lp->setVisible(false);
+      //   ui->labelLp_type_for_Lp->setVisible(false);
+      //   ui->comboBoxLp_type_for_Lp->setVisible(false);
         // ui->labelLp_input_dir->setVisible(false);
     //     ui->lineEditLp_input_dir->setVisible(false);
         // ui->toolButtonLp_input_dir->setVisible(false);
@@ -790,13 +885,13 @@ void MainWindow::on_checkLp_clicked(bool checked)
     }
      else if(checked==1)
      {
-        ui->comboBoxLp_type_for_Lp->setEnabled(true);
+     //   ui->comboBoxLp_type_for_Lp->setEnabled(true);
        // ui->lineEditLp_input_dir->setEnabled(true);
         ui->lineEditLp_num_of_random_networks->setEnabled(true);
        // ui->toolButtonLp_input_dir->setEnabled(true);
 
-        ui->labelLp_type_for_Lp->setVisible(true);
-        ui->comboBoxLp_type_for_Lp->setVisible(true);
+     //   ui->labelLp_type_for_Lp->setVisible(true);
+     //   ui->comboBoxLp_type_for_Lp->setVisible(true);
       //  ui->labelLp_input_dir->setVisible(true);
       //  ui->lineEditLp_input_dir->setVisible(true);
       //  ui->toolButtonLp_input_dir->setVisible(true);
@@ -913,30 +1008,30 @@ void MainWindow::on_checkL_Modularity_clicked(bool checked)
 {
     if(checked==0){
          ui->comboBoxLouvain_Modularity_modularity_type->setEnabled(false);
-         ui->lineEditL_Modularity_dir_for_csr->setEnabled(false);
+        // ui->lineEditL_Modularity_dir_for_csr->setEnabled(false);
          ui->lineEditL_Modularity_num_of_random_networks->setEnabled(false);
-         ui->toolButtonL_Modularity_dir_for_csr->setEnabled(false);
+        // ui->toolButtonL_Modularity_dir_for_csr->setEnabled(false);
 
          ui->labelL_Modularity_modularity_type->setVisible(false);
          ui->comboBoxLouvain_Modularity_modularity_type->setVisible(false);
-         ui->labelL_Modularity_dir_for_csr->setVisible(false);
-         ui->lineEditL_Modularity_dir_for_csr->setVisible(false);
-         ui->toolButtonL_Modularity_dir_for_csr->setVisible(false);
+        // ui->labelL_Modularity_dir_for_csr->setVisible(false);
+        // ui->lineEditL_Modularity_dir_for_csr->setVisible(false);
+        // ui->toolButtonL_Modularity_dir_for_csr->setVisible(false);
          ui->labelL_Modularity_num_of_random_networks->setVisible(false);
          ui->lineEditL_Modularity_num_of_random_networks->setVisible(false);
     }
      else if(checked==1)
      {
         ui->comboBoxLouvain_Modularity_modularity_type->setEnabled(true);
-        ui->lineEditL_Modularity_dir_for_csr->setEnabled(true);
+     //   ui->lineEditL_Modularity_dir_for_csr->setEnabled(true);
         ui->lineEditL_Modularity_num_of_random_networks->setEnabled(true);
-        ui->toolButtonL_Modularity_dir_for_csr->setEnabled(true);
+      //  ui->toolButtonL_Modularity_dir_for_csr->setEnabled(true);
 
         ui->labelL_Modularity_modularity_type->setVisible(true);
         ui->comboBoxLouvain_Modularity_modularity_type->setVisible(true);
-        ui->labelL_Modularity_dir_for_csr->setVisible(true);
-        ui->lineEditL_Modularity_dir_for_csr->setVisible(true);
-        ui->toolButtonL_Modularity_dir_for_csr->setVisible(true);
+      //  ui->labelL_Modularity_dir_for_csr->setVisible(true);
+      //  ui->lineEditL_Modularity_dir_for_csr->setVisible(true);
+      //  ui->toolButtonL_Modularity_dir_for_csr->setVisible(true);
         ui->labelL_Modularity_num_of_random_networks->setVisible(true);
         ui->lineEditL_Modularity_num_of_random_networks->setVisible(true);
     }
@@ -1006,16 +1101,17 @@ void MainWindow::on_checkConvertNII_clicked(bool checked)
         ui->lineEditConvertNII_mask_threshold->setVisible(true);
 }
 }
+/*
 void MainWindow::on_checkLp_NodalMetrics_clicked(bool checked)
 {
     if(checked==0){
-        ui->comboBoxLp_type_for_Lp_NodalMetrics->setEnabled(false);
+        //ui->comboBoxLp_type_for_Lp_NodalMetrics->setEnabled(false);
        //  ui->lineEditLp_input_dir_NodalMetrics->setEnabled(false);
-         ui->lineEditLp_num_of_random_networks_NodalMetrics->setEnabled(false);
+       //  ui->lineEditLp_num_of_random_networks_NodalMetrics->setEnabled(false);
     //     ui->toolButtonLp_input_dir_NodalMetrics->setEnabled(false);
 
-         ui->labelLp_type_for_Lp_NodalMetrics->setVisible(false);
-         ui->comboBoxLp_type_for_Lp_NodalMetrics->setVisible(false);
+       //  ui->labelLp_type_for_Lp_NodalMetrics->setVisible(false);
+       //  ui->comboBoxLp_type_for_Lp_NodalMetrics->setVisible(false);
       //   ui->labelLp_input_dir_NodalMetrics->setVisible(false);
        //  ui->lineEditLp_input_dir_NodalMetrics->setVisible(false);
       //   ui->toolButtonLp_input_dir_NodalMetrics->setVisible(false);
@@ -1038,6 +1134,7 @@ void MainWindow::on_checkLp_NodalMetrics_clicked(bool checked)
         ui->lineEditLp_num_of_random_networks_NodalMetrics->setVisible(true);
     }
 }
+
 void MainWindow::on_checkCP_NodalMetrics_clicked(bool checked)
 {
     if(checked==0){
@@ -1064,7 +1161,7 @@ void MainWindow::on_checkCP_NodalMetrics_clicked(bool checked)
         ui->lineEditCp_num_of_random_networks_NodalMetrics->setVisible(true);
     }
 }
-
+*/
 void MainWindow::clearscreen(){
     //清屏函数两个功能：1.清空内容,顺带初始化；2.使界面回到灰框状态
     //1.清空内容；
@@ -1098,7 +1195,7 @@ void MainWindow::clearscreen(){
     //   ui->lineEditCUEC_input_dir->setText("");
 
        ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(0);
-       ui->lineEditL_Modularity_dir_for_csr->setText("");
+     //  ui->lineEditL_Modularity_dir_for_csr->setText("");
        ui->lineEditL_Modularity_num_of_random_networks->setText("");
 
    //    ui->lineEditPC_CPU_input_dir->setText("");
@@ -1110,7 +1207,7 @@ void MainWindow::clearscreen(){
 
 
     //   ui->lineEditLp_input_dir_NodalMetrics->setText("");;
-       ui->lineEditLp_num_of_random_networks_NodalMetrics->setText("");
+       //ui->lineEditLp_num_of_random_networks_NodalMetrics->setText("");
     //   ui->toolButtonLp_input_dir_NodalMetrics->setEnabled(false);
 
        //ui->lineEditCUBFS_Lp_input_dir->setText("");
@@ -1120,7 +1217,7 @@ void MainWindow::clearscreen(){
        ui->lineEditBFS_MulCPU_num_of_random_networks->setText("");
    */
      //  ui->lineEditCp_input_dir_NodalMetrics->setText("");
-       ui->lineEditCp_num_of_random_networks_NodalMetrics->setText("");
+    //   ui->lineEditCp_num_of_random_networks_NodalMetrics->setText("");
        //2.使界面回到灰框状态 good method
        emit mySignalMgrayBoxCUCorMat(false);
        emit mySignalMgrayBoxLp(false);
@@ -1133,36 +1230,10 @@ void MainWindow::clearscreen(){
        emit mySignalMgrayBoxL_Modularity(false);
        emit mySignalMgrayBoxPC_CPU(false);
        emit mySignalMgrayBoxConvertNII(false);
-       emit mySignalMgrayBoxLp_NodalMetrics(false);
-       emit mySignalMgrayBoxCP_NodalMetrics(false);
+      // emit mySignalMgrayBoxLp_NodalMetrics(false);
+     //  emit mySignalMgrayBoxCP_NodalMetrics(false);
 
 }
-//这是个鸡肋！适时删了它
-/*
-int label2flag=0;
-void MainWindow::on_a_clicked(bool checked)
-{
-    label2flag++;
-    if(label2flag>1)
-        label2flag=0;
-     if(label2flag==1){
-         ui->widget->setMaximumHeight(24);
-         ui->label_2->setText("Calculate the characteristic path length of the network.");
-         ui->label_2->setGeometry(0,-23,641,71);
-         ui->a->setGeometry(570,3,21,21);
-         ui->a->setText("");
-     }
-     else
-     {
-         ui->widget->setMaximumHeight(69);
-         ui->label_2->setText("Calculate the characteristic path length of the network and compare with K (user specified) random networks. Based on blocked Floyd-Warshall algorithm (BFW).");
-         ui->label_2->setGeometry(0,-6,641,71);
-         ui->a->setGeometry(390,41,21,21);
-         ui->a->setText("");
-
-     }
-}
-*/
 void MainWindow::on_toolButton_Working_Directory_clicked()
 {
    QString directory=QFileDialog::getExistingDirectory(this, "Directory");
@@ -1183,12 +1254,6 @@ void MainWindow::on_toolButton_Mask_File_clicked()
     ui->lineEdit_Mask_File->setText(file);
     ui->lineEditConvertNII_mask_file->setText(file);
 }
-
-
-
-
-
-
 void MainWindow::on_radioButton_CUCorMat_to_average_clicked(bool checked)
 {
     if(checked==0)

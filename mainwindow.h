@@ -36,12 +36,12 @@ private slots:
 //    void on_toolButtonCUEC_input_dir_clicked();
 //    void on_toolButtonConvertNII_input_file_clicked();
     void on_toolButtonConvertNII_mask_file_clicked();
-    void on_toolButtonL_Modularity_dir_for_csr_clicked();
+//    void on_toolButtonL_Modularity_dir_for_csr_clicked();
     void on_toolButtonSaveDir_clicked();
     void on_switchButton_clicked();
 //    void on_toolButtonPC_CPU_clicked();
     void on_checkCUCorMat_clicked(bool checked);
-    void on_checkLp_clicked(bool checked);
+   void on_checkLp_clicked(bool checked);
  //   void on_checkCUBFS_Lp_clicked(bool checked);
   //  void on_checkBFS_MulCPU_clicked(bool checked);
     void on_checkCP_clicked(bool checked);
@@ -59,9 +59,9 @@ private slots:
 
 //    void on_toolButtonCp_input_dir_NodalMetrics_clicked();
 
-    void on_checkLp_NodalMetrics_clicked(bool checked);
+//    void on_checkLp_NodalMetrics_clicked(bool checked);
 
-    void on_checkCP_NodalMetrics_clicked(bool checked);
+//    void on_checkCP_NodalMetrics_clicked(bool checked);
 
     void on_radioButton_CUCorMat_to_average_clicked(bool checked);
 
@@ -83,8 +83,8 @@ signals:
     void mySignalMgrayBoxL_Modularity(bool);
     void mySignalMgrayBoxPC_CPU(bool);
     void mySignalMgrayBoxConvertNII(bool);
-    void mySignalMgrayBoxLp_NodalMetrics(bool);
-    void mySignalMgrayBoxCP_NodalMetrics(bool);
+ //   void mySignalMgrayBoxLp_NodalMetrics(bool);
+ //   void mySignalMgrayBoxCP_NodalMetrics(bool);
 
 };
 
