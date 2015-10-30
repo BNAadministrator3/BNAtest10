@@ -84,6 +84,14 @@ private slots:
 
    void on_checkCP_Nodal_Metrics_clicked(bool checked);
 
+   void on_radioButton_CUCorMat_to_average_clicked(bool checked);
+
+   void on_fisher_clicked(bool checked);
+
+   void on_ordinary_clicked(bool checked);
+
+   void on_radioButtonCUCorMat_to_save_cormatrix_clicked(bool checked);
+
 signals:
      void mySignalStoM();
      void mySignalSclr();
@@ -97,6 +105,7 @@ signals:
      void mySignalSgrayBoxPC_CPU(bool);
      void mySignalSgrayBoxConvertNII(bool);
      void mySignalSgrayBoxCP_Nodal_Metrics(bool);
+    // void mySignalSgrayBoxCUCorMat(B);
 private:
     Ui::sMainWindow *ui;
      QWidget* pWid;

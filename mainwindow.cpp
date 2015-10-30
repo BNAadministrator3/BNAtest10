@@ -162,7 +162,7 @@ void MainWindow::on_pushButtonSave_clicked()
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
               std::endl;
-       delete(type.c_str());
+     //  delete(type.c_str());
     }
 
     if (ui->checkLp->isChecked()&&(!ui->checkLp_NodalMetrics->isChecked())) {
@@ -494,7 +494,7 @@ void MainWindow::on_pushButtonLoad_clicked()
         while (line_is >> token) {
             tokens.push_back(token); //把line_is的数据输到向量tokens，若输入一直有，为真，就一直输入
         }
-
+           qDebug("read!");
         //std::string out;
         //for (size_t i = 0; i < tokens.size(); ++i) {
         //    out += tokens[i] + " ";
@@ -565,7 +565,9 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText(token6.c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Lp.exe" : "./exefiles/Lp")) {
+           qDebug("in lp!");
             if (tokens.size() == 4) {
+
                 if(tokens[3] =="g") {
                 ui->checkLp->setChecked(true);
                 emit mySignalMgrayBoxLp(true);
@@ -577,7 +579,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
                                     }
-                }
+
             else if(tokens[3] =="n") {
                 ui->checkLp_NodalMetrics->setChecked(true);
                 /*
@@ -590,6 +592,7 @@ void MainWindow::on_pushButtonLoad_clicked()
            //     ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
                                     }
             else if(tokens[3] =="b") {
+
                 ui->checkLp->setChecked(true);
                 emit mySignalMgrayBoxLp(true);
                 ui->checkLp_NodalMetrics->setChecked(true);
@@ -606,7 +609,9 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
              //     ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
                                     }
+                                    }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Cp.exe" : "./Cp")) {
+            qDebug("in cp!");
             if (tokens.size() == 4) {
                 if(tokens[3]=="g"){
                 ui->checkCP->setChecked(true);
@@ -704,6 +709,9 @@ void MainWindow::on_pushButtonLoad_clicked()
             ui->lineEditCp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
         }
     }*/
+
+
+}
     if(flag==0&&flag_cancel==false){  //这儿有debug！！！
          QMessageBox::information(this, "Warning", "Empty parameter(s).Error(s) may occur.Please advise on the network type (weighted or unweighted) by using the command:echo", QMessageBox::Ok, QMessageBox::Ok);
          //清理参数，必须这样，要不乱了·· 这个不要求echo语句的位置！好优点！``所以必须在这统一清理参数！
@@ -711,8 +719,6 @@ void MainWindow::on_pushButtonLoad_clicked()
     };
 
     is.close();
-
-}
 }
 /*
 void MainWindow::on_toolButtonCUCorMat_Dir_for_BOLD_clicked()

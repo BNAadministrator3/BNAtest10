@@ -12,6 +12,12 @@ using  std::string;
 
 QString file_name_transimit=QString::null ;
 
+
+bool s_individual_metrics=0;
+bool s_average_ordinary=0;
+bool s_average_fisher=0;
+string s_to_save_cormatrix="n";
+
 sMainWindow::sMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::sMainWindow)
@@ -32,6 +38,8 @@ sMainWindow::sMainWindow(QWidget *parent) :
       connect(this,SIGNAL(mySignalSgrayBoxPC_CPU(bool)),this,SLOT(on_checkPC_CPU_clicked(bool)));
       connect(this,SIGNAL(mySignalSgrayBoxConvertNII(bool)),this,SLOT(on_checkConvertNII_clicked(bool)));
       connect(this,SIGNAL(mySignalSgrayBoxCP_Nodal_Metrics(bool)),this,SLOT(on_checkCP_Nodal_Metrics_clicked(bool)));
+
+     emit mySignalSclr();
 }
 
 sMainWindow::~sMainWindow()
@@ -49,32 +57,104 @@ void sMainWindow::on_pushButtonSave_clicked()
     std::stringstream script;
     script <<  "echo weightednetworks" << std::endl;
     if (ui->checkCUCorMat->isChecked()) {
+        //组合之外的统统选n
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditCUCorMat_threshold_for_mask->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_average->text().isEmpty()
-                //|| ui->lineEditCUCorMat_to_save_cormatrix->text().isEmpty()
+                //|| ui->lineEditCUCorMat_s_to_save_cormatrix->text().isEmpty()
                 //|| ui->lineEditCUCorMat_threshold_type->text().isEmpty()
-                || ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().isEmpty()) {
+                || ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().isEmpty()
+                ) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
+        string  type=ui->comboBoxCUCorMat_threshold_type->currentText().toStdString()=="correlation"?"r":"s";
+        if(s_individual_metrics==0&&s_average_ordinary==1&&s_average_fisher==0)
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_mask->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_to_average->currentText().toStdString() <<
+              "yn" <<
                   //ui->lineEditCUCorMat_to_average->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_to_save_cormatrix->currentText().toStdString() <<
-                  //ui->lineEditCUCorMat_to_save_cormatrix->text().toStdString() <<
+              s_to_save_cormatrix <<
+                  //ui->lineEditCUCorMat_s_to_save_cormatrix->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_threshold_type->currentText().toStdString() <<
+              type<<
                   //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
               std::endl;
+        else if(s_individual_metrics==1&&s_average_ordinary==1&&s_average_fisher==0)
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEditCUCorMat_threshold_for_mask->text().toStdString() <<
+              ' ' <<
+              "bn" <<
+                  //ui->lineEditCUCorMat_to_average->text().toStdString() <<
+              ' ' <<
+              s_to_save_cormatrix <<
+                  //ui->lineEditCUCorMat_s_to_save_cormatrix->text().toStdString() <<
+              ' ' <<
+              type <<
+                  //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
+              ' ' <<
+              ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
+              std::endl;
+        else if(s_individual_metrics==0&&s_average_ordinary==1&&s_average_fisher==1)
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEditCUCorMat_threshold_for_mask->text().toStdString() <<
+              ' ' <<
+              "yf" <<
+                  //ui->lineEditCUCorMat_to_average->text().toStdString() <<
+              ' ' <<
+              s_to_save_cormatrix <<
+                  //ui->lineEditCUCorMat_s_to_save_cormatrix->text().toStdString() <<
+              ' ' <<
+             type <<
+                  //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
+              ' ' <<
+              ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
+              std::endl;
+        else if(s_individual_metrics==1&&s_average_ordinary==1&&s_average_fisher==1)
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEditCUCorMat_threshold_for_mask->text().toStdString() <<
+              ' ' <<
+              "bf" <<
+                  //ui->lineEditCUCorMat_to_average->text().toStdString() <<
+              ' ' <<
+              s_to_save_cormatrix <<
+                  //ui->lineEditCUCorMat_s_to_save_cormatrix->text().toStdString() <<
+              ' ' <<
+             type <<
 
+              ' ' <<
+              ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
+              std::endl;
+        else //if(s_individual_metrics==1&&s_average_ordinary==1&&s_average_fisher==0)
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEditCUCorMat_threshold_for_mask->text().toStdString() <<
+              ' ' <<
+              "n" <<
+                  //ui->lineEditCUCorMat_to_average->text().toStdString() <<
+              ' ' <<
+              s_to_save_cormatrix <<
+                  //ui->lineEditCUCorMat_s_to_save_cormatrix->text().toStdString() <<
+              ' ' <<
+              type <<
+                  //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
+              ' ' <<
+              ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
+              std::endl;
+      // delete(type.c_str());
     }
 
     if (ui->checkCUBFW_Lp->isChecked()&&(!ui->checkCUBFW_Lp_Nodal_Metrics->isChecked())) {
@@ -115,7 +195,7 @@ void sMainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              ui->lineEditCp_num_of_random_networks->text().toStdString() <<' ' <<(s2 == "Onnela" ? "2 " : " 1 ")<<
+              ui->lineEditCp_num_of_random_networks->text().toStdString() <<' ' <<(s2 == "Onnela" ? "2 " : " 1 ")<<' '<<"g"<<
               std::endl;
     }
 
@@ -239,7 +319,7 @@ void sMainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              "0"<<' ' <<(s2 == "Onnela" ? "2 " : " 1 ")<<
+              "0"<<' ' <<(s2 == "Onnela" ? "2 " : " 1 ")<<' '<<"n"<<
               std::endl;
     }
     if (ui->checkCP_Nodal_Metrics->isChecked()&&ui->checkCP->isChecked()) {
@@ -256,7 +336,8 @@ void sMainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              "0"<<' ' <<(s2 == "Onnela" ? "2 " : " 1 ")<<
+              ui->lineEditCp_num_of_random_networks->text().toStdString()
+               <<' ' <<(s2 == "Onnela" ? "2 " : " 1 ")<<' '<<"b"<<
               std::endl;
     }
     QString file_name = ui->lineEditSaveDir->text();
@@ -379,18 +460,37 @@ void sMainWindow::on_pushButtonLoad_clicked()
         if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe" : "./exefiles_weighted/CUCormat")) {
             if (tokens.size() >= 7) {
                 ui->checkCUCorMat->setChecked(true);
-                emit mySignalSgrayBoxCUCorMat(true);
+                 emit mySignalSgrayBoxCUCorMat(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditCUCorMat_threshold_for_mask->setText(tokens[2].c_str());
                 if(tokens[3] == "n")
-                ui->comboBoxCUCorMat_to_average->setCurrentIndex(0);
-                else if(tokens[3] == "yf")
-                ui->comboBoxCUCorMat_to_average->setCurrentIndex(1);
-                else if(tokens[3] == "yn")
-                ui->comboBoxCUCorMat_to_average->setCurrentIndex(2);
-                else ui->comboBoxCUCorMat_to_average->setCurrentIndex(3);
-                ui->comboBoxCUCorMat_to_save_cormatrix->setCurrentIndex(tokens[4] == "y");
-                ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(tokens[5] == "s");
+                {
+                ui->radioButton_CUCorMat_to_average->setChecked(true);
+                ui->ordinary->setChecked(false);
+                ui->fisher->setChecked(false);
+                }else if(tokens[3] == "yf")
+                {
+                ui->radioButton_CUCorMat_to_average->setChecked(false);
+                ui->ordinary->setChecked(true);
+                ui->fisher->setChecked(true);
+                }else if(tokens[3] == "yn")
+                {
+                ui->radioButton_CUCorMat_to_average->setChecked(false);
+                ui->ordinary->setChecked(true);
+                ui->fisher->setChecked(false);
+                }else if(tokens[3] == "bn")
+                {
+                ui->radioButton_CUCorMat_to_average->setChecked(true);
+                ui->ordinary->setChecked(true);
+                ui->fisher->setChecked(false);
+                }else if(tokens[3] == "bf")
+                {
+                ui->radioButton_CUCorMat_to_average->setChecked(true);
+                ui->ordinary->setChecked(true);
+                ui->fisher->setChecked(true);
+                }
+                ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(tokens[4] == "y");
+                ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(tokens[5] == "r");
                 //ui->lineEditCUCorMat_to_average->setText(tokens[3].c_str());
                 //ui->lineEditCUCorMat_to_save_cormatrix->setText(tokens[4].c_str());
                 //ui->lineEditCUCorMat_threshold_type->setText(tokens[5].c_str());
@@ -603,23 +703,72 @@ this->close();
 void sMainWindow::on_checkCUCorMat_clicked(bool checked)
 {
     if(checked==0){
-  //       ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(false);
+      //   ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(false);
          ui->lineEditCUCorMat_threshold_for_mask->setEnabled(false);
-         ui->comboBoxCUCorMat_to_average->setEnabled(false);
-         ui->comboBoxCUCorMat_to_save_cormatrix->setEnabled(false);
+         ui->radioButton_CUCorMat_to_average->setEnabled(false);
+         ui->ordinary->setEnabled(false);
+         ui->fisher->setEnabled(false);
+         ui->radioButtonCUCorMat_to_save_cormatrix->setEnabled(false);
          ui->comboBoxCUCorMat_threshold_type->setEnabled(false);
          ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setEnabled(false);
-    //     ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(false);
+     //    ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(false);
+
+       //  ui->labelCUCorMat_Dir_for_BOLD->setVisible(false);
+        // ui->lineEditCUCorMat_Dir_for_BOLD->setVisible(false);
+       //  ui->toolButtonCUCorMat_Dir_for_BOLD->setVisible(false);
+
+         ui->labelCUCorMat_threshold_for_mask->setVisible(false);
+         ui->lineEditCUCorMat_threshold_for_mask->setVisible(false);
+
+         ui->labelCUCorMat_to_average->setVisible(false);
+         ui->groupBoxCUCorMat_to_average->setVisible(false);
+
+         //ui->labelCUCorMat_to_save_cormatrix->setVisible(false);
+         ui->radioButtonCUCorMat_to_save_cormatrix->setVisible(false);
+
+         ui->labelCUCorMat_threshold_type->setVisible(false);
+         ui->comboBoxCUCorMat_threshold_type->setVisible(false);
+
+         ui->labelCUCorMat_threshold_for_correlation_coefficient->setVisible(false);
+         ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setVisible(false);
+         ui->groupBox_CUCorMat->setMaximumHeight(40);
+         ui->groupBox_CUCorMat->setStyleSheet("border:none");//注意！
+      //   ui->groupBox_CUCorMat->setStyleSheet("font:14");//注意！
     }
      else if(checked==1)
      {
       //  ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(true);
         ui->lineEditCUCorMat_threshold_for_mask->setEnabled(true);
-        ui->comboBoxCUCorMat_to_average->setEnabled(true);
-        ui->comboBoxCUCorMat_to_save_cormatrix->setEnabled(true);
+        ui->radioButton_CUCorMat_to_average->setEnabled(true);
+        ui->ordinary->setEnabled(true);
+        ui->fisher->setEnabled(true);
+        ui->radioButtonCUCorMat_to_save_cormatrix->setEnabled(true);
         ui->comboBoxCUCorMat_threshold_type->setEnabled(true);
         ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setEnabled(true);
-        //ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(true);
+     //   ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(true);
+
+
+    //    ui->labelCUCorMat_Dir_for_BOLD->setVisible(true);
+    //    ui->lineEditCUCorMat_Dir_for_BOLD->setVisible(true);
+    //    ui->toolButtonCUCorMat_Dir_for_BOLD->setVisible(true);
+
+        ui->labelCUCorMat_threshold_for_mask->setVisible(true);
+        ui->lineEditCUCorMat_threshold_for_mask->setVisible(true);
+
+        ui->labelCUCorMat_to_average->setVisible(true);
+        ui->groupBoxCUCorMat_to_average->setVisible(true);
+
+        //ui->labelCUCorMat_to_save_cormatrix->setVisible(true);
+        ui->radioButtonCUCorMat_to_save_cormatrix->setVisible(true);
+
+        ui->labelCUCorMat_threshold_type->setVisible(true);
+        ui->comboBoxCUCorMat_threshold_type->setVisible(true);
+
+        ui->labelCUCorMat_threshold_for_correlation_coefficient->setVisible(true);
+        ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setVisible(true);
+        ui->groupBox_CUCorMat->setMaximumHeight(16777215);
+        ui->groupBox_CUCorMat->setStyleSheet("QGroupBox#groupBox_CUCorMat{border: 2px solid rgb(200, 197, 191);}");//注意！
+       // ui->groupBox_CUCorMat->setStyleSheet("font:14");//注意
     }
 }
 
@@ -751,17 +900,19 @@ void sMainWindow::on_checkConvertNII_clicked(bool checked)
 void sMainWindow::clearscreen(){
     //清屏函数两个功能：1.清空内容；2.使界面回到灰框状态
     //1.清空内容；
-  //  ui->lineEditCUCorMat_Dir_for_BOLD->setText("");
     ui->lineEditCUCorMat_threshold_for_mask->setText("");
-    ui->comboBoxCUCorMat_to_average->setCurrentIndex(0);
-    ui->comboBoxCUCorMat_to_save_cormatrix->setCurrentIndex(0);
+    ui->radioButton_CUCorMat_to_average->setChecked(false);
+    ui->ordinary->setChecked(false);
+    ui->fisher->setChecked(false);
+
+    ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(false);
     ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(0);
     ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText("");
-
    // ui->lineEditCUBFW_Lp_input_dir->setText("");;
     ui->lineEditCUBFW_Lp_num_of_random_networks->setText("");
    // ui->toolButtonCUBFW_Lp_input_dir->setEnabled(false);
-
+    ui->lineEdit_Working_Directory->setText("");;
+  //  ui->lineEditLp_num_of_random_networks->setText("");
     //ui->lineEditCp_input_dir->setText("");
     ui->lineEditCp_num_of_random_networks->setText("");
     ui->comboBoxCp_Cp_type->setCurrentIndex(0);
@@ -825,4 +976,41 @@ void sMainWindow::on_checkCP_Nodal_Metrics_clicked(bool checked)
        // ui->toolButtonCp_input_dir->setEnabled(true);
         ui->comboBoxCp_Cp_type_Nodal_Metrics->setEnabled(true);
     }
+}
+
+void sMainWindow::on_radioButton_CUCorMat_to_average_clicked(bool checked)
+{
+    if(checked==0)
+        s_individual_metrics=0;
+    else if(checked==1)
+        s_individual_metrics=1;
+}
+
+void sMainWindow::on_ordinary_clicked(bool checked)
+{
+    if(checked==0)
+        s_average_ordinary=0;
+    else if(checked==1)
+        s_average_ordinary=1;
+}
+
+void sMainWindow::on_fisher_clicked(bool checked)
+{
+    if(checked==0)
+        s_average_fisher=0;
+    else if(checked==1)
+        s_average_fisher=1;
+
+}
+
+
+void sMainWindow::on_radioButtonCUCorMat_to_save_cormatrix_clicked(bool checked)
+{
+
+    if(checked==0) {
+        s_to_save_cormatrix="n";
+       // ui->radioButtonCUCorMat_s_to_save_cormatrix->setChecked(false);
+    }
+    else if(checked==1)
+        s_to_save_cormatrix="y";
 }
