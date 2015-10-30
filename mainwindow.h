@@ -69,6 +69,8 @@ private slots:
 
     void on_fisher_clicked(bool checked);
 
+    void on_radioButtonCUCorMat_to_save_cormatrix_clicked(bool checked);
+
 signals:
     void mySignalMtoS();
     void mySignalMclr();

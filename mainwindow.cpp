@@ -15,6 +15,7 @@ extern QString file_name_transimit;
 bool individual_metrics=0;
 bool average_ordinary=0;
 bool average_fisher=0;
+string to_save_cormatrix="n";
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -70,10 +71,12 @@ void MainWindow::on_pushButtonSave_clicked()
                 //|| ui->lineEditCUCorMat_to_average->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_save_cormatrix->text().isEmpty()
                 //|| ui->lineEditCUCorMat_threshold_type->text().isEmpty()
-                || ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().isEmpty()) {
+                || ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().isEmpty()
+                ) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
+        string  type=ui->comboBoxCUCorMat_threshold_type->currentText().toStdString()=="correlation"?"r":"s";
         if(individual_metrics==0&&average_ordinary==1&&average_fisher==0)
         script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
@@ -83,10 +86,10 @@ void MainWindow::on_pushButtonSave_clicked()
               "yn" <<
                   //ui->lineEditCUCorMat_to_average->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_to_save_cormatrix->currentText().toStdString() <<
+              to_save_cormatrix <<
                   //ui->lineEditCUCorMat_to_save_cormatrix->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_threshold_type->currentText().toStdString() <<
+              type<<
                   //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
@@ -100,10 +103,10 @@ void MainWindow::on_pushButtonSave_clicked()
               "bn" <<
                   //ui->lineEditCUCorMat_to_average->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_to_save_cormatrix->currentText().toStdString() <<
+              to_save_cormatrix <<
                   //ui->lineEditCUCorMat_to_save_cormatrix->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_threshold_type->currentText().toStdString() <<
+              type <<
                   //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
@@ -117,10 +120,10 @@ void MainWindow::on_pushButtonSave_clicked()
               "yf" <<
                   //ui->lineEditCUCorMat_to_average->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_to_save_cormatrix->currentText().toStdString() <<
+              to_save_cormatrix <<
                   //ui->lineEditCUCorMat_to_save_cormatrix->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_threshold_type->currentText().toStdString() <<
+             type <<
                   //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
@@ -134,11 +137,11 @@ void MainWindow::on_pushButtonSave_clicked()
               "bf" <<
                   //ui->lineEditCUCorMat_to_average->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_to_save_cormatrix->currentText().toStdString() <<
+              to_save_cormatrix <<
                   //ui->lineEditCUCorMat_to_save_cormatrix->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_threshold_type->currentText().toStdString() <<
-                  //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
+             type <<
+
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
               std::endl;
@@ -151,14 +154,15 @@ void MainWindow::on_pushButtonSave_clicked()
               "n" <<
                   //ui->lineEditCUCorMat_to_average->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_to_save_cormatrix->currentText().toStdString() <<
+              to_save_cormatrix <<
                   //ui->lineEditCUCorMat_to_save_cormatrix->text().toStdString() <<
               ' ' <<
-              ui->comboBoxCUCorMat_threshold_type->currentText().toStdString() <<
+              type <<
                   //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
               std::endl;
+       delete(type.c_str());
     }
 
     if (ui->checkLp->isChecked()&&(!ui->checkLp_NodalMetrics->isChecked())) {
@@ -550,8 +554,8 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->ordinary->setChecked(true);
                 ui->fisher->setChecked(true);
                 }
-                ui->comboBoxCUCorMat_to_save_cormatrix->setCurrentIndex(tokens[4] == "y");
-                ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(tokens[5] == "s");
+                ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(tokens[4] == "y");
+                ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(tokens[5] == "r");
                 //ui->lineEditCUCorMat_to_average->setText(tokens[3].c_str());
                 //ui->lineEditCUCorMat_to_save_cormatrix->setText(tokens[4].c_str());
                 //ui->lineEditCUCorMat_threshold_type->setText(tokens[5].c_str());
@@ -801,7 +805,7 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
          ui->radioButton_CUCorMat_to_average->setEnabled(false);
          ui->ordinary->setEnabled(false);
          ui->fisher->setEnabled(false);
-         ui->comboBoxCUCorMat_to_save_cormatrix->setEnabled(false);
+         ui->radioButtonCUCorMat_to_save_cormatrix->setEnabled(false);
          ui->comboBoxCUCorMat_threshold_type->setEnabled(false);
          ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setEnabled(false);
      //    ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(false);
@@ -816,15 +820,16 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
          ui->labelCUCorMat_to_average->setVisible(false);
          ui->groupBoxCUCorMat_to_average->setVisible(false);
 
-         ui->labelCUCorMat_to_save_cormatrix->setVisible(false);
-         ui->comboBoxCUCorMat_to_save_cormatrix->setVisible(false);
+         //ui->labelCUCorMat_to_save_cormatrix->setVisible(false);
+         ui->radioButtonCUCorMat_to_save_cormatrix->setVisible(false);
 
          ui->labelCUCorMat_threshold_type->setVisible(false);
          ui->comboBoxCUCorMat_threshold_type->setVisible(false);
 
          ui->labelCUCorMat_threshold_for_correlation_coefficient->setVisible(false);
          ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setVisible(false);
-       //  ui->groupBox_CUCorMat->setVisible(false);
+         ui->groupBox_CUCorMat->setMaximumHeight(40);
+         ui->groupBox_CUCorMat->setStyleSheet("border:none");//注意！
     }
      else if(checked==1)
      {
@@ -833,7 +838,7 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
         ui->radioButton_CUCorMat_to_average->setEnabled(true);
         ui->ordinary->setEnabled(true);
         ui->fisher->setEnabled(true);
-        ui->comboBoxCUCorMat_to_save_cormatrix->setEnabled(true);
+        ui->radioButtonCUCorMat_to_save_cormatrix->setEnabled(true);
         ui->comboBoxCUCorMat_threshold_type->setEnabled(true);
         ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setEnabled(true);
      //   ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(true);
@@ -849,14 +854,17 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
         ui->labelCUCorMat_to_average->setVisible(true);
         ui->groupBoxCUCorMat_to_average->setVisible(true);
 
-        ui->labelCUCorMat_to_save_cormatrix->setVisible(true);
-        ui->comboBoxCUCorMat_to_save_cormatrix->setVisible(true);
+        //ui->labelCUCorMat_to_save_cormatrix->setVisible(true);
+        ui->radioButtonCUCorMat_to_save_cormatrix->setVisible(true);
 
         ui->labelCUCorMat_threshold_type->setVisible(true);
         ui->comboBoxCUCorMat_threshold_type->setVisible(true);
 
         ui->labelCUCorMat_threshold_for_correlation_coefficient->setVisible(true);
         ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setVisible(true);
+        ui->groupBox_CUCorMat->setMaximumHeight(16777215);
+        ui->groupBox_CUCorMat->setStyleSheet("QGroupBox#groupBox_CUCorMat{border: 2px solid rgb(200, 197, 191);}");//注意！
+
     }
 }
 /*
@@ -1173,7 +1181,7 @@ void MainWindow::clearscreen(){
     ui->ordinary->setChecked(false);
     ui->fisher->setChecked(false);
 
-    ui->comboBoxCUCorMat_to_save_cormatrix->setCurrentIndex(0);
+    ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(false);
     ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(0);
     ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText("");
 
@@ -1282,3 +1290,13 @@ void MainWindow::on_fisher_clicked(bool checked)
 }
 
 
+
+void MainWindow::on_radioButtonCUCorMat_to_save_cormatrix_clicked(bool checked)
+{
+    if(checked==0) {
+        to_save_cormatrix="n";
+       // ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(false);
+    }
+    else if(checked==1)
+        to_save_cormatrix="y";
+}
