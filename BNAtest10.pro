@@ -23,3 +23,6 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui \
     smainwindow.ui
+
+RESOURCES += \
+    z-transformation.qrc

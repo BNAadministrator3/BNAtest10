@@ -41,7 +41,7 @@ private slots:
     void on_switchButton_clicked();
 //    void on_toolButtonPC_CPU_clicked();
     void on_checkCUCorMat_clicked(bool checked);
-   void on_checkLp_clicked(bool checked);
+  // void on_checkLp_clicked(bool checked);
  //   void on_checkCUBFS_Lp_clicked(bool checked);
   //  void on_checkBFS_MulCPU_clicked(bool checked);
     void on_checkCP_clicked(bool checked);
