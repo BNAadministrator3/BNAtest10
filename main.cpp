@@ -16,6 +16,12 @@ int main(int argc, char *argv[])
 #endif
 
     QApplication a(argc, argv);
+
+ //   QFont font;
+ //      font.setFamily(("Sans Serif")); //注意这里不完全是TTF文件名字
+      // font.setBold(false);
+//       a.setFont(font);
+
     MainWindow w;
     w.show();
 

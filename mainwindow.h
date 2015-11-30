@@ -50,7 +50,7 @@ private slots:
 //    void on_checkCUEC_clicked(bool checked);
     void on_checkL_Modularity_clicked(bool checked);
     void on_checkPC_CPU_clicked(bool checked);
-    void on_checkConvertNII_clicked(bool checked);
+   // void on_checkConvertNII_clicked(bool checked);
     void clearscreen();
     void on_toolButton_Working_Directory_clicked();
     void on_toolButton_Mask_File_clicked();
@@ -63,13 +63,15 @@ private slots:
 
 //    void on_checkCP_NodalMetrics_clicked(bool checked);
 
-    void on_radioButton_CUCorMat_to_average_clicked(bool checked);
+//    void on_radioButton_CUCorMat_to_average_clicked(bool checked);
 
     void on_ordinary_clicked(bool checked);
 
     void on_fisher_clicked(bool checked);
 
     void on_radioButtonCUCorMat_to_save_cormatrix_clicked(bool checked);
+
+    void on_CheckCUCorMat_to_average_clicked(bool checked);
 
 signals:
     void mySignalMtoS();

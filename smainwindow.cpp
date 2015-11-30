@@ -40,6 +40,7 @@ sMainWindow::sMainWindow(QWidget *parent) :
       connect(this,SIGNAL(mySignalSgrayBoxCP_Nodal_Metrics(bool)),this,SLOT(on_checkCP_Nodal_Metrics_clicked(bool)));
 
      emit mySignalSclr();
+    ui->statusbar->hide();
 }
 
 sMainWindow::~sMainWindow()
@@ -716,7 +717,7 @@ void sMainWindow::on_checkCUCorMat_clicked(bool checked)
        //  ui->labelCUCorMat_Dir_for_BOLD->setVisible(false);
         // ui->lineEditCUCorMat_Dir_for_BOLD->setVisible(false);
        //  ui->toolButtonCUCorMat_Dir_for_BOLD->setVisible(false);
-
+/*
          ui->labelCUCorMat_threshold_for_mask->setVisible(false);
          ui->lineEditCUCorMat_threshold_for_mask->setVisible(false);
 
@@ -731,8 +732,9 @@ void sMainWindow::on_checkCUCorMat_clicked(bool checked)
 
          ui->labelCUCorMat_threshold_for_correlation_coefficient->setVisible(false);
          ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setVisible(false);
-         ui->groupBox_CUCorMat->setMaximumHeight(40);
+         ui->groupBox_CUCorMat->setMaximumHeight(67);
          ui->groupBox_CUCorMat->setStyleSheet("border:none");//注意！
+*/
       //   ui->groupBox_CUCorMat->setStyleSheet("font:14");//注意！
     }
      else if(checked==1)
@@ -751,7 +753,7 @@ void sMainWindow::on_checkCUCorMat_clicked(bool checked)
     //    ui->labelCUCorMat_Dir_for_BOLD->setVisible(true);
     //    ui->lineEditCUCorMat_Dir_for_BOLD->setVisible(true);
     //    ui->toolButtonCUCorMat_Dir_for_BOLD->setVisible(true);
-
+/*
         ui->labelCUCorMat_threshold_for_mask->setVisible(true);
         ui->lineEditCUCorMat_threshold_for_mask->setVisible(true);
 
@@ -768,7 +770,7 @@ void sMainWindow::on_checkCUCorMat_clicked(bool checked)
         ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setVisible(true);
         ui->groupBox_CUCorMat->setMaximumHeight(16777215);
         ui->groupBox_CUCorMat->setStyleSheet("QGroupBox#groupBox_CUCorMat{border: 2px solid rgb(200, 197, 191);}");//注意！
-       // ui->groupBox_CUCorMat->setStyleSheet("font:14");//注意
+*/       // ui->groupBox_CUCorMat->setStyleSheet("font:14");//注意
     }
 }
 
