@@ -49,7 +49,7 @@ private slots:
 //    void on_checkCUBC_clicked(bool checked);
 //    void on_checkCUEC_clicked(bool checked);
     void on_checkL_Modularity_clicked(bool checked);
-    void on_checkPC_CPU_clicked(bool checked);
+  //  void on_checkPC_CPU_clicked(bool checked);
    // void on_checkConvertNII_clicked(bool checked);
     void clearscreen();
     void on_toolButton_Working_Directory_clicked();

@@ -297,15 +297,16 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        string s1=ui->comboBoxPC_CPU_type_for_participant_coefficient->currentText().toStdString();
-        if(s1=="normalized")
-        script << (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe " : "./exefiles/PC_CPU ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
-              ' ' <<
+    //    string s1=ui->comboBoxPC_CPU_type_for_participant_coefficient->currentText().toStdString();
+     //   if(s1=="normalized")
+    //    script << (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe " : "./exefiles/PC_CPU ") <<
+     //         ui->lineEdit_Working_Directory->text().toStdString() <<
+      //        ' ' <<
            //   ui->lineEditPC_CPU_type_for_participant_coefficient->text().toStdString() <<
-              "n" <<
-                  std::endl;
-        else  script << (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe " : "./exefiles/PC_CPU ") <<
+      //        "n" <<
+      //            std::endl;
+      //  else
+            script << (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe " : "./exefiles/PC_CPU ") <<
                         ui->lineEdit_Working_Directory->text().toStdString() <<
                         ' ' <<
                             std::endl;
@@ -684,13 +685,13 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->checkPC_CPU->setChecked(true);
                 emit mySignalMgrayBoxPC_CPU(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-                ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(tokens[2] == "n");
+             //   ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(tokens[2] == "n");
             }
              else if (tokens.size() == 2) {
                 ui->checkPC_CPU->setChecked(true);
                 emit mySignalMgrayBoxPC_CPU(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-                ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
+           //     ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
             }
         }
 
@@ -814,6 +815,8 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
     if(checked==0){
       //   ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(false);
       //   ui->lineEditCUCorMat_threshold_for_mask->setEnabled(false);
+         ui->labelCUCorMat_threshold_for_correlation_coefficient->setEnabled(false);
+         ui->labelCUCorMat_threshold_type->setEnabled(false);
          ui->CheckCUCorMat_to_average->setEnabled(false);
          ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(false);
          ui->ordinary->setEnabled(false);
@@ -849,6 +852,8 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
      {
       //  ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(true);
     //    ui->lineEditCUCorMat_threshold_for_mask->setEnabled(true);
+        ui->labelCUCorMat_threshold_for_correlation_coefficient->setEnabled(true);
+        ui->labelCUCorMat_threshold_type->setEnabled(true);
         ui->CheckCUCorMat_to_average->setEnabled(true);
         ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(false);
         ui->ordinary->setEnabled(true);
@@ -960,6 +965,8 @@ void MainWindow::on_checkBFS_MulCPU_clicked(bool checked)
 void MainWindow::on_checkCP_clicked(bool checked)
 {
     if(checked==0){
+        ui->labelCp_Cp_type->setEnabled(false);
+        ui->comboBoxCp_Cp_type->setEnabled(false);
        //  ui->lineEditCp_input_dir->setEnabled(false);
        //  ui->lineEditCp_num_of_random_networks->setEnabled(false);
         // ui->toolButtonCp_input_dir->setEnabled(false);
@@ -972,6 +979,8 @@ void MainWindow::on_checkCP_clicked(bool checked)
     }
      else if(checked==1)
      {
+        ui->labelCp_Cp_type->setEnabled(true);
+        ui->comboBoxCp_Cp_type->setEnabled(true);
         //ui->lineEditCp_input_dir->setEnabled(true);
        // ui->lineEditCp_num_of_random_networks->setEnabled(true);
        // ui->toolButtonCp_input_dir->setEnabled(true);
@@ -1035,7 +1044,8 @@ void MainWindow::on_checkL_Modularity_clicked(bool checked)
 {
     if(checked==0){
          ui->comboBoxLouvain_Modularity_modularity_type->setEnabled(false);
-        // ui->lineEditL_Modularity_dir_for_csr->setEnabled(false);
+        ui->labelL_Modularity_modularity_type->setEnabled(false);
+         // ui->lineEditL_Modularity_dir_for_csr->setEnabled(false);
        //  ui->lineEditL_Modularity_num_of_random_networks->setEnabled(false);
         // ui->toolButtonL_Modularity_dir_for_csr->setEnabled(false);
 
@@ -1050,6 +1060,7 @@ void MainWindow::on_checkL_Modularity_clicked(bool checked)
      else if(checked==1)
      {
         ui->comboBoxLouvain_Modularity_modularity_type->setEnabled(true);
+        ui->labelL_Modularity_modularity_type->setEnabled(true);
      //   ui->lineEditL_Modularity_dir_for_csr->setEnabled(true);
        // ui->lineEditL_Modularity_num_of_random_networks->setEnabled(true);
       //  ui->toolButtonL_Modularity_dir_for_csr->setEnabled(true);
@@ -1064,13 +1075,14 @@ void MainWindow::on_checkL_Modularity_clicked(bool checked)
     }
 
 }
-
+/*
 void MainWindow::on_checkPC_CPU_clicked(bool checked)
 {
     if(checked==0){
      //    ui->lineEditPC_CPU_input_dir->setEnabled(false);
          //ui->toolButtonPC_CPU->setEnabled(false);
           ui->comboBoxPC_CPU_type_for_participant_coefficient->setEnabled(false);
+          ui->labelPC_CPU_type_for_participant_coefficient->setEnabled(false);
 
        //   ui->labelPC_CPU_input_dir->setVisible(false);
      //     ui->lineEditPC_CPU_input_dir->setVisible(false);
@@ -1083,6 +1095,7 @@ void MainWindow::on_checkPC_CPU_clicked(bool checked)
      //   ui->lineEditPC_CPU_input_dir->setEnabled(true);
      //   ui->toolButtonPC_CPU->setEnabled(true);
          ui->comboBoxPC_CPU_type_for_participant_coefficient->setEnabled(true);
+         ui->labelPC_CPU_type_for_participant_coefficient->setEnabled(true);
 
       //   ui->labelPC_CPU_input_dir->setVisible(true);
      //    ui->lineEditPC_CPU_input_dir->setVisible(true);
@@ -1090,7 +1103,7 @@ void MainWindow::on_checkPC_CPU_clicked(bool checked)
       //   ui->labelPC_CPU_type_for_participant_coefficient->setVisible(true);
       //   ui->comboBoxPC_CPU_type_for_participant_coefficient->setVisible(true);
     }
-}
+}*/
 /*
 void MainWindow::on_checkConvertNII_clicked(bool checked)
 {
@@ -1205,6 +1218,8 @@ void MainWindow::clearscreen(){
 
     ui->lineEdit_Working_Directory->setText("");;
     ui->lineEditLp_num_of_random_networks->setText("");
+
+   // ui->comboBoxCp_Cp_type->setCurrentIndex(0);
   //  ui->toolButtonLp_input_dir->setEnabled(false);
 
     //ui->lineEditCUBFS_Lp_input_dir->setText("");
@@ -1227,7 +1242,7 @@ void MainWindow::clearscreen(){
        ui->lineEditLp_num_of_random_networks->setText("");
 
    //    ui->lineEditPC_CPU_input_dir->setText("");
-       ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
+   //    ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
 
    //    ui->lineEditConvertNII_input_file->setText("");
    //    ui->lineEditConvertNII_mask_file->setText("");
