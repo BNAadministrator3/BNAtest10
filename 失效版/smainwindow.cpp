@@ -704,6 +704,7 @@ this->close();
 void sMainWindow::on_checkCUCorMat_clicked(bool checked)
 {
     if(checked==0){
+      //   ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(false);
          ui->lineEditCUCorMat_threshold_for_mask->setEnabled(false);
          ui->radioButton_CUCorMat_to_average->setEnabled(false);
          ui->ordinary->setEnabled(false);
@@ -711,6 +712,30 @@ void sMainWindow::on_checkCUCorMat_clicked(bool checked)
          ui->radioButtonCUCorMat_to_save_cormatrix->setEnabled(false);
          ui->comboBoxCUCorMat_threshold_type->setEnabled(false);
          ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setEnabled(false);
+     //    ui->toolButtonCUCorMat_Dir_for_BOLD->setEnabled(false);
+
+       //  ui->labelCUCorMat_Dir_for_BOLD->setVisible(false);
+        // ui->lineEditCUCorMat_Dir_for_BOLD->setVisible(false);
+       //  ui->toolButtonCUCorMat_Dir_for_BOLD->setVisible(false);
+/*
+         ui->labelCUCorMat_threshold_for_mask->setVisible(false);
+         ui->lineEditCUCorMat_threshold_for_mask->setVisible(false);
+
+         ui->labelCUCorMat_to_average->setVisible(false);
+         ui->groupBoxCUCorMat_to_average->setVisible(false);
+
+         //ui->labelCUCorMat_to_save_cormatrix->setVisible(false);
+         ui->radioButtonCUCorMat_to_save_cormatrix->setVisible(false);
+
+         ui->labelCUCorMat_threshold_type->setVisible(false);
+         ui->comboBoxCUCorMat_threshold_type->setVisible(false);
+
+         ui->labelCUCorMat_threshold_for_correlation_coefficient->setVisible(false);
+         ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setVisible(false);
+         ui->groupBox_CUCorMat->setMaximumHeight(67);
+         ui->groupBox_CUCorMat->setStyleSheet("border:none");//注意！
+*/
+      //   ui->groupBox_CUCorMat->setStyleSheet("font:14");//注意！
     }
      else if(checked==1)
      {

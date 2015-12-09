@@ -408,8 +408,9 @@ void MainWindow::on_pushButtonSave_clicked()
 
     QString file_name = ui->lineEditSaveDir->text();
     std::cout << script.str() << std::endl;
-    QFileInfo file_info(file_name);
-    if (!file_info.exists()) {//是指文件不存在，只有text内容为空文件才会不存在
+    QFileInfo file_info(file_name);//是指文件不存在，只有text内容为空文件才会不存在
+    if (!file_info.exists())
+    {
         file_name = QFileDialog::getSaveFileName(this,
                                                          "Save as..." ,
                                                          (operating_system == os_win32 ? "script.bat" : "script.sh"),
@@ -455,18 +456,21 @@ void MainWindow::on_pushButtonLoad_clicked()
     // file_name += ((operating_system == win32) ? "/script.bat" : "script.sh");
     QFileInfo file_info(file_name);
     if (!file_info.exists()) {
-       if(file_name_transimit==NULL){
-        file_name = QFileDialog::getOpenFileName(this,
-                                                 "Save as..." ,
-                                                 (operating_system == os_win32 ? "script.bat" : "script.sh"),//你的一系列选择脚本的操作相当于给变量赋值
-                                                 (operating_system == os_win32 ? "script (*.bat);;Any (*.*)" : "script (*.sh);Any (*.*)"));
-       if(file_name==NULL){
+       if(file_name_transimit==NULL)
+       {
+           file_name = QFileDialog::getOpenFileName(this,
+                                                    "Save as..." ,
+                                                    (operating_system == os_win32 ? "script.bat" : "script.sh"),
+                                                    (operating_system == os_win32 ? "script (*.bat);;Any (*.*)" : "script (*.sh);Any (*.*)"));
+       if(file_name==NULL)
+       {
            flag_cancel=true;
        }
-       }else {
+       }
+       else
+       {
            file_name=file_name_transimit;
            file_name_transimit=QString::null;
-           qDebug("finish assignment");
        }
        ui->lineEditSaveDir->setText(file_name);
     }
@@ -689,33 +693,12 @@ void MainWindow::on_pushButtonLoad_clicked()
             }
              else if (tokens.size() == 2) {
                 ui->checkPC_CPU->setChecked(true);
-                emit mySignalMgrayBoxPC_CPU(true);
+           //     emit mySignalMgrayBoxPC_CPU(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
            //     ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
             }
         }
 
-        // ui->lineEditSaveDir->setText(QString(token.c_str()));
-        //这里要改！！！
-  /*  else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp_NodalMetrics.exe" : "./exefiles/CUBFW_Lp_NodalMetrics")||tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU_NodalMetrics.exe" : "./exefiles/BFS_MulCPU_NodalMetrics")) {
-        if (tokens.size() == 3) {
-            ui->checkLp_NodalMetrics->setChecked(true);
-            emit mySignalMgrayBoxLp_NodalMetrics(true);
-            if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp_NodalMetrics.exe" : "./exefiles/CUBFW_Lp_NodalMetrics"))
-              ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(0);
-            else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU_NodalMetrics.exe" : "./exefiles/BFS_MulCPU_NodalMetrics"))
-                ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(1);
-            ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-            ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
-        }
-    } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Cp_NodalMetrics.exe" : "./Cp_NodalMetrics")) {
-        if (tokens.size() == 3) {
-            ui->checkCP_NodalMetrics->setChecked(true);
-            emit mySignalMgrayBoxCP_NodalMetrics(true);
-            ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-            ui->lineEditCp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
-        }
-    }*/
 
 
 }
