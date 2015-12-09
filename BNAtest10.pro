@@ -26,4 +26,4 @@ FORMS    += mainwindow.ui \
 
 RESOURCES += \
     z-transformation.qrc \
-    smallwordproperty.qrc
+    smallworldproperty.qrc
