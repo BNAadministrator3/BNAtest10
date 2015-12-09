@@ -6,6 +6,6 @@
         <file alias="gamma">qrc/clusteringcoefficientgamma.gif</file>
     </qresource>
     <qresource prefix="/new/lambda">
-        <file alias="lambda">qrc/characteristicpathlengthlambda.gif</file>
+        <file alias="lambda">qrc/characteristicpathlengthlambda.jpg</file>
     </qresource>
 </RCC>
