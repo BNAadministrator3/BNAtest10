@@ -128,64 +128,15 @@ void MainWindow::on_pushButtonSave_clicked()
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
               std::endl;
- /*       else if(both_metrics==1&&average_ordinary==0&&average_fisher==1)
-        script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
-              ' ' <<
-              ui->mask_threshold->text().toStdString() <<
-              ' ' <<
-              "bf" <<
-                  //ui->lineEditCUCorMat_to_average->text().toStdString() <<
-              ' ' <<
-              to_save_cormatrix <<
-                  //ui->lineEditCUCorMat_to_save_cormatrix->text().toStdString() <<
-              ' ' <<
-             type <<
-
-              ' ' <<
-              ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
-              std::endl;
-        else //if(individual_metrics==1&&average_ordinary==1&&average_fisher==0)
-        script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
-              ' ' <<
-              ui->mask_threshold->text().toStdString() <<
-              ' ' <<
-              "n" <<
-                  //ui->lineEditCUCorMat_to_average->text().toStdString() <<
-              ' ' <<
-              to_save_cormatrix <<
-                  //ui->lineEditCUCorMat_to_save_cormatrix->text().toStdString() <<
-              ' ' <<
-              type <<
-                  //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
-              ' ' <<
-              ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
-              std::endl;
- */
-     //  delete(type.c_str());
     }
 
     if (ui->checkLp->isChecked()&&(!ui->checkLp_NodalMetrics->isChecked())) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
-                || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+                || ui->lineEditLp_num_of_random_networks->text().isEmpty()||
+                ui->lineEditLp_num_of_random_networks->text()=="0") {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-   /*      string sc=ui->comboBoxLp_type_for_Lp->currentText().toStdString();
-         if(sc=="BFW_CUDA")
-        script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
-              ' ' <<
-              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"g"<<
-              std::endl;
-         else if(sc=="BFS_MulCPU")
-             script << (operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe " : "./exefiles/BFS_MulCPU ") <<
-                   ui->lineEdit_Working_Directory->text().toStdString() <<
-                   ' ' <<
-                   ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"g"<<
-                   std::endl;
-                   */
        script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
              ui->lineEdit_Working_Directory->text().toStdString() <<
              ' ' <<
@@ -193,32 +144,6 @@ void MainWindow::on_pushButtonSave_clicked()
              std::endl;
     }
 
- /*   if (ui->checkCUBFS_Lp->isChecked()) {
-        if (ui->lineEditCUBFS_Lp_input_dir->text().isEmpty()
-                || ui->lineEditCUBFS_Lp_num_of_random_networks->text().isEmpty()) {
-            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
-            return;
-        }
-        script << (operating_system == os_win32 ? ".\\exefiles\\CUBFS_Lp.exe " : "./exefiles/CUBFS_Lp ") <<
-              ui->lineEditCUBFS_Lp_input_dir->text().toStdString() <<
-              ' ' <<
-              ui->lineEditCUBFS_Lp_num_of_random_networks->text().toStdString() <<
-              std::endl;
-    }*/
-/*
-    if (ui->checkBFS_MulCPU->isChecked()) {
-        if (ui->lineEditBFS_MulCPU_input_dir->text().isEmpty()
-                || ui->lineEditBFS_MulCPU_num_of_random_networks->text().isEmpty()) {
-            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
-            return;
-        }
-        script << (operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe " : "./exefiles/BFS_MulCPU ") <<
-              ui->lineEditBFS_MulCPU_input_dir->text().toStdString() <<
-              ' ' <<
-              ui->lineEditBFS_MulCPU_num_of_random_networks->text().toStdString() <<
-              std::endl;
-    }
-*/
     if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
@@ -297,19 +222,17 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-    //    string s1=ui->comboBoxPC_CPU_type_for_participant_coefficient->currentText().toStdString();
-     //   if(s1=="normalized")
-    //    script << (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe " : "./exefiles/PC_CPU ") <<
-     //         ui->lineEdit_Working_Directory->text().toStdString() <<
-      //        ' ' <<
-           //   ui->lineEditPC_CPU_type_for_participant_coefficient->text().toStdString() <<
-      //        "n" <<
-      //            std::endl;
-      //  else
             script << (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe " : "./exefiles/PC_CPU ") <<
                         ui->lineEdit_Working_Directory->text().toStdString() <<
                         ' ' <<
                             std::endl;
+    }
+    if(ui->checkSmallWordProperty->isChecked()){
+        if (ui->lineEdit_Working_Directory->text().isEmpty())
+        {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
     }
     if (ui->checkConvertNII->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
@@ -333,20 +256,6 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-         /*string sc=ui->comboBoxLp_type_for_Lp_NodalMetrics->currentText().toStdString();
-         if(sc=="BFW_CUDA")
-        script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
-              ' ' <<
-              ui->lineEditLp_num_of_random_networks_NodalMetrics->text().toStdString() <<' '<<"n"<<
-              std::endl;
-         else if(sc=="BFS_MulCPU")
-             script << (operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe " : "./exefiles/BFS_MulCPU ") <<
-                   ui->lineEdit_Working_Directory->text().toStdString() <<
-                   ' ' <<
-                   ui->lineEditLp_num_of_random_networks_NodalMetrics->text().toStdString() <<' '<<"n"<<
-                   std::endl;
-*/
         script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
@@ -372,20 +281,6 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        /*
-         string sc=ui->comboBoxLp_type_for_Lp->currentText().toStdString();
-         if(sc=="BFW_CUDA")
-        script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
-              ' ' <<
-              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"b"<<
-              std::endl;
-         else if(sc=="BFS_MulCPU")
-             script << (operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe " : "./exefiles/BFS_MulCPU ") <<
-                   ui->lineEdit_Working_Directory->text().toStdString() <<
-                   ' ' <<
-                   ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"b"<<
-                   std::endl;  */
         script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
