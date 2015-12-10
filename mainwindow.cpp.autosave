@@ -400,18 +400,16 @@ void MainWindow::on_pushButtonLoad_clicked()
 
     ui->checkCUCorMat->setChecked(false);
     ui->checkLp->setChecked(false);
-    //ui->checkCUBFS_Lp->setChecked(false);
-    //ui->checkBFS_MulCPU->setChecked(false);
+    ui->checkLp_NodalMetrics->setChecked(false);
+    ui->checkCP_NodalMetrics->setChecked(false);
     ui->checkCP->setChecked(false);
-    ui->checks 
+    ui->checkSmallWordProperty->setChecked(false);
+    ui->checkL_Modularity->setChecked(false);
+    ui->checkPC_CPU->setChecked(false);
     ui->checkDegree->setChecked(false);
     ui->checkCUBC->setChecked(false);
     ui->checkCUEC->setChecked(false);
     ui->checkConvertNII->setChecked(false);
-    ui->checkL_Modularity->setChecked(false);
-    ui->checkPC_CPU->setChecked(false);
-    ui->checkLp_NodalMetrics->setChecked(false);
-    ui->checkCP_NodalMetrics->setChecked(false);
     int flag=0;
     while (std::getline(is, line)) {  //这个的意思是读完整个文件，我去，太牛了！
         //ui->lineEditSaveDir->setText(line.c_str());
