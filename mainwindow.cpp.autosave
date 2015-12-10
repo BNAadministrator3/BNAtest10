@@ -403,6 +403,7 @@ void MainWindow::on_pushButtonLoad_clicked()
     //ui->checkCUBFS_Lp->setChecked(false);
     //ui->checkBFS_MulCPU->setChecked(false);
     ui->checkCP->setChecked(false);
+    ui->checks 
     ui->checkDegree->setChecked(false);
     ui->checkCUBC->setChecked(false);
     ui->checkCUEC->setChecked(false);
