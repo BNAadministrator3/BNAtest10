@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SIGNAL(mySignalMclr()),this,SLOT(clearscreen()));
 
      connect(this,SIGNAL(mySignalMgrayBoxCUCorMat(bool)),this,SLOT(on_checkCUCorMat_clicked(bool)));
-     connect(this,SIGNAL(mySignalMgrayBoxLp(bool)),this,SLOT(on_checkLp_clicked(bool)));
+  //   connect(this,SIGNAL(mySignalMgrayBoxLp(bool)),this,SLOT(on_checkLp_clicked(bool)));
     // connect(this,SIGNAL(mySignalMgrayBoxCUBFS_Lp(bool)),this,SLOT(on_checkCUBFS_Lp_clicked(bool)));
     // connect(this,SIGNAL(mySignalMgrayBoxBFS_MulCPU(bool)),this,SLOT(on_checkBFS_MulCPU_clicked(bool)));
      connect(this,SIGNAL(mySignalMgrayBoxCP(bool)),this,SLOT(on_checkCP_clicked(bool)));
@@ -400,17 +400,16 @@ void MainWindow::on_pushButtonLoad_clicked()
 
     ui->checkCUCorMat->setChecked(false);
     ui->checkLp->setChecked(false);
-    //ui->checkCUBFS_Lp->setChecked(false);
-    //ui->checkBFS_MulCPU->setChecked(false);
+    ui->checkLp_NodalMetrics->setChecked(false);
+    ui->checkCP_NodalMetrics->setChecked(false);
     ui->checkCP->setChecked(false);
+    ui->checkSmallWordProperty->setChecked(false);
+    ui->checkL_Modularity->setChecked(false);
+    ui->checkPC_CPU->setChecked(false);
     ui->checkDegree->setChecked(false);
     ui->checkCUBC->setChecked(false);
     ui->checkCUEC->setChecked(false);
     ui->checkConvertNII->setChecked(false);
-    ui->checkL_Modularity->setChecked(false);
-    ui->checkPC_CPU->setChecked(false);
-    ui->checkLp_NodalMetrics->setChecked(false);
-    ui->checkCP_NodalMetrics->setChecked(false);
     int flag=0;
     while (std::getline(is, line)) {  //这个的意思是读完整个文件，我去，太牛了！
         //ui->lineEditSaveDir->setText(line.c_str());
@@ -472,36 +471,19 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(true);
                 ui->ordinary->setChecked(true);
                 ui->fisher->setChecked(false);
-                }/*else if(tokens[3] == "bn")
-                {
-                ui->CheckCUCorMat_to_average->setChecked(true);
-                ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(true);
-                ui->ordinary->setChecked(true);
-                ui->fisher->setChecked(false);
-                }else if(tokens[3] == "bf")
-                {
-                ui->CheckCUCorMat_to_average->setChecked(true);
-                ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(true);
-                ui->ordinary->setChecked(false);
-                ui->fisher->setChecked(true);
-                }*/
+                }
                 ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(tokens[4] == "y");
                 ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(tokens[5] == "r");
-                //ui->lineEditCUCorMat_to_average->setText(tokens[3].c_str());
-                //ui->lineEditCUCorMat_to_save_cormatrix->setText(tokens[4].c_str());
-                //ui->lineEditCUCorMat_threshold_type->setText(tokens[5].c_str());
                 std::string token6;
                 for (size_t i = 6; i < tokens.size(); ++i)
                     token6 += tokens[i] + " ";
                 ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText(token6.c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Lp.exe" : "./exefiles/Lp")) {
-           qDebug("in lp!");
             if (tokens.size() == 4) {
-
                 if(tokens[3] =="g") {
                 ui->checkLp->setChecked(true);
-                emit mySignalMgrayBoxLp(true);
+             //   emit mySignalMgrayBoxLp(true);
              /*   if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp"))
                   ui->comboBoxLp_type_for_Lp->setCurrentIndex(0);
                 else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU"))
@@ -525,24 +507,14 @@ void MainWindow::on_pushButtonLoad_clicked()
             else if(tokens[3] =="b") {
 
                 ui->checkLp->setChecked(true);
-                emit mySignalMgrayBoxLp(true);
+            //    emit mySignalMgrayBoxLp(true);
                 ui->checkLp_NodalMetrics->setChecked(true);
-                /*
-                if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp"))
-               {   ui->comboBoxLp_type_for_Lp->setCurrentIndex(0);
-                 ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(0);
-                }else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU"))
-                 {   ui->comboBoxLp_type_for_Lp->setCurrentIndex(1);
-                  ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(0);
-                }
-                */
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
              //     ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
                                     }
                                     }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Cp.exe" : "./Cp")) {
-            qDebug("in cp!");
             if (tokens.size() == 4) {
                 if(tokens[3]=="g"){
                 ui->checkCP->setChecked(true);
@@ -555,15 +527,36 @@ void MainWindow::on_pushButtonLoad_clicked()
                     ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                //     ui->lineEditCp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
                 }
-                else if(tokens[3]=="b"){
+                else if(tokens[3]=="b")
+                {
                     ui->checkCP->setChecked(true);
                     emit mySignalMgrayBoxCP(true);
                     ui->checkCP_NodalMetrics->setChecked(true);
                     ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-                 //   ui->lineEditCp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
-                    ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());}
+                    ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
+                }
             }
-        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Degree.exe" : "./exefiles/Degree")) {
+        }else if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\SmallWorldProperty.exe" : "./exefiles/SmallWorldProperty")) {
+                 if (tokens.size() == 2) {
+                     ui->checkSmallWordProperty->setChecked(true);
+                     ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                 }
+    } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe" : "./exefiles/Louvain_Modularity")
+               ||tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe" : "./exefiles/Newman_Modularity_GPU")
+               || tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_CPU.exe" : "./exefiles/Newman_Modularity_CPU")
+                ) {
+         if (tokens.size() == 3) {
+             ui->checkL_Modularity->setChecked(true);
+             emit mySignalMgrayBoxL_Modularity(true);
+             if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe" : "./exefiles/Louvain_Modularity"))
+             ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(0);
+             else if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe" : "./exefiles/Newman_Modularity_GPU") )
+             ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(1);
+             else ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(2);
+             ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+             ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
+         }
+     }else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Degree.exe" : "./exefiles/Degree")) {
             if (tokens.size() == 2) {
                 ui->checkDegree->setChecked(true);
                 emit mySignalMgrayBoxDegree(true);
@@ -589,34 +582,19 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->lineEdit_Mask_File->setText(tokens[2].c_str());
                 ui->mask_threshold->setText(tokens[3].c_str());
             }
-        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe" : "./exefiles/Louvain_Modularity")
-                  ||tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe" : "./exefiles/Newman_Modularity_GPU")
-                  || tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_CPU.exe" : "./exefiles/Newman_Modularity_CPU")
-                   ) {
-            if (tokens.size() == 3) {
-                ui->checkL_Modularity->setChecked(true);
-                emit mySignalMgrayBoxL_Modularity(true);
-                if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe" : "./exefiles/Louvain_Modularity"))
-                ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(0);
-                else if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe" : "./exefiles/Newman_Modularity_GPU") )
-                ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(1);
-                else ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(2);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-                ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
-            }
-        }else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe" : "./exefiles/PC_CPU")) {
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe" : "./exefiles/PC_CPU")) {
             if (tokens.size() == 3) {
                 ui->checkPC_CPU->setChecked(true);
-                emit mySignalMgrayBoxPC_CPU(true);
+               // emit mySignalMgrayBoxPC_CPU(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
              //   ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(tokens[2] == "n");
             }
-             else if (tokens.size() == 2) {
+          /*   else if (tokens.size() == 2) {
                 ui->checkPC_CPU->setChecked(true);
            //     emit mySignalMgrayBoxPC_CPU(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
            //     ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
-            }
+            }*/
         }
 
 
@@ -802,39 +780,7 @@ void MainWindow::on_toolButtonCp_input_dir_NodalMetrics_clicked()
 }
 */
 /*
-void MainWindow::on_checkLp_clicked(bool checked)
-{
-    if(checked==0){
-    //    ui->comboBoxLp_type_for_Lp->setEnabled(false);
-      //   ui->lineEditLp_input_dir->setEnabled(false);
-         ui->lineEditLp_num_of_random_networks->setEnabled(false);
-         //ui->toolButtonLp_input_dir->setEnabled(false);
 
-      //   ui->labelLp_type_for_Lp->setVisible(false);
-      //   ui->comboBoxLp_type_for_Lp->setVisible(false);
-        // ui->labelLp_input_dir->setVisible(false);
-    //     ui->lineEditLp_input_dir->setVisible(false);
-        // ui->toolButtonLp_input_dir->setVisible(false);
-     //    ui->labelLp_num_of_random_networks->setVisible(false);
-     //    ui->lineEditLp_num_of_random_networks->setVisible(false);
-    }
-     else if(checked==1)
-     {
-     //   ui->comboBoxLp_type_for_Lp->setEnabled(true);
-       // ui->lineEditLp_input_dir->setEnabled(true);
-        ui->lineEditLp_num_of_random_networks->setEnabled(true);
-       // ui->toolButtonLp_input_dir->setEnabled(true);
-
-     //   ui->labelLp_type_for_Lp->setVisible(true);
-     //   ui->comboBoxLp_type_for_Lp->setVisible(true);
-      //  ui->labelLp_input_dir->setVisible(true);
-      //  ui->lineEditLp_input_dir->setVisible(true);
-      //  ui->toolButtonLp_input_dir->setVisible(true);
-      //  ui->labelLp_num_of_random_networks->setVisible(true);
-     //   ui->lineEditLp_num_of_random_networks->setVisible(true);
-    }
-}
-*/
 /*void MainWindow::on_checkCUBFS_Lp_clicked(bool checked)
 {
     if(checked==0){
@@ -1166,7 +1112,7 @@ void MainWindow::clearscreen(){
     //   ui->lineEditCp_num_of_random_networks_NodalMetrics->setText("");
        //2.使界面回到灰框状态 good method
        emit mySignalMgrayBoxCUCorMat(false);
-       emit mySignalMgrayBoxLp(false);
+    //   emit mySignalMgrayBoxLp(false);
        //emit mySignalMgrayBoxCUBFS_Lp(false);
      //  emit mySignalMgrayBoxBFS_MulCPU(false);
        emit mySignalMgrayBoxCP(false);

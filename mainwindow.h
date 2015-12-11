@@ -77,7 +77,7 @@ signals:
     void mySignalMtoS();
     void mySignalMclr();
     void mySignalMgrayBoxCUCorMat(bool);
-    void mySignalMgrayBoxLp(bool);
+  //  void mySignalMgrayBoxLp(bool);
   //  void mySignalMgrayBoxCUBFS_Lp(bool);
   //  void mySignalMgrayBoxBFS_MulCPU(bool);
     void mySignalMgrayBoxCP(bool);
