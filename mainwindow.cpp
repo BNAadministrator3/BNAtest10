@@ -247,7 +247,8 @@ void MainWindow::on_pushButtonSave_clicked()
     }
     if (ui->checkL_Modularity->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
-                || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+              //  || ui->lineEditLp_num_of_random_networks->text().isEmpty()
+                ) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }                                           //这句话是看是不是win32 是就是一种格式 不是就是另一种格式  \\是c++中的转义字符  代表win中的反斜杠；系统路径，编程路径 \\或/ 理解：因为\会被编译错
@@ -420,7 +421,7 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Lp.exe " : "./exefiles_weighted/Lp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"n"<<
@@ -438,7 +439,7 @@ void MainWindow::on_pushButtonSave_clicked()
              QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
              return;
          }
-         script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
+         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Lp.exe " : "./exefiles_weighted/Lp ") <<
                ui->lineEdit_Working_Directory->text().toStdString() <<
                ' ' <<
                ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"b"<<
@@ -455,10 +456,11 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+        string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"g"<<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"g"<<
               std::endl;
     }
     if (ui->checkCP_NodalMetrics->isChecked()&&(!ui->checkCP->isChecked())) {
@@ -467,10 +469,11 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+        string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"n"<<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"n"<<
               std::endl;
     }
     if (ui->checkCP->isChecked()&&ui->checkCP_NodalMetrics->isChecked()) {
@@ -485,10 +488,11 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+        string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
-              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"b"<<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"b"<<
               std::endl;
     }
     if(ui->checkSmallWordProperty->isChecked()){
@@ -503,45 +507,30 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        script << (operating_system == os_win32 ? ".\\exefiles\\SmallWorldProperty.exe " : "./exefiles/SmallWorldProperty ") <<
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\SmallWorldProperty.exe " : "./exefiles_weighted/SmallWorldProperty ") <<
                     ui->lineEdit_Working_Directory->text().toStdString() <<
                     ' ' <<
                         std::endl;
     }
     if (ui->checkL_Modularity->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
-                || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+               ) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }                                           //这句话是看是不是win32 是就是一种格式 不是就是另一种格式  \\是c++中的转义字符  代表win中的反斜杠；系统路径，编程路径 \\或/ 理解：因为\会被编译错
 
-        string s=ui->comboBoxLouvain_Modularity_modularity_type->currentText().toStdString();
-        if(s=="Louvain")
-           script << (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe " : "./exefiles/Louvain_Modularity ") <<
+           script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Louvain_Modularity.exe " : "./exefiles_weighted/Louvain_Modularity ") <<
                  ui->lineEdit_Working_Directory->text().toStdString() <<
                  ' ' <<
                  ui->lineEditLp_num_of_random_networks->text().toStdString() <<
                  std::endl;
-        else if (s=="Newman_GPU")
-            script << (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe " : "./exefiles/Newman_Modularity_GPU ") <<
-                        ui->lineEdit_Working_Directory->text().toStdString() <<
-                        ' ' <<
-                        ui->lineEditLp_num_of_random_networks->text().toStdString() <<
-                        std::endl;
-         else
-            script << (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_CPU.exe " : "./exefiles/Newman_Modularity_CPU ") <<
-                         ui->lineEdit_Working_Directory->text().toStdString() <<
-                         ' ' <<
-                         ui->lineEditLp_num_of_random_networks->text().toStdString() <<
-                         std::endl;
-
     }
     if (ui->checkPC_CPU->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-            script << (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe " : "./exefiles/PC_CPU ") <<
+            script << (operating_system == os_win32 ? ".\\exefiles_weighted\\PC_CPU.exe " : "./exefiles_weighted/PC_CPU ") <<
                         ui->lineEdit_Working_Directory->text().toStdString() <<
                         ' ' <<
                             std::endl;
@@ -551,7 +540,7 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        script << (operating_system == os_win32 ? ".\\exefiles\\Degree.exe " : "./exefiles/Degree ") <<
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Degree.exe " : "./exefiles_weighted/Degree ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               std::endl;
     }
@@ -560,7 +549,7 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        script << (operating_system == os_win32 ? ".\\exefiles\\CUBC.exe " : "./exefiles/CUBC ") <<
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUBC.exe " : "./exefiles_weighted/CUBC ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               std::endl;
     }
@@ -569,7 +558,7 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        script << (operating_system == os_win32 ? ".\\exefiles\\CUEC.exe " : "./exefiles/CUBC ") <<
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUEC.exe " : "./exefiles_weighted/CUBC ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               std::endl;
     }
@@ -580,7 +569,7 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        script << (operating_system == os_win32 ? ".\\exefiles\\ConvertNII.exe " : "./exefiles/ConvertNII ") <<
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\ConvertNII.exe " : "./exefiles_weighted/ConvertNII ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->lineEdit_Mask_File->text().toStdString() <<
@@ -674,7 +663,8 @@ void MainWindow::on_pushButtonLoad_clicked()
     ui->checkCUBC->setChecked(false);
     ui->checkCUEC->setChecked(false);
     ui->checkConvertNII->setChecked(false);
-    int flag=0;
+    bool flag_unweighted=false;
+   bool flag_weighted=false;
     while (std::getline(is, line)) {  //这个的意思是读完整个文件，我去，太牛了！
         //ui->lineEditSaveDir->setText(line.c_str());
         std::vector<std::string> tokens; //在命名空间中再找一个特定的命名空间
@@ -696,11 +686,15 @@ void MainWindow::on_pushButtonLoad_clicked()
         if(tokens[0] =="echo"){  //原则 1.2.若没有调用该if语句，即判断为warning
 
             if(tokens[1] =="unweightednetworks"){
-                flag++;
+                flag_unweighted=true;
+                flag_weighted=false;//保险一点
+                ui->switchButton->setCurrentIndex(0);
                 //不切换界面，处理参数
                 continue;
             }else if((tokens[1] =="weightednetworks")){
-                flag++;
+                ui->switchButton->setCurrentIndex(1);
+                flag_weighted=true;
+                flag_unweighted=false;
                 //切换界面，传递参数,发射信号
                 this->hide();// 1.切换界面
                 w1.setParent(this);
@@ -711,6 +705,14 @@ void MainWindow::on_pushButtonLoad_clicked()
                 emit  mySignalMtoS();
             }
         }
+        if(flag_unweighted==true&&flag_weighted==true)
+        {
+            QMessageBox::information(this, "Warning", "Script error(s).Error(s) may occur.Only one sort of networks type (weighted or unweighted) can be selected by using the command 'echo' in the script", QMessageBox::Ok, QMessageBox::Ok);
+            //清理参数，必须这样，要不乱了·· 这个不要求echo语句的位置！好优点！``所以必须在这统一清理参数！
+            emit mySignalMclr();
+        }
+        else if(flag_unweighted==true&&flag_weighted==false)
+        {
         if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe" : "./exefiles/CUCormat")) {
             if (tokens.size() >= 7) {
                 ui->checkCUCorMat->setChecked(true);
@@ -800,12 +802,12 @@ void MainWindow::on_pushButtonLoad_clicked()
                     ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
                 }
             }
-        }else if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\SmallWorldProperty.exe" : "./exefiles/SmallWorldProperty")) {
+        } else if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\SmallWorldProperty.exe" : "./exefiles/SmallWorldProperty")) {
                  if (tokens.size() == 2) {
                      ui->checkSmallWordProperty->setChecked(true);
                      ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                  }
-    } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe" : "./exefiles/Louvain_Modularity")
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe" : "./exefiles/Louvain_Modularity")
                ||tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe" : "./exefiles/Newman_Modularity_GPU")
                || tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_CPU.exe" : "./exefiles/Newman_Modularity_CPU")
                 ) {
@@ -820,12 +822,12 @@ void MainWindow::on_pushButtonLoad_clicked()
              ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
              ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
          }
-     }else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe" : "./exefiles/PC_CPU")) {
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe" : "./exefiles/PC_CPU")) {
             if (tokens.size() == 2) {
                 ui->checkPC_CPU->setChecked(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
             }
-        }else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Degree.exe" : "./exefiles/Degree")) {
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Degree.exe" : "./exefiles/Degree")) {
             if (tokens.size() == 2) {
                 ui->checkDegree->setChecked(true);
                 emit mySignalMgrayBoxDegree(true);
@@ -852,9 +854,148 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->mask_threshold->setText(tokens[3].c_str());
             }
         }
-}
-    if(flag==0&&flag_cancel==false){  //这儿有debug！！！
-         QMessageBox::information(this, "Warning", "Empty parameter(s).Error(s) may occur.Please advise on the networks type (weighted or unweighted) by using the command:echo", QMessageBox::Ok, QMessageBox::Ok);
+        }
+        else if(flag_weighted==true&&flag_unweighted==false)
+        {
+        if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe" : "./exefiles_weighted/CUCormat")) {
+            if (tokens.size() >= 7) {
+                ui->checkCUCorMat->setChecked(true);
+                 emit mySignalMgrayBoxCUCorMat(true);
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->mask_threshold->setText(tokens[2].c_str());
+                if(tokens[3] == "n")
+                {
+                ui->CheckCUCorMat_to_average->setChecked(false);
+                ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(false);
+                ui->ordinary->setChecked(false);
+                ui->fisher->setChecked(false);
+                }else if(tokens[3] == "bf")
+                {
+                ui->CheckCUCorMat_to_average->setChecked(true);
+                ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(true);
+                ui->ordinary->setChecked(false);
+                ui->fisher->setChecked(true);
+                }else if(tokens[3] == "bn")
+                {
+                ui->CheckCUCorMat_to_average->setChecked(true);
+                ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(true);
+                ui->ordinary->setChecked(true);
+                ui->fisher->setChecked(false);
+                }
+                ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(tokens[4] == "y");
+                ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(tokens[5] == "r");
+                std::string token6;
+                for (size_t i = 6; i < tokens.size(); ++i)
+                    token6 += tokens[i] + " ";
+                ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText(token6.c_str());
+            }
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\Lp.exe" : "./exefiles_weighted/Lp")) {
+            if (tokens.size() == 4) {
+                if(tokens[3] =="g") {
+                ui->checkLp->setChecked(true);
+             //   emit mySignalMgrayBoxLp(true);
+             /*   if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp"))
+                  ui->comboBoxLp_type_for_Lp->setCurrentIndex(0);
+                else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU"))
+                    ui->comboBoxLp_type_for_Lp->setCurrentIndex(1);
+               */
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
+                                    }
+
+            else if(tokens[3] =="n") {
+                ui->checkLp_NodalMetrics->setChecked(true);
+                /*
+                if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp"))
+                  ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(0);
+                else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU"))
+                    ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(1);
+                */
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+           //     ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
+                                    }
+            else if(tokens[3] =="b") {
+
+                ui->checkLp->setChecked(true);
+            //    emit mySignalMgrayBoxLp(true);
+                ui->checkLp_NodalMetrics->setChecked(true);
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
+             //     ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
+                                    }
+                                    }
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe" : "./exefiles_weighted/Cp")) {
+            if (tokens.size() == 4) {
+                if(tokens[3]=="g"){
+                ui->checkCP->setChecked(true);
+                emit mySignalMgrayBoxCP(true);
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());}
+            else if(tokens[3]=="n"){
+                    ui->checkCP_NodalMetrics->setChecked(true);
+
+                    ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+               //     ui->lineEditCp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
+                }
+                else if(tokens[3]=="b")
+                {
+                    ui->checkCP->setChecked(true);
+                    emit mySignalMgrayBoxCP(true);
+                    ui->checkCP_NodalMetrics->setChecked(true);
+                    ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                    ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
+                }
+            }
+        } else if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\SmallWorldProperty.exe" : "./exefiles_weighted/SmallWorldProperty")) {
+                 if (tokens.size() == 2) {
+                     ui->checkSmallWordProperty->setChecked(true);
+                     ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                 }
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\Louvain_Modularity.exe" : "./exefiles_weighted/Louvain_Modularity")
+                ) {
+         if (tokens.size() == 3) {
+             ui->checkL_Modularity->setChecked(true);
+             emit mySignalMgrayBoxL_Modularity(true);
+             if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe" : "./exefiles/Louvain_Modularity"))
+             ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(0);
+             else if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe" : "./exefiles/Newman_Modularity_GPU") )
+             ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(1);
+             else ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(2);
+             ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+             ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
+         }
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\PC_CPU.exe" : "./exefiles_weighted/PC_CPU")) {
+            if (tokens.size() == 2) {
+                ui->checkPC_CPU->setChecked(true);
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+            }
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\Degree.exe" : "./exefiles_weighted/Degree")) {
+            if (tokens.size() == 2) {
+                ui->checkDegree->setChecked(true);
+                emit mySignalMgrayBoxDegree(true);
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+            }
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\CUEC.exe" : "./exefiles_weighted/CUEC")) {
+            if (tokens.size() == 2) {
+                ui->checkCUEC->setChecked(true);
+                emit mySignalMgrayBoxCUEC(true);
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+            }
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\ConvertNII.exe" : "./exefiles_weighted/ConvertNII")) {
+            if (tokens.size() == 4) {
+                ui->checkConvertNII->setChecked(true);
+                emit mySignalMgrayBoxConvertNII(true);
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Mask_File->setText(tokens[2].c_str());
+                ui->mask_threshold->setText(tokens[3].c_str());
+            }
+        }
+        }
+
+    }
+
+        if(flag_unweighted==false&&flag_weighted==false&&flag_cancel==false){  //这儿有debug！！！
+         QMessageBox::information(this, "Warning", "Script error(s).Error(s) may occur.Please advise on the networks type (weighted or unweighted) by using the command 'echo' in the script", QMessageBox::Ok, QMessageBox::Ok);
          //清理参数，必须这样，要不乱了·· 这个不要求echo语句的位置！好优点！``所以必须在这统一清理参数！
          emit mySignalMclr();
     };
