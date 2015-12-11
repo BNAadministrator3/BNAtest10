@@ -663,7 +663,7 @@ void MainWindow::on_pushButtonLoad_clicked()
     ui->checkCUEC->setChecked(false);
     ui->checkConvertNII->setChecked(false);
     bool flag_unweighted=false;
-   bool flag_weighted=false;
+    bool flag_weighted=false;
     while (std::getline(is, line)) {  //这个的意思是读完整个文件，我去，太牛了！
         //ui->lineEditSaveDir->setText(line.c_str());
         std::vector<std::string> tokens; //在命名空间中再找一个特定的命名空间
@@ -680,9 +680,11 @@ void MainWindow::on_pushButtonLoad_clicked()
         //ui->lineEditSaveDir->setText(out.c_str());
 
         if (tokens.empty())
+        {
             continue;       //一行一行的输入！
-
-        if(tokens[0] =="echo")
+         qDebug("empty!");
+        }
+        if(tokens[0] == "echo")
         {  //原则 1.2.若没有调用该if语句，即判断为warning
          qDebug("read echo !");
             if(tokens[1] =="unweightednetworks")
@@ -714,7 +716,7 @@ void MainWindow::on_pushButtonLoad_clicked()
             //清理参数，必须这样，要不乱了·· 这个不要求echo语句的位置！好优点！``所以必须在这统一清理参数！
             emit mySignalMclr();
         }
-        else if(flag_unweighted==true&&flag_weighted==false)
+        if(flag_unweighted==true&&flag_weighted==false)
         {
         if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe" : "./exefiles/CUCormat")) {
             if (tokens.size() >= 7) {
@@ -858,7 +860,7 @@ void MainWindow::on_pushButtonLoad_clicked()
             }
         }
         }
-        else if(flag_weighted==true&&flag_unweighted==false)
+        if(flag_weighted==true&&flag_unweighted==false)
         {
         if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe" : "./exefiles_weighted/CUCormat")) {
             if (tokens.size() >= 7) {
