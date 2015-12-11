@@ -73,6 +73,8 @@ private slots:
 
     void on_CheckCUCorMat_to_average_clicked(bool checked);
 
+    void on_switchButton_currentIndexChanged(int index);
+
 signals:
     void mySignalMtoS();
     void mySignalMclr();

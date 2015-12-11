@@ -556,7 +556,12 @@ void MainWindow::on_pushButtonLoad_clicked()
              ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
              ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
          }
-     }else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Degree.exe" : "./exefiles/Degree")) {
+     }else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe" : "./exefiles/PC_CPU")) {
+            if (tokens.size() == 2) {
+                ui->checkPC_CPU->setChecked(true);
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+            }
+        }else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Degree.exe" : "./exefiles/Degree")) {
             if (tokens.size() == 2) {
                 ui->checkDegree->setChecked(true);
                 emit mySignalMgrayBoxDegree(true);
@@ -582,23 +587,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->lineEdit_Mask_File->setText(tokens[2].c_str());
                 ui->mask_threshold->setText(tokens[3].c_str());
             }
-        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe" : "./exefiles/PC_CPU")) {
-            if (tokens.size() == 3) {
-                ui->checkPC_CPU->setChecked(true);
-               // emit mySignalMgrayBoxPC_CPU(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-             //   ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(tokens[2] == "n");
-            }
-          /*   else if (tokens.size() == 2) {
-                ui->checkPC_CPU->setChecked(true);
-           //     emit mySignalMgrayBoxPC_CPU(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-           //     ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
-            }*/
         }
-
-
-
 }
     if(flag==0&&flag_cancel==false){  //这儿有debug！！！
          QMessageBox::information(this, "Warning", "Empty parameter(s).Error(s) may occur.Please advise on the network type (weighted or unweighted) by using the command:echo", QMessageBox::Ok, QMessageBox::Ok);
@@ -608,67 +597,6 @@ void MainWindow::on_pushButtonLoad_clicked()
 
     is.close();
 }
-/*
-void MainWindow::on_toolButtonCUCorMat_Dir_for_BOLD_clicked()
-{
-    ui->lineEditCUCorMat_Dir_for_BOLD->setText(QFileDialog::getExistingDirectory(this, "Directory"));
-}
-*//*
-void MainWindow::on_toolButtonLp_input_dir_clicked()
-{
-    ui->lineEdit_Working_Directory->setText(QFileDialog::getExistingDirectory(this, "Directory"));
-}
-*/
-/*void MainWindow::on_toolButtonCUBFS_Lp_input_dir_clicked()
-{
-    ui->lineEditCUBFS_Lp_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
-}*/
-/*
-void MainWindow::on_toolButtonBFS_MulCPU_input_dir_clicked()
-{
-    ui->lineEditBFS_MulCPU_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
-}*/
-
-/*void MainWindow::on_toolButtonCp_input_dir_clicked()
-{
-    ui->lineEditCp_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
-}
-
-void MainWindow::on_toolButtonDegree_input_dir_clicked()
-{
-    ui->lineEditDegree_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
-}
-
-void MainWindow::on_toolButtonCUBC_input_dir_clicked()
-{
-    ui->lineEditCUBC_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
-}
-
-void MainWindow::on_toolButtonCUEC_input_dir_clicked()
-{
-     ui->lineEditCUEC_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
-}
-*/
-
-/*
-void MainWindow::on_toolButtonConvertNII_mask_file_clicked()
-{
-    ui->lineEditConvertNII_mask_file->setText(QFileDialog::getOpenFileName(this,
-                                                                          "NII File",
-                                                                          "",
-                                                                          "NII (*.nii)"));
-
-    ui->lineEditConvertNII_mask_file->setText(QFileDialog::getExistingDirectory(this,
-                                                                              "Directory"
-
-                                                                              ));
-}*/
-/*
-void MainWindow::on_toolButtonL_Modularity_dir_for_csr_clicked()
-{
-    ui->lineEditL_Modularity_dir_for_csr->setText(QFileDialog::getExistingDirectory(this, "Directory"));
-}
-*/
 void MainWindow::on_toolButtonSaveDir_clicked()
 {
     ui->lineEditSaveDir->setText(QFileDialog::getOpenFileName(this,
@@ -685,12 +613,6 @@ void MainWindow::on_switchButton_clicked()
    w1.setParent(this);
     w1.show();
 }
-/*
-void MainWindow::on_toolButtonPC_CPU_clicked()
-{
-    ui->lineEditPC_CPU_input_dir->setText(QFileDialog::getExistingDirectory(this, "Directory"));
-}
-*/
 void MainWindow::on_checkCUCorMat_clicked(bool checked)
 {
     if(checked==0){
@@ -1192,5 +1114,45 @@ void MainWindow::on_CheckCUCorMat_to_average_clicked(bool checked)
     else if(checked==1)
     {   both_metrics=1;
         ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(true);
+    }
+}
+
+void MainWindow::on_switchButton_currentIndexChanged(int index)
+{
+    if(index==0)
+    {
+        ui->comboBoxCp_Cp_type->setCurrentIndex(0);
+        ui->labelCp_Cp_type->setEnabled(false);
+        ui->comboBoxCp_Cp_type->setEnabled(false);
+        ui->labelCp_Cp_type->setToolTip("The selection of clustering coefficient type can only be activated in weighted network");
+        ui->comboBoxCp_Cp_type->setToolTip("The selection of clustering coefficient type can only be activated in weighted network");
+
+        ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(0);
+        if(ui->checkL_Modularity->isChecked())
+        {
+            ui->labelL_Modularity_modularity_type->setEnabled(true);
+            ui->comboBoxLouvain_Modularity_modularity_type->setEnabled(true);
+        }
+        ui->labelL_Modularity_modularity_type->setToolTip("We provide three specific methods for module parcellation in unweighted network.\n"
+                                                          "In algorithm ways,Louvain or Newman method could be selected. Specifically, \n"
+                                                          "user can choose the implement on CPU or GPU for Newman method.");
+        ui->comboBoxLouvain_Modularity_modularity_type->setToolTip("We provide three specific methods for module parcellation in unweighted network.\n"
+                                                          "In algorithm ways,Louvain or Newman method could be selected. Specifically, \n"
+                                                          "user can choose the implement on CPU or GPU for Newman method.");
+        if(ui->checkCUBC->isChecked(true))
+        ui->checkCUBC->setEnabled(true);
+        ui->checkCUBC->setToolTip("The betweenness centrality is enabled in unweighted network");
+    }
+    if(index==1)
+    {
+
+        if(ui->checkCP->isChecked())
+    {
+
+    }
+
+    ui->checkCUBC->setChecked(false);
+    ui->checkCUBC->setEnabled(false);
+    ui->checkCUBC->setToolTip("This algorithm can currently be used in unweighted network");
     }
 }

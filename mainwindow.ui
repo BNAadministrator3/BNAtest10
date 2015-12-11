@@ -545,7 +545,7 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
                 </font>
                </property>
                <property name="text">
-                <string>Cp_type</string>
+                <string>Cp type</string>
                </property>
               </widget>
              </item>
