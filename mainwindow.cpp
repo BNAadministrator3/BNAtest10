@@ -80,7 +80,7 @@ void MainWindow::on_pushButtonSave_clicked()
         }
         string  type=ui->comboBoxCUCorMat_threshold_type->currentText().toStdString()=="correlation"?"r":"s";
         if(both_metrics==0)
-        script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
+            script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->mask_threshold->text().toStdString() <<
@@ -94,8 +94,8 @@ void MainWindow::on_pushButtonSave_clicked()
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
               std::endl;
-        else if(both_metrics==1&&average_fisher==0)
-        script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
+        else if(both_metrics==1&&average_fisher==0){
+            script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->mask_threshold->text().toStdString() <<
@@ -110,9 +110,10 @@ void MainWindow::on_pushButtonSave_clicked()
                   //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
               ' ' <<
               ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
-              std::endl;
-        else if(both_metrics==1&&average_ordinary==0&&average_fisher==1)
-        script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
+              std::endl;}
+        //&&average_ordinary==0
+        else if(both_metrics==1&&average_fisher==1)
+            script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
               ui->mask_threshold->text().toStdString() <<
@@ -1282,9 +1283,14 @@ void MainWindow::clearscreen(){
     //1.清空内容；
   //  ui->lineEditCUCorMat_Dir_for_BOLD->setText("");
     ui->mask_threshold->setText("");
-    ui->CheckCUCorMat_to_average->setChecked(false);
-    ui->ordinary->setChecked(false);
+
+    ui->ordinary->setChecked(true);
     ui->fisher->setChecked(false);
+    ui->CheckCUCorMat_to_average->setEnabled(false);
+    ui->ordinary->setEnabled(false);
+    ui->fisher->setEnabled(false);
+   // ui->CheckCUCorMat_to_average->setChecked(false);
+
 
     ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(false);
     ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(0);
@@ -1385,7 +1391,10 @@ void MainWindow::on_ordinary_clicked(bool checked)
     if(checked==0)
         average_ordinary=0;
     else if(checked==1)
+    {
         average_ordinary=1;
+        average_fisher=0;
+    }
 }
 
 void MainWindow::on_fisher_clicked(bool checked)
@@ -1393,8 +1402,10 @@ void MainWindow::on_fisher_clicked(bool checked)
     if(checked==0)
         average_fisher=0;
     else if(checked==1)
+    {
         average_fisher=1;
-
+        average_ordinary=0;
+}
 }
 
 
@@ -1412,11 +1423,21 @@ void MainWindow::on_radioButtonCUCorMat_to_save_cormatrix_clicked(bool checked)
 void MainWindow::on_CheckCUCorMat_to_average_clicked(bool checked)
 {
     if(checked==0)
-    {    both_metrics=0;
-    ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(false);}
+    {
+        both_metrics=0;
+    ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(false);
+    ui->ordinary->setChecked(true);
+    ui->fisher->setChecked(false);
+    ui->ordinary->setEnabled(false);
+    ui->fisher->setEnabled(false);
+    }
     else if(checked==1)
     {   both_metrics=1;
         ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(true);
+        ui->ordinary->setChecked(true);
+        ui->fisher->setChecked(false);
+        ui->ordinary->setEnabled(true);
+        ui->fisher->setEnabled(true);
     }
 }
 
