@@ -682,19 +682,22 @@ void MainWindow::on_pushButtonLoad_clicked()
         if (tokens.empty())
             continue;       //一行一行的输入！
 
-        if(tokens[0] =="echo"){  //原则 1.2.若没有调用该if语句，即判断为warning
-
-            if(tokens[1] =="unweightednetworks"){
+        if(tokens[0] =="echo")
+        {  //原则 1.2.若没有调用该if语句，即判断为warning
+         qDebug("read echo !");
+            if(tokens[1] =="unweightednetworks")
+            {
                 flag_unweighted=true;
                 flag_weighted=false;//保险一点
                 ui->switchButton->setCurrentIndex(0);
-                //不切换界面，处理参数
-                continue;
-            }else if((tokens[1] =="weightednetworks")){
+             /*   //不切换界面，处理参数
+                continue;*/
+            }else if((tokens[1] =="weightednetworks"))
+            {
                 ui->switchButton->setCurrentIndex(1);
                 flag_weighted=true;
                 flag_unweighted=false;
-                //切换界面，传递参数,发射信号
+     /*           //切换界面，传递参数,发射信号
                 this->hide();// 1.切换界面
                 w1.setParent(this);
                 w1.show();
@@ -702,6 +705,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                 file_name_transimit=file_name;
                 //发射信号
                 emit  mySignalMtoS();
+                */
             }
         }
         if(flag_unweighted==true&&flag_weighted==true)
@@ -1150,142 +1154,12 @@ void MainWindow::on_checkL_Modularity_clicked(bool checked)
     }
 
 }
-/*
-void MainWindow::on_checkPC_CPU_clicked(bool checked)
-{
-    if(checked==0){
-     //    ui->lineEditPC_CPU_input_dir->setEnabled(false);
-         //ui->toolButtonPC_CPU->setEnabled(false);
-          ui->comboBoxPC_CPU_type_for_participant_coefficient->setEnabled(false);
-          ui->labelPC_CPU_type_for_participant_coefficient->setEnabled(false);
-
-       //   ui->labelPC_CPU_input_dir->setVisible(false);
-     //     ui->lineEditPC_CPU_input_dir->setVisible(false);
-       //   ui->toolButtonPC_CPU->setVisible(false);
-      //    ui->labelPC_CPU_type_for_participant_coefficient->setVisible(false);
-      //    ui->comboBoxPC_CPU_type_for_participant_coefficient->setVisible(false);
-    }
-     else if(checked==1)
-     {
-     //   ui->lineEditPC_CPU_input_dir->setEnabled(true);
-     //   ui->toolButtonPC_CPU->setEnabled(true);
-         ui->comboBoxPC_CPU_type_for_participant_coefficient->setEnabled(true);
-         ui->labelPC_CPU_type_for_participant_coefficient->setEnabled(true);
-
-      //   ui->labelPC_CPU_input_dir->setVisible(true);
-     //    ui->lineEditPC_CPU_input_dir->setVisible(true);
-      //   ui->toolButtonPC_CPU->setVisible(true);
-      //   ui->labelPC_CPU_type_for_participant_coefficient->setVisible(true);
-      //   ui->comboBoxPC_CPU_type_for_participant_coefficient->setVisible(true);
-    }
-}*/
-/*
-void MainWindow::on_checkConvertNII_clicked(bool checked)
-{
-    if(checked==0){
-      //   ui->lineEditConvertNII_input_file->setEnabled(false);
-     //    ui->lineEditConvertNII_mask_file->setEnabled(false);
-         ui->lineEditConvertNII_mask_threshold->setEnabled(false);
-      //   ui->toolButtonConvertNII_input_file->setEnabled(false);
-     //    ui->toolButtonConvertNII_mask_file->setEnabled(false);
-
-     //    ui->labelConvertNII_input_file->setVisible(false);
-       //  ui->lineEditConvertNII_input_file->setVisible(false);
-      //   ui->toolButtonConvertNII_input_file->setVisible(false);
-    //     ui->labelConvertNII_mask_file->setVisible(false);
-    //     ui->lineEditConvertNII_mask_file->setVisible(false);
-    //     ui->toolButtonConvertNII_mask_file->setVisible(false);
-      //   ui->labelConvertNII_mask_threshold->setVisible(false);
-      //   ui->lineEditConvertNII_mask_threshold->setVisible(false);
-    }
-     else if(checked==1)
-     {
- //       ui->lineEditConvertNII_input_file->setEnabled(true);
-     //   ui->lineEditConvertNII_mask_file->setEnabled(true);
-        ui->lineEditConvertNII_mask_threshold->setEnabled(true);
-    //    ui->toolButtonConvertNII_input_file->setEnabled(true);
-     //   ui->toolButtonConvertNII_mask_file->setEnabled(true);
-
-      //  ui->labelConvertNII_input_file->setVisible(true);
-   //     ui->lineEditConvertNII_input_file->setVisible(true);
-    //    ui->toolButtonConvertNII_input_file->setVisible(true);
-    //    ui->labelConvertNII_mask_file->setVisible(true);
-    //    ui->lineEditConvertNII_mask_file->setVisible(true);
-    //    ui->toolButtonConvertNII_mask_file->setVisible(true);
-      //  ui->labelConvertNII_mask_threshold->setVisible(true);
-      //  ui->lineEditConvertNII_mask_threshold->setVisible(true);
-}
-}
-*/
-/*
-void MainWindow::on_checkLp_NodalMetrics_clicked(bool checked)
-{
-    if(checked==0){
-        //ui->comboBoxLp_type_for_Lp_NodalMetrics->setEnabled(false);
-       //  ui->lineEditLp_input_dir_NodalMetrics->setEnabled(false);
-       //  ui->lineEditLp_num_of_random_networks_NodalMetrics->setEnabled(false);
-    //     ui->toolButtonLp_input_dir_NodalMetrics->setEnabled(false);
-
-       //  ui->labelLp_type_for_Lp_NodalMetrics->setVisible(false);
-       //  ui->comboBoxLp_type_for_Lp_NodalMetrics->setVisible(false);
-      //   ui->labelLp_input_dir_NodalMetrics->setVisible(false);
-       //  ui->lineEditLp_input_dir_NodalMetrics->setVisible(false);
-      //   ui->toolButtonLp_input_dir_NodalMetrics->setVisible(false);
-         ui->labelLp_num_of_random_networks_NodalMetrics->setVisible(false);
-         ui->lineEditLp_num_of_random_networks_NodalMetrics->setVisible(false);
-    }
-     else if(checked==1)
-     {
-        ui->comboBoxLp_type_for_Lp_NodalMetrics->setEnabled(true);
-     //   ui->lineEditLp_input_dir_NodalMetrics->setEnabled(true);
-        ui->lineEditLp_num_of_random_networks_NodalMetrics->setEnabled(true);
-     //   ui->toolButtonLp_input_dir_NodalMetrics->setEnabled(true);
-
-        ui->labelLp_type_for_Lp_NodalMetrics->setVisible(true);
-        ui->comboBoxLp_type_for_Lp_NodalMetrics->setVisible(true);
-      //  ui->labelLp_input_dir_NodalMetrics->setVisible(true);
-     //   ui->lineEditLp_input_dir_NodalMetrics->setVisible(true);
-     //   ui->toolButtonLp_input_dir_NodalMetrics->setVisible(true);
-        ui->labelLp_num_of_random_networks_NodalMetrics->setVisible(true);
-        ui->lineEditLp_num_of_random_networks_NodalMetrics->setVisible(true);
-    }
-}
-
-void MainWindow::on_checkCP_NodalMetrics_clicked(bool checked)
-{
-    if(checked==0){
-     //    ui->lineEditCp_input_dir_NodalMetrics->setEnabled(false);
-         ui->lineEditCp_num_of_random_networks_NodalMetrics->setEnabled(false);
-     //    ui->toolButtonCp_input_dir_NodalMetrics->setEnabled(false);
-
-       //  ui->labelCp_input_dir_NodalMetrics->setVisible(false);
-      //   ui->lineEditCp_input_dir_NodalMetrics->setVisible(false);
-      //   ui->toolButtonCp_input_dir_NodalMetrics->setVisible(false);
-         ui->labelCp_num_of_random_networks_NodalMetrics->setVisible(false);
-         ui->lineEditCp_num_of_random_networks_NodalMetrics->setVisible(false);
-    }
-     else if(checked==1)
-     {
-     //   ui->lineEditCp_input_dir_NodalMetrics->setEnabled(true);
-        ui->lineEditCp_num_of_random_networks_NodalMetrics->setEnabled(true);
-    //    ui->toolButtonCp_input_dir_NodalMetrics->setEnabled(true);
-
-     //   ui->labelCp_input_dir_NodalMetrics->setVisible(true);
-     //   ui->lineEditCp_input_dir_NodalMetrics->setVisible(true);
-     //   ui->toolButtonCp_input_dir_NodalMetrics->setVisible(true);
-        ui->labelCp_num_of_random_networks_NodalMetrics->setVisible(true);
-        ui->lineEditCp_num_of_random_networks_NodalMetrics->setVisible(true);
-    }
-}
-*/
 void MainWindow::clearscreen(){
     //清屏函数两个功能：1.清空内容,顺带初始化；2.使界面回到灰框状态
     //1.清空内容；
   //  ui->lineEditCUCorMat_Dir_for_BOLD->setText("");
     ui->mask_threshold->setText("");
 
-    ui->ordinary->setChecked(true);
-    ui->fisher->setChecked(false);
     ui->CheckCUCorMat_to_average->setEnabled(false);
     ui->ordinary->setEnabled(false);
     ui->fisher->setEnabled(false);
