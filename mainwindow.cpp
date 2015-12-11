@@ -62,8 +62,10 @@ void MainWindow::on_pushButtonSave_clicked()
     }
 //temporary sequence:lp,cp,smallworld,modularity,pc,degree,bc,ec,outputNII
     std::stringstream script;
-    script <<  "echo unweightednetworks" << std::endl;
 
+  if(ui->switchButton->currentIndex()==0)
+  {
+     script <<  "echo unweightednetworks" << std::endl;
     if (ui->checkCUCorMat->isChecked()) {
         //组合之外的统统选n
         if (ui->lineEdit_Working_Directory->text().isEmpty()
@@ -208,7 +210,6 @@ void MainWindow::on_pushButtonSave_clicked()
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"n"<<
               std::endl;
     }
-
     if (ui->checkCP->isChecked()&&ui->checkCP_NodalMetrics->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()
@@ -291,7 +292,6 @@ void MainWindow::on_pushButtonSave_clicked()
               ui->lineEdit_Working_Directory->text().toStdString() <<
               std::endl;
     }
-
     if (ui->checkCUBC->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
@@ -301,7 +301,6 @@ void MainWindow::on_pushButtonSave_clicked()
               ui->lineEdit_Working_Directory->text().toStdString() <<
               std::endl;
     }
-
     if (ui->checkCUEC->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
@@ -326,6 +325,271 @@ void MainWindow::on_pushButtonSave_clicked()
               ui->mask_threshold->text().toStdString() <<
               std::endl;
     }
+   }
+  if(ui->switchButton->currentIndex()==1)
+  {
+    script <<  "echo weightednetworks" << std::endl;
+     if (ui->checkCUCorMat->isChecked()) {
+        //组合之外的统统选n
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->mask_threshold->text().isEmpty()
+                //|| ui->lineEditCUCorMat_to_average->text().isEmpty()
+                //|| ui->lineEditCUCorMat_to_save_cormatrix->text().isEmpty()
+                //|| ui->lineEditCUCorMat_threshold_type->text().isEmpty()
+                || ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().isEmpty()
+                ) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        string  type=ui->comboBoxCUCorMat_threshold_type->currentText().toStdString()=="correlation"?"r":"s";
+        if(both_metrics==0)
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->mask_threshold->text().toStdString() <<
+              ' ' <<
+              "n" <<
+                  //ui->lineEditCUCorMat_to_average->text().toStdString() <<
+              ' ' <<
+              to_save_cormatrix <<
+                  //ui->lineEditCUCorMat_to_save_cormatrix->text().toStdString() <<
+              ' ' <<
+              type<<
+                  //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
+              ' ' <<
+              ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
+              std::endl;
+        else if(both_metrics==1&&average_fisher==0)
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->mask_threshold->text().toStdString() <<
+              ' ' <<
+              "bn" <<
+                  //ui->lineEditCUCorMat_to_average->text().toStdString() <<
+              ' ' <<
+              to_save_cormatrix <<
+                  //ui->lineEditCUCorMat_to_save_cormatrix->text().toStdString() <<
+              ' ' <<
+              type <<
+                  //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
+              ' ' <<
+              ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
+              std::endl;
+        else if(both_metrics==1&&average_ordinary==0&&average_fisher==1)
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->mask_threshold->text().toStdString() <<
+              ' ' <<
+              "bf" <<
+                  //ui->lineEditCUCorMat_to_average->text().toStdString() <<
+              ' ' <<
+              to_save_cormatrix <<
+                  //ui->lineEditCUCorMat_to_save_cormatrix->text().toStdString() <<
+              ' ' <<
+             type <<
+                  //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
+              ' ' <<
+              ui->lineEditCUCorMat_threshold_for_correlation_coefficient->text().toStdString() <<
+              std::endl;
+    }
+
+    if (ui->checkLp->isChecked()&&(!ui->checkLp_NodalMetrics->isChecked())) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->lineEditLp_num_of_random_networks->text().isEmpty()
+              ) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        if (ui->lineEditLp_num_of_random_networks->text()=="0")
+        {
+            QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+       script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Lp.exe " : "./exefiles_weighted/Lp ") <<
+             ui->lineEdit_Working_Directory->text().toStdString() <<
+             ' ' <<
+             ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"g"<<
+             std::endl;
+    }
+    if (ui->checkLp_NodalMetrics->isChecked()&&(!ui->checkLp_NodalMetrics->isChecked())) {
+
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+               ) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"n"<<
+              std::endl;
+    }
+    if (ui->checkLp->isChecked()&&ui->checkLp_NodalMetrics->isChecked()) {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()
+                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()
+                 ) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         if (ui->lineEditLp_num_of_random_networks->text()=="0")
+         {
+             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
+               ui->lineEdit_Working_Directory->text().toStdString() <<
+               ' ' <<
+               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"b"<<
+               std::endl;
+     }
+    if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        if (ui->lineEditLp_num_of_random_networks->text()=="0")
+        {
+            QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"g"<<
+              std::endl;
+    }
+    if (ui->checkCP_NodalMetrics->isChecked()&&(!ui->checkCP->isChecked())) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+               ) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"n"<<
+              std::endl;
+    }
+    if (ui->checkCP->isChecked()&&ui->checkCP_NodalMetrics->isChecked()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->lineEditLp_num_of_random_networks->text().isEmpty()
+               ) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        if (ui->lineEditLp_num_of_random_networks->text()=="0")
+        {
+            QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"b"<<
+              std::endl;
+    }
+    if(ui->checkSmallWordProperty->isChecked()){
+        if (ui->lineEdit_Working_Directory->text().isEmpty()||
+                ui->lineEditLp_num_of_random_networks->text().isEmpty())
+        {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        if (ui->lineEditLp_num_of_random_networks->text()=="0")
+        {
+            QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\SmallWorldProperty.exe " : "./exefiles/SmallWorldProperty ") <<
+                    ui->lineEdit_Working_Directory->text().toStdString() <<
+                    ' ' <<
+                        std::endl;
+    }
+    if (ui->checkL_Modularity->isChecked()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }                                           //这句话是看是不是win32 是就是一种格式 不是就是另一种格式  \\是c++中的转义字符  代表win中的反斜杠；系统路径，编程路径 \\或/ 理解：因为\会被编译错
+
+        string s=ui->comboBoxLouvain_Modularity_modularity_type->currentText().toStdString();
+        if(s=="Louvain")
+           script << (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe " : "./exefiles/Louvain_Modularity ") <<
+                 ui->lineEdit_Working_Directory->text().toStdString() <<
+                 ' ' <<
+                 ui->lineEditLp_num_of_random_networks->text().toStdString() <<
+                 std::endl;
+        else if (s=="Newman_GPU")
+            script << (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe " : "./exefiles/Newman_Modularity_GPU ") <<
+                        ui->lineEdit_Working_Directory->text().toStdString() <<
+                        ' ' <<
+                        ui->lineEditLp_num_of_random_networks->text().toStdString() <<
+                        std::endl;
+         else
+            script << (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_CPU.exe " : "./exefiles/Newman_Modularity_CPU ") <<
+                         ui->lineEdit_Working_Directory->text().toStdString() <<
+                         ' ' <<
+                         ui->lineEditLp_num_of_random_networks->text().toStdString() <<
+                         std::endl;
+
+    }
+    if (ui->checkPC_CPU->isChecked()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+            script << (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe " : "./exefiles/PC_CPU ") <<
+                        ui->lineEdit_Working_Directory->text().toStdString() <<
+                        ' ' <<
+                            std::endl;
+    }
+    if (ui->checkDegree->isChecked()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Degree.exe " : "./exefiles/Degree ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              std::endl;
+    }
+    if (ui->checkCUBC->isChecked()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\CUBC.exe " : "./exefiles/CUBC ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              std::endl;
+    }
+    if (ui->checkCUEC->isChecked()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\CUEC.exe " : "./exefiles/CUBC ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              std::endl;
+    }
+    if (ui->checkConvertNII->isChecked()) {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->lineEdit_Mask_File->text().isEmpty()
+                || ui->mask_threshold->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\ConvertNII.exe " : "./exefiles/ConvertNII ") <<
+              ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
+              ' ' <<
+              ui->mask_threshold->text().toStdString() <<
+              std::endl;
+    }
+   }
+
     QString file_name = ui->lineEditSaveDir->text();
     std::cout << script.str() << std::endl;
     QFileInfo file_info(file_name);//是指文件不存在，只有text内容为空文件才会不存在
@@ -689,48 +953,6 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
 
     }
 }
-/*
-void MainWindow::on_toolButtonLp_input_dir_NodalMetrics_clicked()
-{
-    ui->lineEdit_Working_Directory_NodalMetrics->setText(QFileDialog::getExistingDirectory(this, "Directory"));
-}
-void MainWindow::on_toolButtonCp_input_dir_NodalMetrics_clicked()
-{
-     ui->lineEditCp_input_dir_NodalMetrics->setText(QFileDialog::getExistingDirectory(this, "Directory"));
-}
-*/
-/*
-
-/*void MainWindow::on_checkCUBFS_Lp_clicked(bool checked)
-{
-    if(checked==0){
-         ui->lineEditCUBFS_Lp_input_dir->setEnabled(false);
-         ui->lineEditCUBFS_Lp_num_of_random_networks->setEnabled(false);
-         ui->toolButtonCUBFS_Lp_input_dir->setEnabled(false);
-    }
-     else if(checked==1)
-     {
-        ui->lineEditCUBFS_Lp_input_dir->setEnabled(true);
-        ui->lineEditCUBFS_Lp_num_of_random_networks->setEnabled(true);
-        ui->toolButtonCUBFS_Lp_input_dir->setEnabled(true);
-    }
-}*/
-/*
-void MainWindow::on_checkBFS_MulCPU_clicked(bool checked)
-{
-    if(checked==0){
-         ui->lineEditBFS_MulCPU_input_dir->setEnabled(false);
-         ui->lineEditBFS_MulCPU_num_of_random_networks->setEnabled(false);
-         ui->toolButtonBFS_MulCPU_input_dir->setEnabled(false);
-    }
-     else if(checked==1)
-     {
-        ui->lineEditBFS_MulCPU_input_dir->setEnabled(true);
-        ui->lineEditBFS_MulCPU_num_of_random_networks->setEnabled(true);
-        ui->toolButtonBFS_MulCPU_input_dir->setEnabled(true);
-    }
-}
-*/
 void MainWindow::on_checkCP_clicked(bool checked)
 {
     if(checked==0&&ui->switchButton->currentIndex()==1){
@@ -761,54 +983,6 @@ void MainWindow::on_checkCP_clicked(bool checked)
       //  ui->lineEditCp_num_of_random_networks->setVisible(true);
     }
 }
-/*
-void MainWindow::on_checkDegree_clicked(bool checked)
-{
-    if(checked==0){
-       //  ui->lineEditDegree_input_dir->setEnabled(false);
-         ui->toolButtonDegree_input_dir->setEnabled(false);
-
-
-
-    }
-     else if(checked==1)
-     {
-      //  ui->lineEditDegree_input_dir->setEnabled(true);
-        ui->toolButtonDegree_input_dir->setEnabled(true);
-
-
-
-
-    }
-}
-*/
-/*
-void MainWindow::on_checkCUBC_clicked(bool checked)
-{
-    if(checked==0){
-      //   ui->lineEditCUBC_input_dir->setEnabled(false);
-   //      ui->toolButtonCUBC_input_dir->setEnabled(false);
-    }
-     else if(checked==1)
-     {
-      //  ui->lineEditCUBC_input_dir->setEnabled(true);
-    //    ui->toolButtonCUBC_input_dir->setEnabled(true);
-    }
-}
-
-void MainWindow::on_checkCUEC_clicked(bool checked)
-{
-    if(checked==0){
-       //  ui->lineEditCUEC_input_dir->setEnabled(false);
-         ui->toolButtonCUEC_input_dir->setEnabled(false);
-    }
-     else if(checked==1)
-     {
-       // ui->lineEditCUEC_input_dir->setEnabled(true);
-        ui->toolButtonCUEC_input_dir->setEnabled(true);
-    }
-}
-*/
 void MainWindow::on_checkL_Modularity_clicked(bool checked)
 {
     if(checked==0&&ui->switchButton->currentIndex()==0){
