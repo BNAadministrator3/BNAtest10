@@ -931,7 +931,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                 emit mySignalMgrayBoxCP(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
-                ui->comboBoxCp_Cp_type->setCurrentIndex(tokens[3]==);
+                ui->comboBoxCp_Cp_type->setCurrentIndex(tokens[3] == "1");
                 }
             else if(tokens[4]=="n"){
                     ui->checkCP_NodalMetrics->setChecked(true);
