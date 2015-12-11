@@ -86,10 +86,8 @@ void MainWindow::on_pushButtonSave_clicked()
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
               "n" <<
-                  //ui->lineEditCUCorMat_to_average->text().toStdString() <<
               ' ' <<
               to_save_cormatrix <<
-                  //ui->lineEditCUCorMat_to_save_cormatrix->text().toStdString() <<
               ' ' <<
               type<<
                   //ui->lineEditCUCorMat_threshold_type->text().toStdString() <<
@@ -893,12 +891,6 @@ void MainWindow::on_pushButtonLoad_clicked()
             if (tokens.size() == 4) {
                 if(tokens[3] =="g") {
                 ui->checkLp->setChecked(true);
-             //   emit mySignalMgrayBoxLp(true);
-             /*   if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp"))
-                  ui->comboBoxLp_type_for_Lp->setCurrentIndex(0);
-                else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU"))
-                    ui->comboBoxLp_type_for_Lp->setCurrentIndex(1);
-               */
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
                                     }
@@ -922,8 +914,8 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
              //     ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
-                                    }
-                                    }
+            }
+            }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe" : "./exefiles_weighted/Cp")) {
             if (tokens.size() == 5) {
                 if(tokens[4]=="g"){
@@ -931,13 +923,12 @@ void MainWindow::on_pushButtonLoad_clicked()
                 emit mySignalMgrayBoxCP(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
-                ui->comboBoxCp_Cp_type->setCurrentIndex(tokens[3]==);
+                ui->comboBoxCp_Cp_type->setCurrentIndex(tokens[3] == "2");
                 }
             else if(tokens[4]=="n"){
-                    ui->checkCP_NodalMetrics->setChecked(true);
-
-                    ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-               //     ui->lineEditCp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
+                ui->checkCP_NodalMetrics->setChecked(true);
+                ui->comboBoxCp_Cp_type->setCurrentIndex(tokens[3] == "2");
+                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                 }
                 else if(tokens[4]=="b")
                 {
@@ -946,6 +937,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                     ui->checkCP_NodalMetrics->setChecked(true);
                     ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
                     ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
+                    ui->comboBoxCp_Cp_type->setCurrentIndex(tokens[3] == "2");
                 }
             }
         } else if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\SmallWorldProperty.exe" : "./exefiles_weighted/SmallWorldProperty")) {
