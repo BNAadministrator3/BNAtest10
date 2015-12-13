@@ -696,15 +696,14 @@ void MainWindow::on_pushButtonLoad_clicked()
             if(tokens[1] =="unweightednetworks")
             {
 
-              //  qDebug("read echo unweighted !");
-            //    qDebug("ffffllllaaaagggg");
-                ui->switchButton->setCurrentIndex(0);
+                qDebug("read echo unweighted !");
+                qDebug("ffffllllaaaagggg");
+               ui->switchButton->setCurrentIndex(0);  //why???换到第三行就不行？
                 flag_unweighted=true;
                 flag_weighted=false;//保险一点
 
-             /*   //不切换界面，处理参数
-                continue;*/
-            }else if((tokens[1] =="weightednetworks"))
+            }
+            if((tokens[1] =="weightednetworks"))
             {
                 ui->switchButton->setCurrentIndex(1);
                 flag_weighted=true;
@@ -719,16 +718,22 @@ void MainWindow::on_pushButtonLoad_clicked()
                 emit  mySignalMtoS();
                 */
             }
+            if(tokens[1] =="unweightednetworks")
+            {
+                flag_unweighted=true;
+                flag_weighted=false;//保险一点
+
+            }
         }
         if(flag_unweighted==true&&flag_weighted==true)
         {
             QMessageBox::information(this, "Warning", "Script error(s).Error(s) may occur.Only one sort of networks type (weighted or unweighted) can be selected by using the command 'echo' in the script", QMessageBox::Ok, QMessageBox::Ok);
-            //清理参数，必须这样，要不乱了·· 这个不要求echo语句的位置！好优点！``所以必须在这统一清理参数！
-            emit mySignalMclr();
+            //清理参数，必须这样，要不乱了·· 这个不要求echo语句的位置！好优点！``所以必须在这统一清理参数！  
         }
         if(flag_unweighted==true&&flag_weighted==false)
         {
-          //  qDebug("red unwei specific");
+            qDebug("red unwei specific");
+            emit mySignalMclr();
         if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe" : "./exefiles/CUCormat")) {
             if (tokens.size() >= 7) {
                 ui->checkCUCorMat->setChecked(true);
@@ -872,7 +877,7 @@ void MainWindow::on_pushButtonLoad_clicked()
         }
         }
         if(flag_weighted==true&&flag_unweighted==false)
-        {
+        {    
         if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe" : "./exefiles_weighted/CUCormat")) {
             if (tokens.size() >= 7) {
                 ui->checkCUCorMat->setChecked(true);
@@ -1017,13 +1022,13 @@ void MainWindow::on_toolButtonSaveDir_clicked()
                                                               (operating_system == os_win32 ? "*.bat" : "*.sh"),
                                                               (operating_system == os_win32 ? "script (*.bat);;Any (*.*)" : "script (*.sh);Any (*.*)")));
 }
-
+/*
 void MainWindow::on_switchButton_clicked()
 {
     this->hide();
    w1.setParent(this);
     w1.show();
-}
+}*/
 void MainWindow::on_checkCUCorMat_clicked(bool checked)
 {
     if(checked==0){

@@ -38,7 +38,7 @@ private slots:
  //   void on_toolButtonConvertNII_mask_file_clicked();
 //    void on_toolButtonL_Modularity_dir_for_csr_clicked();
     void on_toolButtonSaveDir_clicked();
-    void on_switchButton_clicked();
+  //  void on_switchButton_clicked();
 //    void on_toolButtonPC_CPU_clicked();
     void on_checkCUCorMat_clicked(bool checked);
   // void on_checkLp_clicked(bool checked);
