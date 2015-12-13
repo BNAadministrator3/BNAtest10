@@ -630,6 +630,7 @@ void MainWindow::on_pushButtonLoad_clicked()
     if (!file_info.exists()) {
        if(file_name_transimit==NULL)
        {
+        //  qDebug("file_name");
            file_name = QFileDialog::getOpenFileName(this,
                                                     "Save as..." ,
                                                     (operating_system == os_win32 ? "script.bat" : "script.sh"),
@@ -666,13 +667,18 @@ void MainWindow::on_pushButtonLoad_clicked()
     bool flag_weighted=false;
     while (std::getline(is, line)) {  //这个的意思是读完整个文件，我去，太牛了！
         //ui->lineEditSaveDir->setText(line.c_str());
+       // qDebug("%s",line);
         std::vector<std::string> tokens; //在命名空间中再找一个特定的命名空间
         std::string token;
         std::istringstream line_is(line);//在循环中定义的变量在每次循环里都要经历创建和撤消的过程
-        while (line_is >> token) {
+        //qDebug("%s",line_is);
+        while (line_is >> token)
+        {
             tokens.push_back(token); //把line_is的数据输到向量tokens，若输入一直有，为真，就一直输入
+            qDebug("%s",token);
         }
-           qDebug("read!");
+
+       // qDebug("read!");
         //std::string out;
         //for (size_t i = 0; i < tokens.size(); ++i) {
         //    out += tokens[i] + " ";
@@ -682,16 +688,20 @@ void MainWindow::on_pushButtonLoad_clicked()
         if (tokens.empty())
         {
             continue;       //一行一行的输入！
-         qDebug("empty!");
+        // qDebug("empty!");
         }
         if(tokens[0] == "echo")
         {  //原则 1.2.若没有调用该if语句，即判断为warning
-         qDebug("read echo !");
+       // qDebug("read echo !");
             if(tokens[1] =="unweightednetworks")
             {
+
+              //  qDebug("read echo unweighted !");
+            //    qDebug("ffffllllaaaagggg");
+                ui->switchButton->setCurrentIndex(0);
                 flag_unweighted=true;
                 flag_weighted=false;//保险一点
-                ui->switchButton->setCurrentIndex(0);
+
              /*   //不切换界面，处理参数
                 continue;*/
             }else if((tokens[1] =="weightednetworks"))
@@ -718,6 +728,7 @@ void MainWindow::on_pushButtonLoad_clicked()
         }
         if(flag_unweighted==true&&flag_weighted==false)
         {
+          //  qDebug("red unwei specific");
         if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe" : "./exefiles/CUCormat")) {
             if (tokens.size() >= 7) {
                 ui->checkCUCorMat->setChecked(true);
