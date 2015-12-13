@@ -702,6 +702,8 @@ void MainWindow::on_pushButtonLoad_clicked()
                 flag_unweighted=true;
                 flag_weighted=false;//保险一点
 
+             //   qDebug("ffffllllaaaagggg");
+
             }
             if((tokens[1] =="weightednetworks"))
             {
@@ -718,12 +720,12 @@ void MainWindow::on_pushButtonLoad_clicked()
                 emit  mySignalMtoS();
                 */
             }
-            if(tokens[1] =="unweightednetworks")
+          /*  if(tokens[1] =="unweightednetworks")
             {
                 flag_unweighted=true;
                 flag_weighted=false;//保险一点
 
-            }
+            }*/
         }
         if(flag_unweighted==true&&flag_weighted==true)
         {
