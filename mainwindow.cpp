@@ -1188,6 +1188,8 @@ void MainWindow::on_pushButtonLoad_clicked()
 
     is.close();
 }
+
+
 void MainWindow::on_toolButtonSaveDir_clicked()
 {
     ui->lineEditSaveDir->setText(QFileDialog::getOpenFileName(this,
