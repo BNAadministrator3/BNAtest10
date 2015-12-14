@@ -189,7 +189,8 @@ void MainWindow::on_pushButtonSave_clicked()
   if(ui->switchButton->currentIndex()==0)
   {
      script <<  "echo unweightednetworks" << std::endl;
-    if (ui->checkCUCorMat->isChecked()) {
+     string unweighted=ui->lineEdit_Working_Directory->text().toStdString();
+     if (ui->checkCUCorMat->isChecked()) {
         //组合之外的统统选n
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->mask_threshold->text().isEmpty()
