@@ -777,6 +777,8 @@ void MainWindow::on_pushButtonLoad_clicked()
     is.open(file_name.toStdString().c_str());
     std::string line;
 
+    if( flag_cancel!=true)
+    {
     ui->checkCUCorMat->setChecked(false);
     ui->checkLp->setChecked(false);
     ui->checkLp_NodalMetrics->setChecked(false);
@@ -789,6 +791,7 @@ void MainWindow::on_pushButtonLoad_clicked()
     ui->checkCUBC->setChecked(false);
     ui->checkCUEC->setChecked(false);
     ui->checkConvertNII->setChecked(false);
+    }
     bool flag_unweighted=false;
     bool flag_weighted=false;
     while (std::getline(is, line)) {  //这个的意思是读完整个文件，我去，太牛了！
@@ -871,7 +874,21 @@ void MainWindow::on_pushButtonLoad_clicked()
         if(flag_unweighted==true&&flag_weighted==false)
         {
             qDebug("red unwei specific");
-           string unweighted=tokens[1].substr(tokens[1].find)
+       /*     if(tokens[1]!="unweightednetworks")
+            {
+            string temp="/unweighted";
+            string tk1=tokens[1];
+            qDebug("%s",tk1);
+             int templen=temp.length();
+             int len=tk1.length();
+             int length=len-templen;
+            qDebug("%d",len);
+            qDebug("%d",templen);
+            qDebug("%d",length);
+           string unweighted=tokens[1].substr(0,tokens[1].length()-11);
+             qDebug("%s",unweighted);
+            }*/
+            qDebug("red unwei specific");
         if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe" : "./exefiles/CUCormat")) {
             if (tokens.size() >= 7) {
                 ui->checkCUCorMat->setChecked(true);
@@ -905,6 +922,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText(token6.c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp")) {
+           string unweighted=tokens[1].substr(0,tokens[1].length()-11);
             if (tokens.size() == 4) {
                 if(tokens[3] =="g") {
                 ui->checkLp->setChecked(true);
@@ -914,7 +932,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                 else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU"))
                     ui->comboBoxLp_type_for_Lp->setCurrentIndex(1);
                */
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(unweighted.c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
                                     }
 
@@ -926,7 +944,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                 else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU"))
                     ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(1);
                 */
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(unweighted.c_str());
            //     ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
                                     }
             else if(tokens[3] =="b") {
@@ -934,22 +952,23 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->checkLp->setChecked(true);
             //    emit mySignalMgrayBoxLp(true);
                 ui->checkLp_NodalMetrics->setChecked(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(unweighted.c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
              //     ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
                                     }
                                     }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Cp.exe" : "./Cp")) {
+            string unweighted=tokens[1].substr(0,tokens[1].length()-11);
             if (tokens.size() == 4) {
                 if(tokens[3]=="g"){
                 ui->checkCP->setChecked(true);
                 emit mySignalMgrayBoxCP(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(unweighted.c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());}
             else if(tokens[3]=="n"){
                     ui->checkCP_NodalMetrics->setChecked(true);
 
-                    ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                    ui->lineEdit_Working_Directory->setText(unweighted.c_str());
                //     ui->lineEditCp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
                 }
                 else if(tokens[3]=="b")
@@ -957,19 +976,21 @@ void MainWindow::on_pushButtonLoad_clicked()
                     ui->checkCP->setChecked(true);
                     emit mySignalMgrayBoxCP(true);
                     ui->checkCP_NodalMetrics->setChecked(true);
-                    ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                    ui->lineEdit_Working_Directory->setText(unweighted.c_str());
                     ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
                 }
             }
         } else if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\SmallWorldProperty.exe" : "./exefiles/SmallWorldProperty")) {
-                 if (tokens.size() == 2) {
+             string unweighted=tokens[1].substr(0,tokens[1].length()-11);
+            if (tokens.size() == 2) {
                      ui->checkSmallWordProperty->setChecked(true);
-                     ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                     ui->lineEdit_Working_Directory->setText(unweighted.c_str());
                  }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe" : "./exefiles/Louvain_Modularity")
                ||tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe" : "./exefiles/Newman_Modularity_GPU")
                || tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_CPU.exe" : "./exefiles/Newman_Modularity_CPU")
                 ) {
+             string unweighted=tokens[1].substr(0,tokens[1].length()-11);
          if (tokens.size() == 3) {
              ui->checkL_Modularity->setChecked(true);
              emit mySignalMgrayBoxL_Modularity(true);
@@ -978,37 +999,42 @@ void MainWindow::on_pushButtonLoad_clicked()
              else if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe" : "./exefiles/Newman_Modularity_GPU") )
              ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(1);
              else ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(2);
-             ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+             ui->lineEdit_Working_Directory->setText(unweighted.c_str());
              ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
          }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe" : "./exefiles/PC_CPU")) {
+             string unweighted=tokens[1].substr(0,tokens[1].length()-11);
             if (tokens.size() == 2) {
                 ui->checkPC_CPU->setChecked(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(unweighted.c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Degree.exe" : "./exefiles/Degree")) {
+            string unweighted=tokens[1].substr(0,tokens[1].length()-11);
             if (tokens.size() == 2) {
                 ui->checkDegree->setChecked(true);
                 emit mySignalMgrayBoxDegree(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(unweighted.c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBC.exe" : "./exefiles/CUBC")) {
+             string unweighted=tokens[1].substr(0,tokens[1].length()-11);
             if (tokens.size() == 2) {
                 ui->checkCUBC->setChecked(true);
                 emit mySignalMgrayBoxCUBC(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(unweighted.c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUEC.exe" : "./exefiles/CUEC")) {
+             string unweighted=tokens[1].substr(0,tokens[1].length()-11);
             if (tokens.size() == 2) {
                 ui->checkCUEC->setChecked(true);
                 emit mySignalMgrayBoxCUEC(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\ConvertNII.exe" : "./exefiles/ConvertNII")) {
+             string unweighted=tokens[1].substr(0,tokens[1].length()-11);
             if (tokens.size() == 4) {
                 ui->checkConvertNII->setChecked(true);
                 emit mySignalMgrayBoxConvertNII(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(unweighted.c_str());
                 ui->lineEdit_Mask_File->setText(tokens[2].c_str());
                 ui->mask_threshold->setText(tokens[3].c_str());
             }
@@ -1048,11 +1074,12 @@ void MainWindow::on_pushButtonLoad_clicked()
                     token6 += tokens[i] + " ";
                 ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText(token6.c_str());
             }
-        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\Lp.exe" : "./exefiles_weighted/Lp")) {
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\CUBFW_Lp.exe" : "./exefiles_weighted/CUBFW_Lp")) {
+            string weighted=tokens[1].substr(0,tokens[1].length()-9);
             if (tokens.size() == 4) {
                 if(tokens[3] =="g") {
                 ui->checkLp->setChecked(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(weighted.c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
                                     }
 
@@ -1064,7 +1091,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                 else if(tokens[0] ==(operating_system == os_win32 ? ".\\exefiles\\BFS_MulCPU.exe" : "./exefiles/BFS_MulCPU"))
                     ui->comboBoxLp_type_for_Lp_NodalMetrics->setCurrentIndex(1);
                 */
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(weighted.c_str());
            //     ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
                                     }
             else if(tokens[3] =="b") {
@@ -1072,71 +1099,79 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->checkLp->setChecked(true);
             //    emit mySignalMgrayBoxLp(true);
                 ui->checkLp_NodalMetrics->setChecked(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(weighted.c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
              //     ui->lineEditLp_num_of_random_networks_NodalMetrics->setText(tokens[2].c_str());
             }
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe" : "./exefiles_weighted/Cp")) {
+            string weighted=tokens[1].substr(0,tokens[1].length()-9);
             if (tokens.size() == 5) {
                 if(tokens[4]=="g"){
                 ui->checkCP->setChecked(true);
                 emit mySignalMgrayBoxCP(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(weighted.c_str());
                 ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
                 ui->comboBoxCp_Cp_type->setCurrentIndex(tokens[3] == "2");
                 }
             else if(tokens[4]=="n"){
                 ui->checkCP_NodalMetrics->setChecked(true);
                 ui->comboBoxCp_Cp_type->setCurrentIndex(tokens[3] == "2");
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(weighted.c_str());
                 }
                 else if(tokens[4]=="b")
                 {
                     ui->checkCP->setChecked(true);
                     emit mySignalMgrayBoxCP(true);
                     ui->checkCP_NodalMetrics->setChecked(true);
-                    ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                    ui->lineEdit_Working_Directory->setText(weighted.c_str());
                     ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
                     ui->comboBoxCp_Cp_type->setCurrentIndex(tokens[3] == "2");
                 }
             }
         } else if(tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\SmallWorldProperty.exe" : "./exefiles_weighted/SmallWorldProperty")) {
-                 if (tokens.size() == 2) {
+             string weighted=tokens[1].substr(0,tokens[1].length()-9);
+            if (tokens.size() == 2) {
                      ui->checkSmallWordProperty->setChecked(true);
-                     ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                     ui->lineEdit_Working_Directory->setText(weighted.c_str());
                  }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\Louvain_Modularity.exe" : "./exefiles_weighted/Louvain_Modularity")
                 ) {
+             string weighted=tokens[1].substr(0,tokens[1].length()-9);
          if (tokens.size() == 3) {
              ui->checkL_Modularity->setChecked(true);
              emit mySignalMgrayBoxL_Modularity(true);
              ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(0);
-             ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+             ui->lineEdit_Working_Directory->setText(weighted.c_str());
              ui->lineEditLp_num_of_random_networks->setText(tokens[2].c_str());
          }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\PC_CPU.exe" : "./exefiles_weighted/PC_CPU")) {
+             string weighted=tokens[1].substr(0,tokens[1].length()-9);
             if (tokens.size() == 2) {
                 ui->checkPC_CPU->setChecked(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(weighted.c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\Degree.exe" : "./exefiles_weighted/Degree")) {
+            string weighted=tokens[1].substr(0,tokens[1].length()-9);
             if (tokens.size() == 2) {
+              //   string weighted=tokens[1].substr(0,tokens[1].length()-9);
                 ui->checkDegree->setChecked(true);
                 emit mySignalMgrayBoxDegree(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(weighted.c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\CUEC.exe" : "./exefiles_weighted/CUEC")) {
+           string weighted=tokens[1].substr(0,tokens[1].length()-9);
             if (tokens.size() == 2) {
                 ui->checkCUEC->setChecked(true);
                 emit mySignalMgrayBoxCUEC(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(weighted.c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\ConvertNII.exe" : "./exefiles_weighted/ConvertNII")) {
+            string weighted=tokens[1].substr(0,tokens[1].length()-9);
             if (tokens.size() == 4) {
                 ui->checkConvertNII->setChecked(true);
                 emit mySignalMgrayBoxConvertNII(true);
-                ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
+                ui->lineEdit_Working_Directory->setText(weighted.c_str());
                 ui->lineEdit_Mask_File->setText(tokens[2].c_str());
                 ui->mask_threshold->setText(tokens[3].c_str());
             }
