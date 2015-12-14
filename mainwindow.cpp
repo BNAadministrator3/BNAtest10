@@ -26,7 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SIGNAL(mySignalMtoS()),&w1,SLOT(on_pushButtonLoad_clicked()));
     connect(&w1,SIGNAL(mySignalStoM()),this,SLOT(on_pushButtonLoad_clicked()));
     //这种connect的方式我也是醉了！！！！！
+  //  connect(this,SIGNAL(mySignalMclr()),this,SLOT(on_clearscreen()));
     connect(this,SIGNAL(mySignalMclr()),this,SLOT(clearscreen()));
+
 
      connect(this,SIGNAL(mySignalMgrayBoxCUCorMat(bool)),this,SLOT(on_checkCUCorMat_clicked(bool)));
   //   connect(this,SIGNAL(mySignalMgrayBoxLp(bool)),this,SLOT(on_checkLp_clicked(bool)));
@@ -37,18 +39,139 @@ MainWindow::MainWindow(QWidget *parent) :
    //  connect(this,SIGNAL(mySignalMgrayBoxCUBC(bool)),this,SLOT(on_checkCUBC_clicked(bool)));
    //  connect(this,SIGNAL(mySignalMgrayBoxCUEC(bool)),this,SLOT(on_checkCUEC_clicked(bool)));
      connect(this,SIGNAL(mySignalMgrayBoxL_Modularity(bool)),this,SLOT(on_checkL_Modularity_clicked(bool)));
-     connect(this,SIGNAL(mySignalMgrayBoxPC_CPU(bool)),this,SLOT(on_checkPC_CPU_clicked(bool)));
-     connect(this,SIGNAL(mySignalMgrayBoxConvertNII(bool)),this,SLOT(on_checkConvertNII_clicked(bool)));
+   //  connect(this,SIGNAL(mySignalMgrayBoxPC_CPU(bool)),this,SLOT(on_checkPC_CPU_clicked(bool)));
+  //   connect(this,SIGNAL(mySignalMgrayBoxConvertNII(bool)),this,SLOT(on_checkConvertNII_clicked(bool)));
 
    //  connect(this,SIGNAL(mySignalMgrayBoxLp_NodalMetrics(bool)),this,SLOT(on_checkLp_NodalMetrics_clicked(bool)));
    //  connect(this,SIGNAL(mySignalMgrayBoxCP_NodalMetrics(bool)),this,SLOT(on_checkCP_NodalMetrics_clicked(bool)));
 
-
+         ui->lineEdit_Working_Directory->setText("sdffsssssssss");
      emit mySignalMclr();
+
+
 
 
 }
 
+void MainWindow::clearscreen(){
+    qDebug("clear screen!");
+    //清屏函数两个功能：1.清空内容,顺带初始化；2.使界面回到灰框状态
+    //1.清空内容；
+  //  ui->lineEditCUCorMat_Dir_for_BOLD->setText("");
+    ui->mask_threshold->setText("");
+    ui->lineEdit_Mask_File->setText("");
+    ui->CheckCUCorMat_to_average->setEnabled(false);
+    ui->ordinary->setChecked(true);
+    ui->ordinary->setEnabled(false);
+    ui->fisher->setEnabled(false);
+   // ui->CheckCUCorMat_to_average->setChecked(false);
+
+
+    ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(false);
+    ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(0);
+    ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText("");
+
+    ui->lineEdit_Working_Directory->setText("");;
+    ui->lineEditLp_num_of_random_networks->setText("");
+
+   // ui->comboBoxCp_Cp_type->setCurrentIndex(0);
+  //  ui->toolButtonLp_input_dir->setEnabled(false);
+
+    //ui->lineEditCUBFS_Lp_input_dir->setText("");
+    //ui->lineEditCUBFS_Lp_num_of_random_networks->setText("");
+/*
+    ui->lineEditBFS_MulCPU_input_dir->setText("");
+    ui->lineEditBFS_MulCPU_num_of_random_networks->setText("");
+*/
+  //  ui->lineEditCp_input_dir->setText("");
+  //  ui->lineEditCp_num_of_random_networks->setText("");
+
+
+
+       ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(0);
+     //  ui->lineEditL_Modularity_dir_for_csr->setText("");
+       ui->lineEditLp_num_of_random_networks->setText("");
+
+       //2.使界面回到灰框状态 good method
+       emit mySignalMgrayBoxCUCorMat(false);
+    //   emit mySignalMgrayBoxLp(false);
+       //emit mySignalMgrayBoxCUBFS_Lp(false);
+     //  emit mySignalMgrayBoxBFS_MulCPU(false);
+       emit mySignalMgrayBoxCP(false);
+     //  emit mySignalMgrayBoxDegree(false);
+    //   emit mySignalMgrayBoxCUBC(false);
+     //  emit mySignalMgrayBoxCUEC(false);
+       emit mySignalMgrayBoxL_Modularity(false);
+    //   emit mySignalMgrayBoxPC_CPU(false);
+     //  emit mySignalMgrayBoxConvertNII(false);
+      // emit mySignalMgrayBoxLp_NodalMetrics(false);
+     //  emit mySignalMgrayBoxCP_NodalMetrics(false);
+
+}
+/*
+void MainWindow::on_clearscreen()
+{
+    qDebug("what why???");
+    ui->mask_threshold->setText("");
+
+    ui->CheckCUCorMat_to_average->setEnabled(false);
+    ui->ordinary->setChecked(true);
+    ui->ordinary->setEnabled(false);
+    ui->fisher->setEnabled(false);
+   // ui->CheckCUCorMat_to_average->setChecked(false);
+
+
+    ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(false);
+    ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(0);
+    ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText("");
+
+    ui->lineEdit_Working_Directory->setText("");;
+    ui->lineEditLp_num_of_random_networks->setText("");
+
+   // ui->comboBoxCp_Cp_type->setCurrentIndex(0);
+  //  ui->toolButtonLp_input_dir->setEnabled(false);
+
+    //ui->lineEditCUBFS_Lp_input_dir->setText("");
+    //ui->lineEditCUBFS_Lp_num_of_random_networks->setText("");
+/*
+    ui->lineEditBFS_MulCPU_input_dir->setText("");
+    ui->lineEditBFS_MulCPU_num_of_random_networks->setText("");
+*/
+  //  ui->lineEditCp_input_dir->setText("");
+  //  ui->lineEditCp_num_of_random_networks->setText("");
+
+   //   ui->lineEditDegree_input_dir->setText("");
+
+   //   ui->lineEditCUBC_input_dir->setText("");
+
+    //   ui->lineEditCUEC_input_dir->setText("");
+
+  /*     ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(0);
+     //  ui->lineEditL_Modularity_dir_for_csr->setText("");
+       ui->lineEditLp_num_of_random_networks->setText("");*/
+
+   //    ui->lineEditPC_CPU_input_dir->setText("");
+   //    ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
+
+   //    ui->lineEditConvertNII_input_file->setText("");
+   //    ui->lineEditConvertNII_mask_file->setText("");
+       //ui->lineEditConvertNII_mask_threshold->setText("");
+
+
+    //   ui->lineEditLp_input_dir_NodalMetrics->setText("");;
+       //ui->lineEditLp_num_of_random_networks_NodalMetrics->setText("");
+    //   ui->toolButtonLp_input_dir_NodalMetrics->setEnabled(false);
+
+       //ui->lineEditCUBFS_Lp_input_dir->setText("");
+       //ui->lineEditCUBFS_Lp_num_of_random_networks->setText("");
+   /*
+       ui->lineEditBFS_MulCPU_input_dir->setText("");
+       ui->lineEditBFS_MulCPU_num_of_random_networks->setText("");
+   */
+     //  ui->lineEditCp_input_dir_NodalMetrics->setText("");
+    //   ui->lineEditCp_num_of_random_networks_NodalMetrics->setText("");
+   /*  qDebug("what why???");
+}*/
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -691,7 +814,8 @@ void MainWindow::on_pushButtonLoad_clicked()
         // qDebug("empty!");
         }
         if(tokens[0] == "echo")
-        {  //原则 1.2.若没有调用该if语句，即判断为warning
+        {
+            //原则 1.2.若没有调用该if语句，即判断为warning
        // qDebug("read echo !");
             if(tokens[1] =="unweightednetworks")
             {
@@ -710,6 +834,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->switchButton->setCurrentIndex(1);
                 flag_weighted=true;
                 flag_unweighted=false;
+
      /*           //切换界面，传递参数,发射信号
                 this->hide();// 1.切换界面
                 w1.setParent(this);
@@ -725,17 +850,24 @@ void MainWindow::on_pushButtonLoad_clicked()
                 flag_unweighted=true;
                 flag_weighted=false;//保险一点
 
+
             }
+            if(tokens[1] =="unweightednetworks"||tokens[1] =="weightednetworks")
+            {
+                emit mySignalMclr();
+               qDebug("EXECUTION");
+            }
+
         }
         if(flag_unweighted==true&&flag_weighted==true)
         {
             QMessageBox::information(this, "Warning", "Script error(s).Error(s) may occur.Only one sort of networks type (weighted or unweighted) can be selected by using the command 'echo' in the script", QMessageBox::Ok, QMessageBox::Ok);
             //清理参数，必须这样，要不乱了·· 这个不要求echo语句的位置！好优点！``所以必须在这统一清理参数！  
+            emit mySignalMclr();
         }
         if(flag_unweighted==true&&flag_weighted==false)
         {
             qDebug("red unwei specific");
-            emit mySignalMclr();
         if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe" : "./exefiles/CUCormat")) {
             if (tokens.size() >= 7) {
                 ui->checkCUCorMat->setChecked(true);
@@ -1036,6 +1168,8 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
     if(checked==0){
       //   ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(false);
       //   ui->lineEditCUCorMat_threshold_for_mask->setEnabled(false);
+        // if(ui->CheckCUCorMat_to_average->isChecked())
+        // ui->CheckCUCorMat_to_average->setChecked(false);
          ui->labelCUCorMat_threshold_for_correlation_coefficient->setEnabled(false);
          ui->labelCUCorMat_threshold_type->setEnabled(false);
          ui->CheckCUCorMat_to_average->setEnabled(false);
@@ -1073,6 +1207,7 @@ void MainWindow::on_checkCUCorMat_clicked(bool checked)
      {
       //  ui->lineEditCUCorMat_Dir_for_BOLD->setEnabled(true);
     //    ui->lineEditCUCorMat_threshold_for_mask->setEnabled(true);
+       // ui->CheckCUCorMat_to_average->setChecked(true);
         ui->labelCUCorMat_threshold_for_correlation_coefficient->setEnabled(true);
         ui->labelCUCorMat_threshold_type->setEnabled(true);
         ui->CheckCUCorMat_to_average->setEnabled(true);
@@ -1174,83 +1309,7 @@ void MainWindow::on_checkL_Modularity_clicked(bool checked)
     }
 
 }
-void MainWindow::clearscreen(){
-    //清屏函数两个功能：1.清空内容,顺带初始化；2.使界面回到灰框状态
-    //1.清空内容；
-  //  ui->lineEditCUCorMat_Dir_for_BOLD->setText("");
-    ui->mask_threshold->setText("");
 
-    ui->CheckCUCorMat_to_average->setEnabled(false);
-    ui->ordinary->setEnabled(false);
-    ui->fisher->setEnabled(false);
-   // ui->CheckCUCorMat_to_average->setChecked(false);
-
-
-    ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(false);
-    ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(0);
-    ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText("");
-
-    ui->lineEdit_Working_Directory->setText("");;
-    ui->lineEditLp_num_of_random_networks->setText("");
-
-   // ui->comboBoxCp_Cp_type->setCurrentIndex(0);
-  //  ui->toolButtonLp_input_dir->setEnabled(false);
-
-    //ui->lineEditCUBFS_Lp_input_dir->setText("");
-    //ui->lineEditCUBFS_Lp_num_of_random_networks->setText("");
-/*
-    ui->lineEditBFS_MulCPU_input_dir->setText("");
-    ui->lineEditBFS_MulCPU_num_of_random_networks->setText("");
-*/
-  //  ui->lineEditCp_input_dir->setText("");
-  //  ui->lineEditCp_num_of_random_networks->setText("");
-
-   //   ui->lineEditDegree_input_dir->setText("");
-
-   //   ui->lineEditCUBC_input_dir->setText("");
-
-    //   ui->lineEditCUEC_input_dir->setText("");
-
-       ui->comboBoxLouvain_Modularity_modularity_type->setCurrentIndex(0);
-     //  ui->lineEditL_Modularity_dir_for_csr->setText("");
-       ui->lineEditLp_num_of_random_networks->setText("");
-
-   //    ui->lineEditPC_CPU_input_dir->setText("");
-   //    ui->comboBoxPC_CPU_type_for_participant_coefficient->setCurrentIndex(0);
-
-   //    ui->lineEditConvertNII_input_file->setText("");
-   //    ui->lineEditConvertNII_mask_file->setText("");
-       //ui->lineEditConvertNII_mask_threshold->setText("");
-
-
-    //   ui->lineEditLp_input_dir_NodalMetrics->setText("");;
-       //ui->lineEditLp_num_of_random_networks_NodalMetrics->setText("");
-    //   ui->toolButtonLp_input_dir_NodalMetrics->setEnabled(false);
-
-       //ui->lineEditCUBFS_Lp_input_dir->setText("");
-       //ui->lineEditCUBFS_Lp_num_of_random_networks->setText("");
-   /*
-       ui->lineEditBFS_MulCPU_input_dir->setText("");
-       ui->lineEditBFS_MulCPU_num_of_random_networks->setText("");
-   */
-     //  ui->lineEditCp_input_dir_NodalMetrics->setText("");
-    //   ui->lineEditCp_num_of_random_networks_NodalMetrics->setText("");
-       //2.使界面回到灰框状态 good method
-       emit mySignalMgrayBoxCUCorMat(false);
-    //   emit mySignalMgrayBoxLp(false);
-       //emit mySignalMgrayBoxCUBFS_Lp(false);
-     //  emit mySignalMgrayBoxBFS_MulCPU(false);
-       emit mySignalMgrayBoxCP(false);
-       emit mySignalMgrayBoxDegree(false);
-       emit mySignalMgrayBoxCUBC(false);
-       emit mySignalMgrayBoxCUEC(false);
-       emit mySignalMgrayBoxL_Modularity(false);
-       emit mySignalMgrayBoxPC_CPU(false);
-       emit mySignalMgrayBoxConvertNII(false);
-      // emit mySignalMgrayBoxLp_NodalMetrics(false);
-     //  emit mySignalMgrayBoxCP_NodalMetrics(false);
-
-}
 void MainWindow::on_toolButton_Working_Directory_clicked()
 {
    QString directory=QFileDialog::getExistingDirectory(this, "Directory");

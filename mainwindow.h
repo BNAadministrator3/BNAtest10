@@ -51,6 +51,7 @@ private slots:
     void on_checkL_Modularity_clicked(bool checked);
   //  void on_checkPC_CPU_clicked(bool checked);
    // void on_checkConvertNII_clicked(bool checked);
+    //void on_clearscreen();
     void clearscreen();
     void on_toolButton_Working_Directory_clicked();
     void on_toolButton_Mask_File_clicked();
