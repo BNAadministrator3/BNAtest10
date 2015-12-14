@@ -189,7 +189,7 @@ void MainWindow::on_pushButtonSave_clicked()
   if(ui->switchButton->currentIndex()==0)
   {
      script <<  "echo unweightednetworks" << std::endl;
-     string unweighted=ui->lineEdit_Working_Directory->text().toStdString();
+     string unweighted=ui->lineEdit_Working_Directory->text().toStdString().append("/").append("unweighted");
      if (ui->checkCUCorMat->isChecked()) {
         //组合之外的统统选n
         if (ui->lineEdit_Working_Directory->text().isEmpty()
@@ -267,9 +267,10 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-       script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
-             ui->lineEdit_Working_Directory->text().toStdString() <<
-             ' ' <<
+       script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
+         //    ui->lineEdit_Working_Directory->text().toStdString() <<
+           unweighted<<
+                 ' ' <<
              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"g"<<
              std::endl;
     }
@@ -280,8 +281,8 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+        script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
+              unweighted <<
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"n"<<
               std::endl;
@@ -298,8 +299,8 @@ void MainWindow::on_pushButtonSave_clicked()
              QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
              return;
          }
-         script << (operating_system == os_win32 ? ".\\exefiles\\Lp.exe " : "./exefiles/Lp ") <<
-               ui->lineEdit_Working_Directory->text().toStdString() <<
+         script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
+               unweighted <<
                ' ' <<
                ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"b"<<
                std::endl;
@@ -316,7 +317,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+              unweighted <<
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"g"<<
               std::endl;
@@ -328,7 +329,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+             unweighted <<
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"n"<<
               std::endl;
@@ -346,7 +347,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+             unweighted <<
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"b"<<
               std::endl;
@@ -364,7 +365,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\SmallWorldProperty.exe " : "./exefiles/SmallWorldProperty ") <<
-                    ui->lineEdit_Working_Directory->text().toStdString() <<
+                   unweighted <<
                     ' ' <<
                         std::endl;
     }
@@ -379,19 +380,19 @@ void MainWindow::on_pushButtonSave_clicked()
         string s=ui->comboBoxLouvain_Modularity_modularity_type->currentText().toStdString();
         if(s=="Louvain")
            script << (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe " : "./exefiles/Louvain_Modularity ") <<
-                 ui->lineEdit_Working_Directory->text().toStdString() <<
+                 unweighted <<
                  ' ' <<
                  ui->lineEditLp_num_of_random_networks->text().toStdString() <<
                  std::endl;
         else if (s=="Newman_GPU")
-            script << (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_GPU.exe " : "./exefiles/Newman_Modularity_GPU ") <<
-                        ui->lineEdit_Working_Directory->text().toStdString() <<
+            script << (operating_system == os_win32 ? ".\\exefiles\\CUmodularity.exe " : "./exefiles/CUmodularity ") <<
+                        unweighted <<
                         ' ' <<
                         ui->lineEditLp_num_of_random_networks->text().toStdString() <<
                         std::endl;
          else
             script << (operating_system == os_win32 ? ".\\exefiles\\Newman_Modularity_CPU.exe " : "./exefiles/Newman_Modularity_CPU ") <<
-                         ui->lineEdit_Working_Directory->text().toStdString() <<
+                        unweighted<<
                          ' ' <<
                          ui->lineEditLp_num_of_random_networks->text().toStdString() <<
                          std::endl;
@@ -403,7 +404,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
             script << (operating_system == os_win32 ? ".\\exefiles\\PC_CPU.exe " : "./exefiles/PC_CPU ") <<
-                        ui->lineEdit_Working_Directory->text().toStdString() <<
+                        unweighted <<
                         ' ' <<
                             std::endl;
     }
@@ -413,7 +414,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\Degree.exe " : "./exefiles/Degree ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+              unweighted <<
               std::endl;
     }
     if (ui->checkCUBC->isChecked()) {
@@ -422,7 +423,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\CUBC.exe " : "./exefiles/CUBC ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+              unweighted <<
               std::endl;
     }
     if (ui->checkCUEC->isChecked()) {
@@ -431,7 +432,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\CUEC.exe " : "./exefiles/CUBC ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+              unweighted <<
               std::endl;
     }
     if (ui->checkConvertNII->isChecked()) {
@@ -442,7 +443,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles\\ConvertNII.exe " : "./exefiles/ConvertNII ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+              unweighted <<
               ' ' <<
               ui->lineEdit_Mask_File->text().toStdString() <<
               ' ' <<
@@ -453,6 +454,7 @@ void MainWindow::on_pushButtonSave_clicked()
   if(ui->switchButton->currentIndex()==1)
   {
     script <<  "echo weightednetworks" << std::endl;
+    string weighted=ui->lineEdit_Working_Directory->text().toStdString().append("/").append("weighted");
      if (ui->checkCUCorMat->isChecked()) {
         //组合之外的统统选n
         if (ui->lineEdit_Working_Directory->text().isEmpty()
@@ -531,8 +533,8 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-       script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Lp.exe " : "./exefiles_weighted/Lp ") <<
-             ui->lineEdit_Working_Directory->text().toStdString() <<
+       script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUBFW_Lp.exe " : "./exefiles_weighted/CUBFW_Lp ") <<
+            weighted<<
              ' ' <<
              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"g"<<
              std::endl;
@@ -544,8 +546,8 @@ void MainWindow::on_pushButtonSave_clicked()
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
         }
-        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Lp.exe " : "./exefiles_weighted/Lp ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+        script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUBFW_Lp.exe " : "./exefiles_weighted/CUBFW_Lp ") <<
+              weighted <<
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"n"<<
               std::endl;
@@ -562,8 +564,8 @@ void MainWindow::on_pushButtonSave_clicked()
              QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
              return;
          }
-         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Lp.exe " : "./exefiles_weighted/Lp ") <<
-               ui->lineEdit_Working_Directory->text().toStdString() <<
+         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUBFW_Lp.exe " : "./exefiles_weighted/CUBFW_Lp ") <<
+               weighted <<
                ' ' <<
                ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"b"<<
                std::endl;
@@ -581,7 +583,7 @@ void MainWindow::on_pushButtonSave_clicked()
         }
         string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+              weighted <<
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"g"<<
               std::endl;
@@ -594,7 +596,7 @@ void MainWindow::on_pushButtonSave_clicked()
         }
         string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+             weighted <<
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"n"<<
               std::endl;
@@ -613,7 +615,7 @@ void MainWindow::on_pushButtonSave_clicked()
         }
         string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+              weighted <<
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"b"<<
               std::endl;
@@ -631,7 +633,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\SmallWorldProperty.exe " : "./exefiles_weighted/SmallWorldProperty ") <<
-                    ui->lineEdit_Working_Directory->text().toStdString() <<
+                    weighted <<
                     ' ' <<
                         std::endl;
     }
@@ -643,7 +645,7 @@ void MainWindow::on_pushButtonSave_clicked()
         }                                           //这句话是看是不是win32 是就是一种格式 不是就是另一种格式  \\是c++中的转义字符  代表win中的反斜杠；系统路径，编程路径 \\或/ 理解：因为\会被编译错
 
            script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Louvain_Modularity.exe " : "./exefiles_weighted/Louvain_Modularity ") <<
-                 ui->lineEdit_Working_Directory->text().toStdString() <<
+               weighted <<
                  ' ' <<
                  ui->lineEditLp_num_of_random_networks->text().toStdString() <<
                  std::endl;
@@ -654,7 +656,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
             script << (operating_system == os_win32 ? ".\\exefiles_weighted\\PC_CPU.exe " : "./exefiles_weighted/PC_CPU ") <<
-                        ui->lineEdit_Working_Directory->text().toStdString() <<
+                        weighted <<
                         ' ' <<
                             std::endl;
     }
@@ -664,7 +666,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Degree.exe " : "./exefiles_weighted/Degree ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+             weighted <<
               std::endl;
     }
     if (ui->checkCUBC->isChecked()) {
@@ -673,7 +675,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUBC.exe " : "./exefiles_weighted/CUBC ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+             weighted <<
               std::endl;
     }
     if (ui->checkCUEC->isChecked()) {
@@ -682,7 +684,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUEC.exe " : "./exefiles_weighted/CUBC ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+              weighted <<
               std::endl;
     }
     if (ui->checkConvertNII->isChecked()) {
@@ -693,7 +695,7 @@ void MainWindow::on_pushButtonSave_clicked()
             return;
         }
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\ConvertNII.exe " : "./exefiles_weighted/ConvertNII ") <<
-              ui->lineEdit_Working_Directory->text().toStdString() <<
+             weighted <<
               ' ' <<
               ui->lineEdit_Mask_File->text().toStdString() <<
               ' ' <<
@@ -869,6 +871,7 @@ void MainWindow::on_pushButtonLoad_clicked()
         if(flag_unweighted==true&&flag_weighted==false)
         {
             qDebug("red unwei specific");
+           string unweighted=tokens[1].substr(tokens[1].find)
         if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe" : "./exefiles/CUCormat")) {
             if (tokens.size() >= 7) {
                 ui->checkCUCorMat->setChecked(true);
@@ -901,7 +904,7 @@ void MainWindow::on_pushButtonLoad_clicked()
                     token6 += tokens[i] + " ";
                 ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText(token6.c_str());
             }
-        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Lp.exe" : "./exefiles/Lp")) {
+        } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp")) {
             if (tokens.size() == 4) {
                 if(tokens[3] =="g") {
                 ui->checkLp->setChecked(true);
