@@ -1491,13 +1491,11 @@ void MainWindow::on_checkSmallWordProperty_clicked(bool checked)
 {
     if(checked==0)
     {
-        ui->checkSmallWordProperty_gamma->setEnabled(false);
-        ui->checkSmallWordProperty_lambda->setEnabled(false);
+        
     }
     if(checked==1)
     {
 
-        ui->checkSmallWordProperty_gamma->setEnabled(true);
-        ui->checkSmallWordProperty_lambda->setEnabled(true);
+       
     }
 }
