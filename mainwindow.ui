@@ -12,7 +12,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1416</width>
+    <width>1540</width>
     <height>960</height>
    </rect>
   </property>
@@ -87,7 +87,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1362</width>
+         <width>1486</width>
          <height>1000</height>
         </rect>
        </property>
@@ -143,7 +143,7 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1" colspan="4">
+        <item row="0" column="1" colspan="3">
          <widget class="QLineEdit" name="lineEdit_Working_Directory">
           <property name="font">
            <font>
@@ -153,7 +153,7 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="5">
+        <item row="0" column="4">
          <widget class="QToolButton" name="toolButton_Working_Directory">
           <property name="enabled">
            <bool>true</bool>
@@ -206,7 +206,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1" colspan="4">
+        <item row="1" column="1" colspan="3">
          <widget class="QLineEdit" name="lineEdit_Mask_File">
           <property name="font">
            <font>
@@ -216,7 +216,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="5">
+        <item row="1" column="4">
          <widget class="QToolButton" name="toolButton_Mask_File">
           <property name="enabled">
            <bool>true</bool>
@@ -291,70 +291,7 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="3">
-         <widget class="QLabel" name="label_11">
-          <property name="minimumSize">
-           <size>
-            <width>250</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Arial</family>
-            <pointsize>14</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-            <underline>false</underline>
-           </font>
-          </property>
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Network type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="4" colspan="2">
-         <widget class="QComboBox" name="switchButton">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>183</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Arial</family>
-            <pointsize>14</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-            <underline>false</underline>
-           </font>
-          </property>
-          <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
-          </property>
-          <property name="editable">
-           <bool>false</bool>
-          </property>
-          <item>
-           <property name="text">
-            <string>Unweighted</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>weighted</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="3" column="0" colspan="7">
+        <item row="3" column="0" colspan="6">
          <widget class="QGroupBox" name="groupBox_CUCorMat">
           <property name="maximumSize">
            <size>
@@ -451,6 +388,191 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
               <string>generating group-level network</string>
              </property>
             </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QCheckBox" name="radioButtonCUCorMat_to_save_cormatrix">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>397</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>saving whole correlation matrix</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>19</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="5">
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="labelCUCorMat_threshold_for_correlation_coefficient">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>220</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>threshold value                      </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditCUCorMat_threshold_for_correlation_coefficient">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>113</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="4">
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="3">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="labelCUCorMat_threshold_type">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>290</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>14</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font: 14pt ;</string>
+               </property>
+               <property name="text">
+                <string>threshold type</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>30</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboBoxCUCorMat_threshold_type">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>168</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="editable">
+                <bool>false</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>correlation</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>sparsity</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
            </item>
            <item row="0" column="5">
             <widget class="QGroupBox" name="groupBoxCUCorMat_to_average_groupBox">
@@ -549,195 +671,26 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
              </layout>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QCheckBox" name="radioButtonCUCorMat_to_save_cormatrix">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>397</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Arial</family>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>saving whole correlation matrix</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <spacer name="horizontalSpacer">
+           <item row="0" column="4">
+            <spacer name="horizontalSpacer_4">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Minimum</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>19</width>
+               <width>180</width>
                <height>20</height>
               </size>
              </property>
             </spacer>
-           </item>
-           <item row="1" column="3">
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
-             <item>
-              <widget class="QLabel" name="labelCUCorMat_threshold_type">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>290</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>Arial</family>
-                 <pointsize>14</pointsize>
-                 <weight>50</weight>
-                 <italic>false</italic>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">font: 14pt ;</string>
-               </property>
-               <property name="text">
-                <string>threshold type</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_5">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>30</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QComboBox" name="comboBoxCUCorMat_threshold_type">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>168</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>Arial</family>
-                 <pointsize>14</pointsize>
-                </font>
-               </property>
-               <property name="editable">
-                <bool>false</bool>
-               </property>
-               <item>
-                <property name="text">
-                 <string>correlation</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>sparsity</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="1" column="4">
-            <spacer name="horizontalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="1" column="5">
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="labelCUCorMat_threshold_for_correlation_coefficient">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>220</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>Arial</family>
-                 <pointsize>14</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>threshold value                      </string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEditCUCorMat_threshold_for_correlation_coefficient">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>113</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>Arial</family>
-                 <pointsize>14</pointsize>
-                </font>
-               </property>
-              </widget>
-             </item>
-            </layout>
            </item>
           </layout>
          </widget>
         </item>
-        <item row="4" column="0" colspan="7">
+        <item row="4" column="0" colspan="6">
          <widget class="QGroupBox" name="groupBox_Global_Metrics">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
@@ -748,7 +701,7 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>270</height>
+            <height>210</height>
            </size>
           </property>
           <property name="font">
@@ -775,416 +728,433 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
           </property>
-          <widget class="QLabel" name="labelLp_num_of_random_networks">
-           <property name="geometry">
-            <rect>
-             <x>531</x>
-             <y>25</y>
-             <width>247</width>
-             <height>32</height>
-            </rect>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>420</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>14</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>random networks(n)</string>
-           </property>
-          </widget>
-          <widget class="QLineEdit" name="lineEditLp_num_of_random_networks">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="geometry">
-            <rect>
-             <x>840</x>
-             <y>25</y>
-             <width>111</width>
-             <height>38</height>
-            </rect>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>130</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>14</pointsize>
-            </font>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::StrongFocus</enum>
-           </property>
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of random networks for all global metrics. Users could compare some global parameters between random networks and human brain networks by setting this.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkLp">
-           <property name="geometry">
-            <rect>
-             <x>15</x>
-             <y>84</y>
-             <width>380</width>
-             <height>36</height>
-            </rect>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>380</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>14</pointsize>
-            </font>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the characteristic path length (Lp) of the network...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="text">
-            <string>Characteristic Path Length</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkCP">
-           <property name="geometry">
-            <rect>
-             <x>531</x>
-             <y>84</y>
-             <width>300</width>
-             <height>36</height>
-            </rect>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>300</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>14</pointsize>
-            </font>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate clustering coefficient (Cp) of the network...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="text">
-            <string>Clustering Coefficient</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkL_Modularity">
-           <property name="geometry">
-            <rect>
-             <x>15</x>
-             <y>143</y>
-             <width>160</width>
-             <height>36</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>14</pointsize>
-            </font>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate Louvain Modularity for each of the .csr files in the given directory...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="text">
-            <string>Modularity</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkSmallWordProperty_gamma">
-           <property name="geometry">
-            <rect>
-             <x>15</x>
-             <y>200</y>
-             <width>250</width>
-             <height>36</height>
-            </rect>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>250</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>14</pointsize>
-            </font>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Calculate the small world property of networks.It's definition is:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/sigma/sigma&quot;/&gt;, &lt;/p&gt;&lt;p&gt;where the gamma is defined as:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/gamma/gamma&quot;/&gt;,&lt;/p&gt;&lt;p&gt;and the lambda is defined as :&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/lambda/lambda&quot;/&gt;.&lt;/p&gt;&lt;p&gt;Note that the &lt;span style=&quot; font-style:italic;&quot;&gt;Lp &lt;/span&gt;is the characteristic path length, and &lt;span style=&quot; font-style:italic;&quot;&gt;Cp &lt;/span&gt;is the clustering coefficient of networks.Subscript &lt;span style=&quot; font-style:italic;&quot;&gt;rand &lt;/span&gt;represents the corresponding metrics for random networks. So the input label &amp;quot;random networks&amp;quot; can't be empty or be edited zero value if user wants to activate small world property algorithm.In addition, small world property algorithm could only behave well after the execution of characteristic path length and clustering coefficient algorithms.		 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="text">
-            <string>gamma</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkSmallWordProperty_lambda">
-           <property name="geometry">
-            <rect>
-             <x>522</x>
-             <y>200</y>
-             <width>250</width>
-             <height>36</height>
-            </rect>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>250</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>14</pointsize>
-            </font>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Calculate the small world property of networks.It's definition is:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/sigma/sigma&quot;/&gt;, &lt;/p&gt;&lt;p&gt;where the gamma is defined as:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/gamma/gamma&quot;/&gt;,&lt;/p&gt;&lt;p&gt;and the lambda is defined as :&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/lambda/lambda&quot;/&gt;.&lt;/p&gt;&lt;p&gt;Note that the &lt;span style=&quot; font-style:italic;&quot;&gt;Lp &lt;/span&gt;is the characteristic path length, and &lt;span style=&quot; font-style:italic;&quot;&gt;Cp &lt;/span&gt;is the clustering coefficient of networks.Subscript &lt;span style=&quot; font-style:italic;&quot;&gt;rand &lt;/span&gt;represents the corresponding metrics for random networks. So the input label &amp;quot;random networks&amp;quot; can't be empty or be edited zero value if user wants to activate small world property algorithm.In addition, small world property algorithm could only behave well after the execution of characteristic path length and clustering coefficient algorithms.		 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="text">
-            <string>lambda</string>
-           </property>
-          </widget>
-          <widget class="QCheckBox" name="checkSmallWordProperty">
-           <property name="geometry">
-            <rect>
-             <x>960</x>
-             <y>200</y>
-             <width>298</width>
-             <height>36</height>
-            </rect>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>250</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>14</pointsize>
-            </font>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::NoFocus</enum>
-           </property>
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Calculate the small world property of networks.It's definition is:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/sigma/sigma&quot;/&gt;, &lt;/p&gt;&lt;p&gt;where the gamma is defined as:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/gamma/gamma&quot;/&gt;,&lt;/p&gt;&lt;p&gt;and the lambda is defined as :&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/lambda/lambda&quot;/&gt;.&lt;/p&gt;&lt;p&gt;Note that the &lt;span style=&quot; font-style:italic;&quot;&gt;Lp &lt;/span&gt;is the characteristic path length, and &lt;span style=&quot; font-style:italic;&quot;&gt;Cp &lt;/span&gt;is the clustering coefficient of networks.Subscript &lt;span style=&quot; font-style:italic;&quot;&gt;rand &lt;/span&gt;represents the corresponding metrics for random networks. So the input label &amp;quot;random networks&amp;quot; can't be empty or be edited zero value if user wants to activate small world property algorithm.In addition, small world property algorithm could only behave well after the execution of characteristic path length and clustering coefficient algorithms.		 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="text">
-            <string>Small-World Property</string>
-           </property>
-          </widget>
-          <widget class="QWidget" name="">
-           <property name="geometry">
-            <rect>
-             <x>840</x>
-             <y>80</y>
-             <width>232</width>
-             <height>40</height>
-            </rect>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QLabel" name="labelCp_Cp_type">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>Cp type</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboBoxCp_Cp_type">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>148</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="editable">
-               <bool>false</bool>
-              </property>
-              <item>
-               <property name="text">
-                <string>Onnela</string>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="checkLp">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>380</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::NoFocus</enum>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the characteristic path length (Lp) of the network...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Characteristic Path Length</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QCheckBox" name="checkSmallWordProperty">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>250</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::NoFocus</enum>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Calculate the small world property of networks.It's definition is:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/sigma/sigma&quot;/&gt;, &lt;/p&gt;&lt;p&gt;where the gamma is defined as:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/gamma/gamma&quot;/&gt;,&lt;/p&gt;&lt;p&gt;and the lambda is defined as :&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/lambda/lambda&quot;/&gt;.&lt;/p&gt;&lt;p&gt;Note that the &lt;span style=&quot; font-style:italic;&quot;&gt;Lp &lt;/span&gt;is the characteristic path length, and &lt;span style=&quot; font-style:italic;&quot;&gt;Cp &lt;/span&gt;is the clustering coefficient of networks.Subscript &lt;span style=&quot; font-style:italic;&quot;&gt;rand &lt;/span&gt;represents the corresponding metrics for random networks. So the input label &amp;quot;random networks&amp;quot; can't be empty or be edited zero value if user wants to activate small world property algorithm.In addition, small world property algorithm could only behave well after the execution of characteristic path length and clustering coefficient algorithms.		 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Small-World Property</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <spacer name="horizontalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
                </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Barrat</string>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
                </property>
-              </item>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="">
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
-            <item>
-             <widget class="QLabel" name="labelL_Modularity_modularity_type">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>modularity type</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboBoxLouvain_Modularity_modularity_type">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>190</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="editable">
-               <bool>false</bool>
-              </property>
-              <item>
-               <property name="text">
-                <string>Louvain</string>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkSmallWordProperty_gamma">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Newman_GPU</string>
+               <property name="minimumSize">
+                <size>
+                 <width>250</width>
+                 <height>0</height>
+                </size>
                </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Newman_CPU</string>
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>14</pointsize>
+                </font>
                </property>
-              </item>
-             </widget>
-            </item>
-           </layout>
-          </widget>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Calculate the small world property of networks.It's definition is:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/sigma/sigma&quot;/&gt;, &lt;/p&gt;&lt;p&gt;where the gamma is defined as:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/gamma/gamma&quot;/&gt;,&lt;/p&gt;&lt;p&gt;and the lambda is defined as :&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/lambda/lambda&quot;/&gt;.&lt;/p&gt;&lt;p&gt;Note that the &lt;span style=&quot; font-style:italic;&quot;&gt;Lp &lt;/span&gt;is the characteristic path length, and &lt;span style=&quot; font-style:italic;&quot;&gt;Cp &lt;/span&gt;is the clustering coefficient of networks.Subscript &lt;span style=&quot; font-style:italic;&quot;&gt;rand &lt;/span&gt;represents the corresponding metrics for random networks. So the input label &amp;quot;random networks&amp;quot; can't be empty or be edited zero value if user wants to activate small world property algorithm.In addition, small world property algorithm could only behave well after the execution of characteristic path length and clustering coefficient algorithms.		 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>gamma</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkSmallWordProperty_lambda">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>250</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Calculate the small world property of networks.It's definition is:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/sigma/sigma&quot;/&gt;, &lt;/p&gt;&lt;p&gt;where the gamma is defined as:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/gamma/gamma&quot;/&gt;,&lt;/p&gt;&lt;p&gt;and the lambda is defined as :&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/lambda/lambda&quot;/&gt;.&lt;/p&gt;&lt;p&gt;Note that the &lt;span style=&quot; font-style:italic;&quot;&gt;Lp &lt;/span&gt;is the characteristic path length, and &lt;span style=&quot; font-style:italic;&quot;&gt;Cp &lt;/span&gt;is the clustering coefficient of networks.Subscript &lt;span style=&quot; font-style:italic;&quot;&gt;rand &lt;/span&gt;represents the corresponding metrics for random networks. So the input label &amp;quot;random networks&amp;quot; can't be empty or be edited zero value if user wants to activate small world property algorithm.In addition, small world property algorithm could only behave well after the execution of characteristic path length and clustering coefficient algorithms.		 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>lambda</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="2">
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <spacer name="horizontalSpacer_8">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="labelLp_num_of_random_networks">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>420</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>random networks(n)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditLp_num_of_random_networks">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>130</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::StrongFocus</enum>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of random networks for all global metrics. Users could compare some global parameters between random networks and human brain networks by setting this.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <spacer name="horizontalSpacer_6">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkCP">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>300</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate clustering coefficient (Cp) of the network...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>Clustering Coefficient</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QLabel" name="labelCp_Cp_type">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Cp type</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBoxCp_Cp_type">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>148</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                 <property name="editable">
+                  <bool>false</bool>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Onnela</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Barrat</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="2">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <spacer name="horizontalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkL_Modularity">
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate Louvain Modularity for each of the .csr files in the given directory...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>Modularity</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <widget class="QLabel" name="labelL_Modularity_modularity_type">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>algorithm</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBoxLouvain_Modularity_modularity_type">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>190</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                 <property name="editable">
+                  <bool>false</bool>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Louvain</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Newman_GPU</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Newman_CPU</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+          <zorder>layoutWidget</zorder>
+          <zorder>layoutWidget</zorder>
           <zorder>labelLp_num_of_random_networks</zorder>
           <zorder>lineEditLp_num_of_random_networks</zorder>
-          <zorder>checkLp</zorder>
           <zorder>checkCP</zorder>
           <zorder>checkL_Modularity</zorder>
           <zorder>checkSmallWordProperty</zorder>
-          <zorder>horizontalSpacer_3</zorder>
-          <zorder>horizontalSpacer_4</zorder>
           <zorder>checkSmallWordProperty_gamma</zorder>
           <zorder>checkSmallWordProperty_lambda</zorder>
-          <zorder>horizontalSpacer_6</zorder>
-          <zorder>horizontalSpacer_7</zorder>
+          <zorder>labelLp_num_of_random_networks</zorder>
+          <zorder>checkLp</zorder>
+          <zorder></zorder>
+          <zorder></zorder>
+          <zorder></zorder>
+          <zorder>labelLp_num_of_random_networks</zorder>
          </widget>
         </item>
         <item row="6" column="0" colspan="2">
@@ -1237,7 +1207,7 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
           </property>
          </widget>
         </item>
-        <item row="6" column="6">
+        <item row="6" column="5">
          <widget class="QLineEdit" name="lineEditSaveDir">
           <property name="enabled">
            <bool>true</bool>
@@ -1256,7 +1226,7 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
           </property>
          </widget>
         </item>
-        <item row="5" column="0" colspan="7">
+        <item row="5" column="0" colspan="6">
          <widget class="QGroupBox" name="groupBox_Nodal_Metrics">
           <property name="maximumSize">
            <size>
@@ -1293,13 +1263,13 @@ QGroupBox#groupBox_Nodal_Metrics:focus{border: 2px solid rgb(200, 165, 140);
            <string>Nodal Metrics</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="0">
-            <widget class="QCheckBox" name="checkLp_NodalMetrics">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
+           <item row="1" column="0">
+            <widget class="QCheckBox" name="checkCUBC">
+             <property name="minimumSize">
+              <size>
+               <width>250</width>
+               <height>0</height>
+              </size>
              </property>
              <property name="font">
               <font>
@@ -1311,13 +1281,10 @@ QGroupBox#groupBox_Nodal_Metrics:focus{border: 2px solid rgb(200, 165, 140);
               <enum>Qt::NoFocus</enum>
              </property>
              <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the characteristic path length (Lp) of the nodal sets...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="whatsThis">
-              <string/>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the betweenness centrality of the network.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
-              <string>Nodal Efficiency</string>
+              <string>Betweenness Centrality</string>
              </property>
             </widget>
            </item>
@@ -1377,13 +1344,13 @@ QGroupBox#groupBox_Nodal_Metrics:focus{border: 2px solid rgb(200, 165, 140);
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QCheckBox" name="checkCUBC">
-             <property name="minimumSize">
-              <size>
-               <width>250</width>
-               <height>0</height>
-              </size>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="checkLp_NodalMetrics">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
              <property name="font">
               <font>
@@ -1395,10 +1362,13 @@ QGroupBox#groupBox_Nodal_Metrics:focus{border: 2px solid rgb(200, 165, 140);
               <enum>Qt::NoFocus</enum>
              </property>
              <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the betweenness centrality of the network.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the characteristic path length (Lp) of the nodal sets...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="whatsThis">
+              <string/>
              </property>
              <property name="text">
-              <string>Betweenness Centrality</string>
+              <string>Nodal Efficiency</string>
              </property>
             </widget>
            </item>
@@ -1464,6 +1434,92 @@ QGroupBox#groupBox_Nodal_Metrics:focus{border: 2px solid rgb(200, 165, 140);
            </item>
           </layout>
          </widget>
+        </item>
+        <item row="2" column="3" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <spacer name="horizontalSpacer_11">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_11">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>180</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>14</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+              <underline>false</underline>
+             </font>
+            </property>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Network type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="switchButton">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>183</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>14</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <underline>false</underline>
+             </font>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
+            <property name="editable">
+             <bool>false</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Unweighted</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>weighted</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
        <zorder>groupBox_Global_Metrics</zorder>
