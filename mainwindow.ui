@@ -838,6 +838,19 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
               </widget>
              </item>
              <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
               <widget class="QCheckBox" name="checkSmallWordProperty_lambda">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -847,7 +860,7 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
                </property>
                <property name="minimumSize">
                 <size>
-                 <width>250</width>
+                 <width>168</width>
                  <height>0</height>
                 </size>
                </property>
