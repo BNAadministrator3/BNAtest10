@@ -92,6 +92,7 @@ signals:
     void mySignalMgrayBoxL_Modularity(bool);
     void mySignalMgrayBoxPC_CPU(bool);
     void mySignalMgrayBoxConvertNII(bool);
+    void mySignalMgrayBoxSmallWorld(bool);
  //   void mySignalMgrayBoxLp_NodalMetrics(bool);
  //   void mySignalMgrayBoxCP_NodalMetrics(bool);
 
