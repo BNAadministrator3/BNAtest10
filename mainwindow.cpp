@@ -1252,7 +1252,7 @@ void MainWindow::on_pushButtonLoad_clicked()
     ui->checkLp_NodalMetrics->setChecked(false);
     ui->checkCP_NodalMetrics->setChecked(false);
     ui->checkCP->setChecked(false);
-    ui->checkSmallWordProperty->setChecked(false);
+  //  ui->checkSmallWordProperty->setChecked(false);
     ui->checkL_Modularity->setChecked(false);
     ui->checkPC_CPU->setChecked(false);
     ui->checkDegree->setChecked(false);
