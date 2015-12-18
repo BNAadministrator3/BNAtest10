@@ -413,7 +413,119 @@ void MainWindow::on_pushButtonSave_clicked()
                ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"b"<<
                std::endl;
      }*/
-    if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())&&(!ui->checkCP_NodalMetrics->isChecked()))
+    if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())&&(!ui->checkSmallWordProperty_gamma->isChecked()))
+    {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+               ) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+              unweighted <<
+              ' ' <<
+             0 <<' '<<"g"<<
+              std::endl;
+    }
+    if (!ui->checkCP->isChecked()&&(ui->checkCP_NodalMetrics->isChecked())&&(!ui->checkSmallWordProperty_gamma->isChecked()))
+    {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+               ) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+              unweighted <<
+              ' ' <<
+             0 <<' '<<"n"<<
+              std::endl;
+    }
+    if (!ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
+    {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        if (ui->lineEditLp_num_of_random_networks->text()=="0")
+        {
+            QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+              unweighted <<
+              ' ' <<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"k"<<
+              std::endl;
+    }
+    if (ui->checkCP->isChecked()&&(ui->checkCP_NodalMetrics->isChecked())&&(!ui->checkSmallWordProperty_gamma->isChecked()))
+    {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+               ) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+              unweighted <<
+              ' ' <<
+             0 <<' '<<"gn"<<
+              std::endl;
+    }
+    if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
+    {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        if (ui->lineEditLp_num_of_random_networks->text()=="0")
+        {
+            QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+              unweighted <<
+              ' ' <<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"gk"<<
+              std::endl;
+    }
+    if (!ui->checkCP->isChecked()&&(ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
+    {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        if (ui->lineEditLp_num_of_random_networks->text()=="0")
+        {
+            QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+              unweighted <<
+              ' ' <<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"nk"<<
+              std::endl;
+    }
+    if (ui->checkCP->isChecked()&&(ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
+    {
+        if (ui->lineEdit_Working_Directory->text().isEmpty()
+                || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+            QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        if (ui->lineEditLp_num_of_random_networks->text()=="0")
+        {
+            QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+        script << (operating_system == os_win32 ? ".\\exefiles\\Cp.exe " : "./exefiles/Cp ") <<
+              unweighted <<
+              ' ' <<
+              ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"gnk"<<
+              std::endl;
+    }
+
+    /*
     if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
@@ -460,7 +572,7 @@ void MainWindow::on_pushButtonSave_clicked()
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"b"<<
               std::endl;
-    }
+    }*/
     if(ui->checkSmallWordProperty->isChecked()){
         if (ui->lineEdit_Working_Directory->text().isEmpty()||
                 ui->lineEditLp_num_of_random_networks->text().isEmpty())
@@ -630,7 +742,8 @@ void MainWindow::on_pushButtonSave_clicked()
               std::endl;
     }
 
-    if (ui->checkLp->isChecked()&&(!ui->checkLp_NodalMetrics->isChecked())) {
+
+   /* if (ui->checkLp->isChecked()&&(!ui->checkLp_NodalMetrics->isChecked())) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()
               ) {
@@ -679,7 +792,251 @@ void MainWindow::on_pushButtonSave_clicked()
                ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"b"<<
                std::endl;
      }
-    if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())) {
+   */
+     if ((ui->checkLp->isChecked())&&(!ui->checkLp_NodalMetrics->isChecked())&&(!ui->checkSmallWordProperty_lambda->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
+           //    ui->lineEdit_Working_Directory->text().toStdString() <<
+             weighted<<
+                   ' ' <<
+               0 <<' ' <<"g"<<
+               std::endl;
+     }
+     if ((!ui->checkLp->isChecked())&&(ui->checkLp_NodalMetrics->isChecked())&&(!ui->checkSmallWordProperty_lambda->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
+           //    ui->lineEdit_Working_Directory->text().toStdString() <<
+             weighted<<
+                   ' ' <<
+               0 <<' ' <<"n"<<
+               std::endl;
+
+     }
+     if ((!ui->checkLp->isChecked())&&(!ui->checkLp_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_lambda->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()
+                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()
+                 ) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         if (ui->lineEditLp_num_of_random_networks->text()=="0")
+         {
+             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
+               weighted <<
+               ' ' <<
+               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"l"<<
+               std::endl;
+     }
+     if ((ui->checkLp->isChecked())&&(ui->checkLp_NodalMetrics->isChecked())&&(!ui->checkSmallWordProperty_lambda->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
+           //    ui->lineEdit_Working_Directory->text().toStdString() <<
+             weighted<<
+                   ' ' <<
+               0 <<' ' <<"gn"<<
+               std::endl;
+
+     }
+     if ((ui->checkLp->isChecked())&&(!ui->checkLp_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_lambda->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()
+                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()
+                 ) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         if (ui->lineEditLp_num_of_random_networks->text()=="0")
+         {
+             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
+               weighted <<
+               ' ' <<
+               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"gl"<<
+               std::endl;
+
+     }
+     if ((!ui->checkLp->isChecked())&&(ui->checkLp_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_lambda->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()
+                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()
+                 ) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         if (ui->lineEditLp_num_of_random_networks->text()=="0")
+         {
+             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
+               weighted <<
+               ' ' <<
+               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"nl"<<
+               std::endl;
+     }
+     if ((ui->checkLp->isChecked())&&(ui->checkLp_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_lambda->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()
+                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()
+                 ) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         if (ui->lineEditLp_num_of_random_networks->text()=="0")
+         {
+             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
+               weighted <<
+               ' ' <<
+               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"gnl"<<
+               std::endl;
+     }
+
+
+     if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())&&(!ui->checkSmallWordProperty_gamma->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()
+                 ) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+
+         string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
+         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
+               weighted <<
+               ' ' <<
+               0 <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"g"<<
+               std::endl;
+     }
+     if (!ui->checkCP->isChecked()&&(ui->checkCP_NodalMetrics->isChecked())&&(!ui->checkSmallWordProperty_gamma->isChecked()))
+     {
+
+         if (ui->lineEdit_Working_Directory->text().isEmpty()
+                 ) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+
+         string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
+         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
+               weighted <<
+               ' ' <<
+               0 <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"n"<<
+               std::endl;
+     }
+     if (!ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()
+                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         if (ui->lineEditLp_num_of_random_networks->text()=="0")
+         {
+             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
+         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
+               weighted <<
+               ' ' <<
+               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"k"<<
+               std::endl;
+     }
+     if (ui->checkCP->isChecked()&&(ui->checkCP_NodalMetrics->isChecked())&&(!ui->checkSmallWordProperty_gamma->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()
+                 ) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+
+         string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
+         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
+               weighted <<
+               ' ' <<
+               0 <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"gn"<<
+               std::endl;
+     }
+     if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()
+                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         if (ui->lineEditLp_num_of_random_networks->text()=="0")
+         {
+             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
+         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
+               weighted <<
+               ' ' <<
+               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"gk"<<
+               std::endl;
+     }
+     if (!ui->checkCP->isChecked()&&(ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()
+                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         if (ui->lineEditLp_num_of_random_networks->text()=="0")
+         {
+             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
+         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
+               weighted <<
+               ' ' <<
+               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"nk"<<
+               std::endl;
+     }
+     if (ui->checkCP->isChecked()&&(ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
+     {
+         if (ui->lineEdit_Working_Directory->text().isEmpty()
+                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
+             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         if (ui->lineEditLp_num_of_random_networks->text()=="0")
+         {
+             QMessageBox::information(this, "Warning", "The value of random networkss(n) can't be zero.", QMessageBox::Ok, QMessageBox::Ok);
+             return;
+         }
+         string s_Cp=ui->comboBoxCp_Cp_type->currentText().toStdString();
+         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Cp.exe " : "./exefiles_weighted/Cp ") <<
+               weighted <<
+               ' ' <<
+               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"gnk"<<
+               std::endl;
+     }
+
+     /*if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEditLp_num_of_random_networks->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
@@ -729,6 +1086,8 @@ void MainWindow::on_pushButtonSave_clicked()
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"b"<<
               std::endl;
     }
+   */
+
     if(ui->checkSmallWordProperty->isChecked()){
         if (ui->lineEdit_Working_Directory->text().isEmpty()||
                 ui->lineEditLp_num_of_random_networks->text().isEmpty())

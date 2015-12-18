@@ -86,7 +86,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-68</y>
          <width>1486</width>
          <height>1000</height>
         </rect>
@@ -233,9 +233,6 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
              </item>
              <item>
               <widget class="QCheckBox" name="checkSmallWordProperty_gamma">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                  <horstretch>0</horstretch>
