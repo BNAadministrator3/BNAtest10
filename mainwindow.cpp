@@ -1453,6 +1453,7 @@ void MainWindow::on_pushButtonLoad_clicked()
              string unweighted=tokens[1].substr(0,tokens[1].length()-11);
             if (tokens.size() == 2) {
                      ui->checkSmallWordProperty->setChecked(true);
+                     emit mySignalMgrayBoxSmallWorld(true);
                      ui->lineEdit_Working_Directory->setText(unweighted.c_str());
                  }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\Louvain_Modularity.exe" : "./exefiles/Louvain_Modularity")
