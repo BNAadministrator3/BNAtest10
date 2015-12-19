@@ -12,8 +12,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1540</width>
-    <height>960</height>
+    <width>1549</width>
+    <height>958</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -86,9 +86,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-68</y>
-         <width>1486</width>
-         <height>1000</height>
+         <y>0</y>
+         <width>1521</width>
+         <height>930</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -99,8 +99,8 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>800</width>
-         <height>1000</height>
+         <width>1495</width>
+         <height>930</height>
         </size>
        </property>
        <property name="baseSize">
@@ -593,7 +593,7 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>270</height>
+            <height>240</height>
            </size>
           </property>
           <property name="font">
