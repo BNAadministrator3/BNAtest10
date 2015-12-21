@@ -258,7 +258,7 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
-                <string>gamma</string>
+                <string>Gamma</string>
                </property>
               </widget>
              </item>
@@ -305,7 +305,7 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
-                <string>lambda</string>
+                <string>Lambda</string>
                </property>
               </widget>
              </item>
@@ -347,7 +347,7 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
                 </font>
                </property>
                <property name="text">
-                <string>random networks(n)</string>
+                <string>Random Networks(n)</string>
                </property>
               </widget>
              </item>
@@ -441,7 +441,7 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
                   </font>
                  </property>
                  <property name="text">
-                  <string>Cp type</string>
+                  <string>Cp Type</string>
                  </property>
                 </widget>
                </item>
@@ -532,7 +532,7 @@ QGroupBox#groupBox_Global_Metrics:focus{border: 2px solid rgb(200, 165, 140);
                   </font>
                  </property>
                  <property name="text">
-                  <string>algorithm</string>
+                  <string>Algorithm</string>
                  </property>
                 </widget>
                </item>
@@ -625,7 +625,7 @@ QGroupBox#groupBox_Nodal_Metrics:focus{border: 2px solid rgb(200, 165, 140);
            <string>Nodal Metrics</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="1" column="0">
+           <item row="0" column="3">
             <widget class="QCheckBox" name="checkCUBC">
              <property name="minimumSize">
               <size>
@@ -650,7 +650,89 @@ QGroupBox#groupBox_Nodal_Metrics:focus{border: 2px solid rgb(200, 165, 140);
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
+           <item row="0" column="6">
+            <widget class="QCheckBox" name="checkLp_NodalMetrics">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::NoFocus</enum>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the characteristic path length (Lp) of the nodal sets...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="whatsThis">
+              <string/>
+             </property>
+             <property name="text">
+              <string>Nodal Efficiency</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="checkDegree">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::NoFocus</enum>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the degree centrality of the network.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Degree</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <spacer name="horizontalSpacer_10">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="2" column="0">
+            <widget class="QCheckBox" name="checkConvertNII">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Put the nodal metric results back to the 3-D matrix and converts the .nm files to the standard NII format.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Output NII format</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
             <widget class="QCheckBox" name="checkCP_NodalMetrics">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -681,60 +763,7 @@ QGroupBox#groupBox_Nodal_Metrics:focus{border: 2px solid rgb(200, 165, 140);
              </property>
             </widget>
            </item>
-           <item row="0" column="2">
-            <widget class="QCheckBox" name="checkDegree">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="font">
-              <font>
-               <family>Arial</family>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the degree centrality of the network.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Degree</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QCheckBox" name="checkLp_NodalMetrics">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="font">
-              <font>
-               <family>Arial</family>
-               <pointsize>14</pointsize>
-              </font>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Calculate the characteristic path length (Lp) of the nodal sets...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="whatsThis">
-              <string/>
-             </property>
-             <property name="text">
-              <string>Nodal Efficiency</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
+           <item row="1" column="0">
             <widget class="QCheckBox" name="checkCUEC">
              <property name="font">
               <font>
@@ -753,7 +782,7 @@ QGroupBox#groupBox_Nodal_Metrics:focus{border: 2px solid rgb(200, 165, 140);
              </property>
             </widget>
            </item>
-           <item row="1" column="2">
+           <item row="1" column="6">
             <widget class="QCheckBox" name="checkPC_CPU">
              <property name="minimumSize">
               <size>
@@ -778,21 +807,47 @@ QGroupBox#groupBox_Nodal_Metrics:focus{border: 2px solid rgb(200, 165, 140);
              </property>
             </widget>
            </item>
-           <item row="2" column="0">
-            <widget class="QCheckBox" name="checkConvertNII">
-             <property name="font">
-              <font>
-               <family>Arial</family>
-               <pointsize>14</pointsize>
-              </font>
+           <item row="0" column="1">
+            <spacer name="horizontalSpacer_13">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Put the nodal metric results back to the 3-D matrix and converts the .nm files to the standard NII format.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <property name="sizeType">
+              <enum>QSizePolicy::Expanding</enum>
              </property>
-             <property name="text">
-              <string>Output NII format</string>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>100</width>
+               <height>20</height>
+              </size>
              </property>
-            </widget>
+            </spacer>
+           </item>
+           <item row="0" column="5">
+            <spacer name="horizontalSpacer_12">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="4">
+            <spacer name="horizontalSpacer_14">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
@@ -836,7 +891,7 @@ QGroupBox#groupBox_Nodal_Metrics:focus{border: 2px solid rgb(200, 165, 140);
              </font>
             </property>
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Network type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Network Type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="wordWrap">
              <bool>true</bool>
@@ -876,7 +931,7 @@ QGroupBox#groupBox_Nodal_Metrics:focus{border: 2px solid rgb(200, 165, 140);
             </item>
             <item>
              <property name="text">
-              <string>weighted</string>
+              <string>Weighted</string>
              </property>
             </item>
            </widget>
@@ -943,7 +998,7 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Construct correlation matrices from BOLD signals on GPU.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
-              <string>Correlation Matrix</string>
+              <string>Generate Correlation Matrix</string>
              </property>
             </widget>
            </item>
@@ -977,7 +1032,7 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
               </font>
              </property>
              <property name="text">
-              <string>generating group-level network</string>
+              <string>Generate Group-level Network</string>
              </property>
             </widget>
            </item>
@@ -1002,7 +1057,7 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
               </font>
              </property>
              <property name="text">
-              <string>saving whole correlation matrix</string>
+              <string>Save Whole Correlation Matrix</string>
              </property>
             </widget>
            </item>
@@ -1048,7 +1103,7 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
                 </font>
                </property>
                <property name="text">
-                <string>threshold value                      </string>
+                <string>Threshold Value                      </string>
                </property>
               </widget>
              </item>
@@ -1112,7 +1167,7 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
                 <string notr="true">font: 14pt ;</string>
                </property>
                <property name="text">
-                <string>threshold type</string>
+                <string>Threshold Type</string>
                </property>
               </widget>
              </item>
@@ -1154,12 +1209,12 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
                </property>
                <item>
                 <property name="text">
-                 <string>correlation</string>
+                 <string>Correlation</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>sparsity</string>
+                 <string>Sparsity</string>
                 </property>
                </item>
               </widget>
@@ -1231,7 +1286,7 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Do the average of orignal networks directly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="text">
-                 <string>ordinary</string>
+                 <string>Ordinary</string>
                 </property>
                 <property name="checked">
                  <bool>true</bool>
@@ -1256,7 +1311,7 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fisher's transformation is excuted before average. Fisher's z-transformation of r is defined as:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;:/new/correlation matrix/z-transformation&quot;/&gt;&lt;/p&gt;&lt;p&gt;where r is the correlation coefficient of each voxel-pair.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="text">
-                 <string>fisher</string>
+                 <string>Fisher</string>
                 </property>
                </widget>
               </item>
@@ -1417,7 +1472,7 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
            </font>
           </property>
           <property name="text">
-           <string>Execute and save script</string>
+           <string>Execute and Save Script</string>
           </property>
          </widget>
         </item>
@@ -1442,7 +1497,7 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
            </font>
           </property>
           <property name="text">
-           <string>Load script</string>
+           <string>Load Script</string>
           </property>
          </widget>
         </item>
@@ -1470,7 +1525,7 @@ QGroupBox#groupBox_CUCorMat{ font-weight:bold;}</string>
            <enum>Qt::LeftToRight</enum>
           </property>
           <property name="text">
-           <string>mask threshold</string>
+           <string>Mask Threshold</string>
           </property>
          </widget>
         </item>
