@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 //       a.setFont(font);
 
     MainWindow w;
-    w.setWindowTitle("PAGANI Toolkit");
+  //  w.setWindowTitle("PAGANI Toolkit");
     w.show();
 
     return a.exec();

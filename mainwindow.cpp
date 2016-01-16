@@ -1967,7 +1967,7 @@ void MainWindow::on_switchButton_currentIndexChanged(int index)
 
     ui->checkCUBC->setChecked(false);
     ui->checkCUBC->setEnabled(false);
-    ui->checkCUBC->setToolTip("This algorithm can currently be used in unweighted networks");
+    ui->checkCUBC->setToolTip("This algorithm currently can only be used in unweighted networks");
     }
 }
 
