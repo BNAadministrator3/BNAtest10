@@ -197,6 +197,7 @@ void MainWindow::on_pushButtonSave_clicked()
         //组合之外的统统选n
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->mask_threshold->text().isEmpty()
+                || ui->lineEdit_Mask_File->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_average->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_save_cormatrix->text().isEmpty()
                 //|| ui->lineEditCUCorMat_threshold_type->text().isEmpty()
@@ -209,6 +210,8 @@ void MainWindow::on_pushButtonSave_clicked()
         if(both_metrics==0)
             script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+             ui->lineEdit_Mask_File->text().toStdString() <<
               ' ' <<
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
@@ -225,6 +228,8 @@ void MainWindow::on_pushButtonSave_clicked()
             script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
+               ' ' <<
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
               "bn" <<
@@ -243,6 +248,8 @@ void MainWindow::on_pushButtonSave_clicked()
             script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
+               ' ' <<
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
               "bf" <<
@@ -680,6 +687,7 @@ void MainWindow::on_pushButtonSave_clicked()
         //组合之外的统统选n
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->mask_threshold->text().isEmpty()
+                || ui->lineEdit_Mask_File->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_average->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_save_cormatrix->text().isEmpty()
                 //|| ui->lineEditCUCorMat_threshold_type->text().isEmpty()
@@ -693,6 +701,8 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
+               ' ' <<
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
               "n" <<
@@ -710,6 +720,8 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
+               ' ' <<
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
               "bn" <<
@@ -727,6 +739,8 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
+               ' ' <<
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
               "bf" <<
@@ -1957,6 +1971,7 @@ void MainWindow::on_switchButton_currentIndexChanged(int index)
     }
 }
 
+/*
 void MainWindow::on_checkSmallWordProperty_clicked(bool checked)
 {
     if(checked==0)
@@ -1973,3 +1988,4 @@ void MainWindow::on_checkSmallWordProperty_clicked(bool checked)
        
     }
 }
+*/

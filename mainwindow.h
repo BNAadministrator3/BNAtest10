@@ -76,7 +76,7 @@ private slots:
 
     void on_switchButton_currentIndexChanged(int index);
 
-    void on_checkSmallWordProperty_clicked(bool checked);
+   // void on_checkSmallWordProperty_clicked(bool checked);
 
 signals:
     void mySignalMtoS();
